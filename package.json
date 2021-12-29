@@ -1,0 +1,52 @@
+{
+  "name": "idata-portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "start": "vite",
+    "start:mock": "cross-env mock=true noproxy=true vite",
+    "build": "tsc && vite build",
+    "build2": "vite build",
+    "serve": "vite preview",
+    "prettier": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@reduxjs/toolkit": "^1.5.0",
+    "antd": "4.14.0",
+    "monaco-editor": "^0.31.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/babel__core": "^7.1.17",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-redux": "^7.1.16",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "@vitejs/plugin-react": "^1.1.3",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "autoprefixer": "^10.2.5",
+    "babel-preset-react-app": "^10.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react": "^7.27.1",
+    "mockjs": "^1.1.0",
+    "postcss": "^8.2.7",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^5.0.5",
+    "tailwindcss": "^3.0.1",
+    "typescript": "^4.2.2",
+    "vite": "^2.0.3",
+    "vite-plugin-imp": "^2.0.9",
+    "vite-plugin-mock": "^2.9.6"
+  }
+}

@@ -1,0 +1,15 @@
+coverage
+dist
+tars_config
+node_modules
+.npmrc
+.husky
+.idea
+.vscode
+*.sh
+*.ico
+*.txt
+*.svg
+*.png
+*.jpg
+*.json

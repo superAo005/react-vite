@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; /* 252526 */
+
+/* .monaco-editor .suggest-details,
+.monaco-editor .suggest-widget {
+  background-color: #f3f3f3 !important;
+} */
+
+/* // body {
+//   #monaco_editor {
+//     width: 900px;
+//     height: 900px;
+//   }
+// }
+*/
