@@ -29,6 +29,8 @@ specifiers:
   react: ^17.0.1
   react-dom: ^17.0.1
   react-redux: ^7.2.2
+  react-router: ^6.2.1
+  react-router-dom: ^6.2.1
   tailwindcss: ^3.0.1
   typescript: ^4.2.2
   vite: ^2.0.3
@@ -43,6 +45,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
+  react-router: 6.2.1_react@17.0.2
+  react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
   '@babel/preset-env': 7.16.5
@@ -3853,6 +3857,12 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /history/5.2.0:
+    resolution: {integrity: sha512-uPSF6lAJb3nSePJ43hN3eKj1dTWpN9gMod0ZssbFTIsen+WehTmEadgL+kg78xLJFdRfrrC//SavDzmRVdE+Ig==, tarball: history/download/history-5.2.0.tgz}
+    dependencies:
+      '@babel/runtime': 7.16.5
+    dev: false
+
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U=, tarball: hoist-non-react-statics/download/hoist-non-react-statics-3.3.2.tgz}
     dependencies:
@@ -5050,6 +5060,27 @@ packages:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==, tarball: react-refresh/download/react-refresh-0.11.0.tgz}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-dom/6.2.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-I6Zax+/TH/cZMDpj3/4Fl2eaNdcvoxxHoH1tYOREsQ22OKDYofGebrNm6CTPUcvLvZm63NL/vzCYdjf9CUhqmA==, tarball: react-router-dom/download/react-router-dom-6.2.1.tgz}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      history: 5.2.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-router: 6.2.1_react@17.0.2
+    dev: false
+
+  /react-router/6.2.1_react@17.0.2:
+    resolution: {integrity: sha512-2fG0udBtxou9lXtK97eJeET2ki5//UWfQSl1rlJ7quwe6jrktK9FCCc8dQb5QY6jAv3jua8bBQRhhDOM/kVRsg==, tarball: react-router/download/react-router-6.2.1.tgz}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      history: 5.2.0
+      react: 17.0.2
+    dev: false
 
   /react/17.0.2:
     resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==, tarball: react/download/react-17.0.2.tgz}
