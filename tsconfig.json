@@ -21,6 +21,7 @@
     "types": ["vite/client", "node"],
     "skipLibCheck": false,
     "esModuleInterop": false,
+    "suppressImplicitAnyIndexErrors": true,
     // "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,

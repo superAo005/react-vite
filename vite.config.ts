@@ -5,9 +5,22 @@ import react from '@vitejs/plugin-react'
 import vitePluginImp from 'vite-plugin-imp'
 // import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 import { viteMockServe } from 'vite-plugin-mock'
+import { dependencies } from './package.json'
 
 const path = require('path')
+const reactVendorPackages = ['react', 'react-dom', 'react-router-dom']
+const reduxVendorPackages = ['@reduxjs/toolkit', 'react-redux']
 
+// 分包
+function renderChunks(deps: Record<string, string>) {
+  let chunks = {}
+  Object.keys(deps).forEach((key) => {
+    if (reactVendorPackages.includes(key)) return
+    if (reduxVendorPackages.includes(key)) return
+    chunks[key] = [key]
+  })
+  return chunks
+}
 // const uat = 'http://idata.fat4628.qa.nt.ctripcorp.com'
 
 export default ({ command }: ConfigEnv): UserConfigExport => {
@@ -24,8 +37,9 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       rollupOptions: {
         output: {
           manualChunks: {
-            react: ['react', 'react-dom'],
-            vendors: ['@reduxjs/toolkit', 'react-redux'],
+            react: reactVendorPackages,
+            redux: reduxVendorPackages,
+            ...renderChunks(dependencies),
           },
         },
       },
