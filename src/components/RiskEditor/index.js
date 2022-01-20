@@ -1,1 +1,1 @@
-export { default as RiskEditor } from './RiskEditor'
+export * from './RiskEditor'

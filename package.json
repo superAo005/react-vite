@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "start": "vite",
     "start:mock": "cross-env mock=true noproxy=true vite",
     "build": "tsc && vite build",
@@ -14,8 +13,11 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-form": "1.49.1",
+    "@ant-design/pro-table": "2.57.1",
     "@reduxjs/toolkit": "^1.5.0",
     "antd": "4.14.0",
+    "lodash-es": "^4.17.21",
     "monaco-editor": "^0.31.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",
@@ -42,6 +44,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.23.0",
     "eslint-plugin-react": "^7.27.1",
+    "less": "^4.1.2",
     "mockjs": "^1.1.0",
     "postcss": "^8.2.7",
     "postcss-import": "^14.0.2",
@@ -50,6 +53,7 @@
     "typescript": "^4.2.2",
     "vite": "^2.0.3",
     "vite-plugin-imp": "^2.0.9",
-    "vite-plugin-mock": "^2.9.6"
+    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-style-import": "^1.4.1"
   }
 }
