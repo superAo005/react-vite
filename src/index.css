@@ -14,3 +14,23 @@
 //   }
 // }
 */
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  @apply h-8 m-4 bg-gray-200 bg-opacity-30;
+}
+
+.site-layout .site-layout-background {
+  @apply bg-white;
+}

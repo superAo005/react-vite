@@ -6,19 +6,25 @@ import LayoutPage from '@/layout'
 
 const Home = lazy(() => import('@/pages/home'))
 const Detail = lazy(() => import('@/pages/detail'))
+const TableList = lazy(() => import('@/pages/table'))
 
 const routeList = [
   {
-    path: '/',
+    path: '',
     element: <LayoutPage />,
     children: [
       {
-        index: true,
+        path: '/',
+        // index: true,
         element: <Home />,
       },
       {
         path: 'detail',
         element: <Detail />,
+      },
+      {
+        path: 'table',
+        element: <TableList />,
       },
     ],
   },
