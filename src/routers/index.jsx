@@ -7,6 +7,7 @@ import LayoutPage from '@/layout'
 const Home = lazy(() => import('@/pages/home'))
 const Detail = lazy(() => import('@/pages/detail'))
 const TableList = lazy(() => import('@/pages/table'))
+const NoMatch = lazy(() => import('@/pages/noMatch'))
 
 const routeList = [
   {
@@ -25,6 +26,12 @@ const routeList = [
       {
         path: 'table',
         element: <TableList />,
+      },
+      {
+        path: '*',
+        name: 'No Match',
+        key: '*',
+        element: <NoMatch />,
       },
     ],
   },

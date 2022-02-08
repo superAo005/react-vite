@@ -3,13 +3,9 @@ import ProTable from '@ant-design/pro-table'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { Button, message, Modal, Space } from 'antd'
 export default function Index(props) {
-  const { goto, roles } = props
   const actionRef = useRef()
   const formRef = useRef()
-  const [selectedRowKeys, setSelectedRowKeys] = useState([])
   // 批量上下线
-  const [batchVisible, setBatchVisible] = useState(false)
-  const [batchType, setBatchType] = useState('')
   // 批量上下线 --end
   const initColumns = [
     {
@@ -85,7 +81,7 @@ export default function Index(props) {
    * @param {object} record
    */
   const onCopy = async (record) => {
-    goto(`feature-manage/func/details?type=copy&ruleNo=${record.funcName}`)
+    // goto(`feature-manage/func/details?type=copy&ruleNo=${record.funcName}`)
   }
 
   /**
@@ -93,7 +89,7 @@ export default function Index(props) {
    * @param {object} record
    */
   const onView = (record) => {
-    goto(`/feature-manage/func/detailsView?ruleNo=${record.funcName}`)
+    // goto(`/feature-manage/func/detailsView?ruleNo=${record.funcName}`)
   }
 
   /**
@@ -162,7 +158,7 @@ export default function Index(props) {
               key="submit"
               type="primary"
               onClick={() => {
-                goto(`feature-manage/func/details?type=add`)
+                // goto(`feature-manage/func/details?type=add`)
               }}>
               新建
             </Button>,
@@ -202,3 +198,7 @@ export default function Index(props) {
     </>
   )
 }
+
+// export default function Index(props) {
+//   return <>table页面</>
+// }
