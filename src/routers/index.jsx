@@ -1,13 +1,19 @@
 // routers/index.js
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 
 import LayoutPage from '@/layout'
+import Loading from '@/components/Loading'
 
 const Home = lazy(() => import('@/pages/home'))
 const Detail = lazy(() => import('@/pages/detail'))
 const TableList = lazy(() => import('@/pages/table'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
+
+// import Home from '@/pages/home'
+// import Detail from '@/pages/detail'
+// import TableList from '@/pages/table'
+// import NoMatch from '@/pages/noMatch'
 
 const routeList = [
   {
@@ -17,21 +23,37 @@ const routeList = [
       {
         path: '/',
         // index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: 'detail',
-        element: <Detail />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Detail />
+          </Suspense>
+        ),
       },
       {
         path: 'table',
-        element: <TableList />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <TableList />
+          </Suspense>
+        ),
       },
       {
         path: '*',
         name: 'No Match',
         key: '*',
-        element: <NoMatch />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <NoMatch />
+          </Suspense>
+        ),
       },
     ],
   },
