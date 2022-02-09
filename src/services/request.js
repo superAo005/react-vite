@@ -1,0 +1,58 @@
+import axios from 'axios'
+import { message } from 'antd'
+
+//创建一个axios示例
+// FormData 使用 ,json格式不用引入
+// import qs from "qs";
+// 用户请求设置的方法
+const service = axios.create({
+  timeout: 2500,
+})
+// 设置拦截器
+service.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = localStorage.getItem('token')
+    return config
+  },
+  (err) => Promise.reject(err)
+)
+service.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = localStorage.getItem('token')
+    return config
+  },
+  (err) => Promise.reject(err)
+)
+// 设置响应拦截器
+service.interceptors.response.use(
+  (res) => {
+    switch (res.data && res.data.code) {
+      case 0:
+        break
+      case 1:
+        break
+      case 2:
+    }
+    return Promise.resolve(res.data)
+  },
+  (err) => {
+    switch (err.response.status) {
+      case 401:
+        sessionStorage.clear()
+        break
+      case 404:
+        message.error(err.message)
+
+        break
+      case 500:
+        message.error(err.message)
+
+        break
+      case 502:
+        message.error(err.message)
+    }
+    return Promise.reject(err)
+  }
+)
+
+export default service

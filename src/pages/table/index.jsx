@@ -165,9 +165,9 @@ export default function Index(props) {
           ],
         }}
         manualRequest={false}
-        // scroll={{
-        //   x: 1500,
-        // }}
+        scroll={{
+          x: 1100,
+        }}
         // rowSelection={{
         //   selectedRowKeys,
         //   onChange: onSelectChange,

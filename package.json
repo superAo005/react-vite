@@ -17,6 +17,7 @@
     "@ant-design/pro-table": "^2.62.8",
     "@reduxjs/toolkit": "^1.5.0",
     "antd": "^4.18.6",
+    "axios": "^0.25.0",
     "lodash-es": "^4.17.21",
     "monaco-editor": "^0.31.0",
     "nprogress": "^0.2.0",
