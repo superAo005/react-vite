@@ -1,204 +1,167 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import { Button, message, Modal, Space } from 'antd'
-export default function Index(props) {
+import { Button, message } from 'antd'
+
+import EditorForm from './Form'
+import DetailForm from './DetailForm'
+
+function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
-  // 批量上下线
-  // 批量上下线 --end
+
+  const [detailModalVisit, setDetailModalVisit] = useState(false)
+  const [editModalVisit, setEditModalVisit] = useState(false)
+  const [tableRowData, setTableRowData] = useState({})
+  const [editRowData, setEditRowData] = useState({})
+
   const initColumns = [
     {
-      title: '函数名称',
-      dataIndex: 'funcName',
-    },
-    {
-      title: '函数描述',
-      dataIndex: 'funcDesc',
-    },
-    {
-      title: '函数状态',
-      dataIndex: 'draftEnable',
-      hideInSearch: true,
+      title: '专家姓名',
+      dataIndex: 'name',
+      width: 120,
     },
 
     {
-      title: '创建人',
-      dataIndex: 'createUserName',
+      title: '备注信息',
+      dataIndex: 'remark',
+
       hideInSearch: true,
-      hideInTable: true,
+      width: 120,
     },
+
     {
       title: '创建时间',
-      dataIndex: 'createAt',
+      dataIndex: 'create_time',
       hideInSearch: true,
-      valueType: 'dateTime',
-      hideInTable: true,
+      width: 100,
     },
-    {
-      title: '更新人',
-      dataIndex: 'updateUserName',
-    },
-    {
-      title: '更新时间',
-      dataIndex: 'updateAt',
-      hideInSearch: true,
-      valueType: 'dateTime',
-      sorter: (a, b) => a.updateAt - b.updateAt,
-    },
+
     {
       title: '操作',
       key: 'option',
-      width: 200,
+      width: 150,
       valueType: 'option',
       fixed: 'right',
-      align: 'left',
-      render: (_, record) => {
-        // if (isCanOption(roles, ['attribute_dict:edit'])) {
-        return [
+      align: 'center',
+      render: (_, record) => [
+        <a
+          key="look"
+          onClick={() => {
+            onView(record)
+          }}>
+          查看
+        </a>,
+        <div
+          key="edit"
+          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
           <a
-            key="edit"
             onClick={() => {
-              onView(record)
+              record.modalType = 'edit'
+              onEdit(record)
             }}>
-            查看
-          </a>,
-          <a
-            key="edit"
-            onClick={() => {
-              onCopy(record)
-            }}>
-            复制
-          </a>,
-        ]
-        // }
-        // return null
-      },
+            编辑
+          </a>
+        </div>,
+      ],
     },
   ]
-  /**
-   * 复制
-   * @param {object} record
-   */
-  const onCopy = async (record) => {
-    // goto(`feature-manage/func/details?type=copy&ruleNo=${record.funcName}`)
-  }
 
-  /**
-   * 查看
-   * @param {object} record
-   */
-  const onView = (record) => {
-    // goto(`/feature-manage/func/detailsView?ruleNo=${record.funcName}`)
-  }
-
-  /**
-   * 删除
-   * @param {string} id
-   */
-  const onDelete = () => {
-    Modal.confirm({
-      title: '确认删除吗？',
-      icon: <ExclamationCircleOutlined />,
-      content: '',
-      okText: '确认',
-      cancelText: '取消',
-      onOk: async (close) => {
-        // let res = await deleteFeatureFunction({
-        //   funcNames: selectedRowKeys,
-        // })
-        // if (res.code === '0') {
-        //   message.success('删除成功')
-        //   actionRef.current.reload()
-        // } else {
-        //   close()
-        // }
-      },
-      // centered: true,
-    })
-  }
-
-  const reload = useCallback(() => {
+  const reload = () => {
     actionRef.current.reload()
-  }, [])
+  }
+
+  /**
+   * 查看数据源
+   */
+  const onView = async (record) => {
+    setDetailModalVisit(true)
+    setTableRowData(record)
+  }
+  /**
+   * 编辑数据源
+   */
+  const onEdit = async (record) => {
+    setEditModalVisit(true)
+
+    setEditRowData(record)
+  }
 
   return (
     <>
       <ProTable
         headerTitle=""
-        rowKey="funcName"
+        rowKey="sourceNo"
+        columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
-        request={async (params, sorter) => {
-          const sorterKey = Object.keys(sorter)[0]
-          const sorterVal = Object.values(sorter)[0]
+        // rowSelection={{
+        //   // 自定义选择项参考: https://ant.design/components/table-cn/#components-table-demo-row-selection-custom
+        //   // 注释该行则默认不显示下拉选项
+        //   // selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+        //   selectedRowKeys,
+        //   // onChange: onSelectChange,
+        //   onChange: (selectedRowKeys) => {
+        //     console.log('selectedRowKeys changed: ', selectedRowKeys)
+        //     setSelectedRowKeys(selectedRowKeys)
+        //   },
+        // }}
+        request={async (params) => {
           const relParams = {
             ...params,
             pageNo: params.current,
-            ascendBy: sorterVal === 'ascend' ? sorterKey : undefined,
-            descendBy: sorterVal === 'descend' ? sorterKey : undefined,
           }
-          delete relParams.current
+          console.log(relParams)
           const body = {}
-          // const { body, code, message: msg } = await getFuncList(relParams)
+          // const { body, code, message: msg } = await query(relParams)
+          // if (code != 0) {
+          //   message.error(msg)
+          // }
+          // tempData = body?.dtoList
           return {
-            data: body?.data || [],
+            data: body?.dtoList || [],
             success: true,
-            total: body?.totalCount || 0,
+            total: body?.total || 0,
           }
         }}
-        columns={initColumns}
         search={{
           defaultCollapsed: false,
-          labelWidth: '100',
+          labelWidth: 120,
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
-              icon={<PlusOutlined />}
               key="submit"
               type="primary"
               onClick={() => {
-                // goto(`feature-manage/func/details?type=add`)
+                onEdit({
+                  modalType: 'add',
+                })
               }}>
-              新建
+              新增
             </Button>,
           ],
         }}
+        scroll={{ x: 1500 }}
         manualRequest={false}
-        scroll={{
-          x: 1100,
-        }}
-        // rowSelection={{
-        //   selectedRowKeys,
-        //   onChange: onSelectChange,
-        // }}
-        // toolBarRender={() => [
-        //   <Button key="show" disabled={selectedRowKeys.length === 0} onClick={handleOnline}>
-        //     批量申请上线
-        //   </Button>,
-        //   <Button key="out" disabled={selectedRowKeys.length === 0} onClick={handleOffline}>
-        //     批量申请下线
-        //   </Button>,
-        //   <Button key="add" disabled={selectedRowKeys.length === 0} onClick={handleBatchAddRelease}>
-        //     批量添加到待发布清单
-        //   </Button>,
-        //   <Button key="del" disabled={selectedRowKeys.length === 0} onClick={onDelete}>
-        //     批量删除
-        //   </Button>,
-        // ]}
-        // options={{
-        //   search: false,
-        //   show: false,
-        //   density: false,
-        //   setting: true,
-        //   reload: false,
-        // }}
-      ></ProTable>
-      {/* 批量申请上线/下线 */}
+        toolBarRender={false}
+      />
+      <DetailForm
+        key="EditorFormDetail"
+        title="数据源查看"
+        visible={detailModalVisit}
+        onVisibleChange={setDetailModalVisit}
+        tableRowData={tableRowData}
+        onEdit={onEdit}
+        reload={reload}></DetailForm>
+      <EditorForm
+        key="EditorFormEdit"
+        visible={editModalVisit}
+        onVisibleChange={setEditModalVisit}
+        tableRowData={editRowData}
+        title={editRowData.modalType == 'edit' ? '数据源编辑' : '数据源新增'}
+        reload={reload}></EditorForm>
+      ,
     </>
   )
 }
 
-// export default function Index(props) {
-//   return <>table页面</>
-// }
+export default TableList
