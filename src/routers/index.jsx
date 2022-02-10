@@ -8,6 +8,7 @@ import Loading from '@/components/Loading'
 const Home = lazy(() => import('@/pages/home'))
 const Detail = lazy(() => import('@/pages/detail'))
 const TableList = lazy(() => import('@/pages/table'))
+const TemplateList = lazy(() => import('@/pages/template'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
 
 // import Home from '@/pages/home'
@@ -42,6 +43,14 @@ const routeList = [
         element: (
           <Suspense fallback={<Loading />}>
             <TableList />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'template',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <TemplateList />
           </Suspense>
         ),
       },

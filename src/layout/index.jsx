@@ -60,6 +60,10 @@ export default function Index(props) {
               <Link to="table"> table</Link>
             </Menu.Item>
 
+            <Menu.Item key="/template" icon={<UploadOutlined />}>
+              <Link to="template"> template</Link>
+            </Menu.Item>
+
             <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
               <Menu.Item key="7">Option 7</Menu.Item>
               <Menu.Item key="8">Option 8</Menu.Item>
