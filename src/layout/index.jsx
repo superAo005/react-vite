@@ -9,6 +9,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   SettingOutlined,
+  UsergroupAddOutlined,
 } from '@ant-design/icons'
 const { SubMenu } = Menu
 
@@ -48,13 +49,17 @@ export default function Index(props) {
             defaultSelectedKeys={defaultSelectedKeys}
             selectedKeys={defaultSelectedKeys}
             onClick={onItemClick}>
-            <Menu.Item key="/" icon={<UserOutlined />}>
+            <Menu.Item key="/" icon={<VideoCameraOutlined />}>
               {/* <Link to="/">nav 1</Link> */}
               nav 1
             </Menu.Item>
-            <Menu.Item key="/detail" icon={<VideoCameraOutlined />}>
+            <Menu.Item key="/user" icon={<UsergroupAddOutlined />}>
               {/* <Link to="detail">nav 2</Link> */}
-              nav 2
+              用户管理
+            </Menu.Item>
+            <Menu.Item key="/expert" icon={<UserOutlined />}>
+              {/* <Link to="detail">nav 2</Link> */}
+              专家管理
             </Menu.Item>
             <Menu.Item key="/table" icon={<UploadOutlined />}>
               <Link to="table"> table</Link>
