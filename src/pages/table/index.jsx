@@ -157,7 +157,7 @@ function TableList() {
         visible={editModalVisit}
         onVisibleChange={setEditModalVisit}
         tableRowData={editRowData}
-        title={editRowData.modalType == 'edit' ? '数据源编辑' : '数据源新增'}
+        title={editRowData.modalType == 'edit' ? '编辑' : '新增'}
         reload={reload}></EditorForm>
       ,
     </>

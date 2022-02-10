@@ -10,6 +10,7 @@ const Detail = lazy(() => import('@/pages/detail'))
 const TableList = lazy(() => import('@/pages/table'))
 const TemplateList = lazy(() => import('@/pages/table'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
+const Login = lazy(() => import('@/pages/login'))
 
 // import Home from '@/pages/home'
 // import Detail from '@/pages/detail'
@@ -65,6 +66,14 @@ const routeList = [
         ),
       },
     ],
+  },
+  {
+    path: 'login',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Login />
+      </Suspense>
+    ),
   },
 ]
 

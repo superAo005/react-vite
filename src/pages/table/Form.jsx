@@ -5,7 +5,7 @@ import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-des
 
 export default (props) => {
   const formItemLayout = {
-    labelCol: { span: 6 },
+    labelCol: { span: 3 },
     wrapperCol: { span: 17 },
   }
 
@@ -62,7 +62,7 @@ export default (props) => {
         initialValues={detail}
         formRef={formRef}
         form={modalForm}
-        width="900px"
+        width="700px"
         key="modalAddAndEdit"
         {...formItemLayout}
         layout="horizontal"
@@ -92,85 +92,20 @@ export default (props) => {
           }
         }}>
         <Row>
-          {/* <Col span={12}>
-            
-            <ProFormSelect
-              options={[
-                {
-                  value: 'cp',
-                  label: 'CP数据源',
-                },
-              ]}
-              name="sourceType"
-              label="数据源类型"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col> */}
-
-          <Col span={12}>
-            <ProFormText name="sourceNo" label="数据源编号" placeholder="系统自动生成" disabled />
-          </Col>
-          <Col span={12}>
-            <ProFormText
-              name="sourceName"
-              label="数据源名称"
-              placeholder="请输入数据源名称"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
+          <Col span={24}>
             <ProFormText
               name="sourceCHName"
-              label="数据源简称"
-              placeholder="请输入简称"
+              label="专家名称"
+              placeholder="请输入专家名称"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
 
-          <Col span={12}>
+          <Col span={24}>
             <ProFormTextArea
               name="sourceDesc"
-              label="数据源描述"
-              placeholder="请输入数据源描述 "
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={12}>
-            <ProFormText
-              name="topic"
-              label="topic"
-              placeholder=""
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
-          <Col span={12}>
-            {/* <ProFormText
-              name="sourceToQmqTopic"
-              label="ToQmqTopic"
-              placeholder=""
-              rules={[{ required: true, message: '不能为空' }]}
-            /> */}
-
-            <ProFormSelect
-              name="cp"
-              label="接入点"
-              showSearch
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={12}>
-            <ProFormSelect
-              name="schemaNo"
-              label="schemaNo"
-              showSearch
+              label="备注信息"
+              placeholder="请输入备注信息 "
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
