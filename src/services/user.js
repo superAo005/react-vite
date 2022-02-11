@@ -28,10 +28,10 @@ export function edit(data) {
 }
 
 // 编辑
-export function del(expert_id) {
-  return get({
+export function del(u_id) {
+  return post({
     url: 'api/hnbc/psas/user/del',
-    data: { expert_id },
+    data: { u_id },
   })
 }
 

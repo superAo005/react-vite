@@ -4,7 +4,7 @@ import { Button, message } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { getPageList } from '@/services/user'
+import { del, getPageList } from '@/services/user'
 
 function TableList() {
   const actionRef = useRef()
@@ -18,18 +18,18 @@ function TableList() {
   const initColumns = [
     {
       title: '登录账号',
-      dataIndex: 'name',
+      dataIndex: 'login_account',
     },
 
     {
       title: '真实姓名',
-      dataIndex: 'remark',
+      dataIndex: 'real_name',
 
       hideInSearch: true,
     },
     {
       title: '手机号',
-      dataIndex: 'remark',
+      dataIndex: 'mobile',
       hideInSearch: true,
     },
 
@@ -38,7 +38,11 @@ function TableList() {
       dataIndex: 'create_time',
       hideInSearch: true,
     },
-
+    {
+      title: '更新时间',
+      dataIndex: 'update_time',
+      hideInSearch: true,
+    },
     {
       title: '操作',
       key: 'option',
@@ -53,17 +57,21 @@ function TableList() {
           }}>
           查看
         </a>,
-        <div
+        <a
           key="edit"
-          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
-          <a
-            onClick={() => {
-              record.modalType = 'edit'
-              onEdit(record)
-            }}>
-            编辑
-          </a>
-        </div>,
+          onClick={() => {
+            record.modalType = 'edit'
+            onEdit(record)
+          }}>
+          编辑
+        </a>,
+        <a
+          key="del"
+          onClick={() => {
+            onDel(record)
+          }}>
+          删除
+        </a>,
       ],
     },
   ]
@@ -88,6 +96,10 @@ function TableList() {
     setEditRowData(record)
   }
 
+  const onDel = async (record) => {
+    await del(record.uid)
+  }
+
   return (
     <>
       <ProTable
@@ -96,17 +108,6 @@ function TableList() {
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
-        // rowSelection={{
-        //   // 自定义选择项参考: https://ant.design/components/table-cn/#components-table-demo-row-selection-custom
-        //   // 注释该行则默认不显示下拉选项
-        //   // selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        //   selectedRowKeys,
-        //   // onChange: onSelectChange,
-        //   onChange: (selectedRowKeys) => {
-        //     console.log('selectedRowKeys changed: ', selectedRowKeys)
-        //     setSelectedRowKeys(selectedRowKeys)
-        //   },
-        // }}
         request={async (params) => {
           const relParams = {
             ...params,
@@ -114,11 +115,9 @@ function TableList() {
             page_size: params.pageSize,
           }
           console.log(relParams)
-          // const body = {}
 
           const { data } = await getPageList(relParams)
 
-          // tempData = body?.dtoList
           return {
             data: data?.data || [],
             success: true,

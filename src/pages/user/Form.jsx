@@ -15,10 +15,10 @@ export default (props) => {
   const formRef = useRef()
   const [form] = Form.useForm()
   const [modalForm] = Form.useForm()
-
   // 详情数据
   const [detail] = useState({
-    sourceType: 'cp',
+    ...tableRowData,
+    identity_type: tableRowData.identity_type + '',
   })
 
   const onCancel = () => {
@@ -41,10 +41,9 @@ export default (props) => {
           //   message.error(msg)
           // }
           // let data = body || {}
-          let data = {}
-          // setDetail(data)
-
-          modalForm.setFieldsValue(data)
+          // let data = {}
+          // setDetail(tableRowData)
+          // modalForm.setFieldsValue(tableRowData)
         })()
       } else {
         modalForm.setFieldsValue({
@@ -76,6 +75,7 @@ export default (props) => {
             await form.validateFields()
 
             let params = {
+              ...tableRowData,
               ...values,
             }
             if (modalType == 'edit') {
@@ -83,6 +83,8 @@ export default (props) => {
             } else {
               await create(params)
             }
+            props.reload()
+            return true
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)
           }
@@ -96,14 +98,17 @@ export default (props) => {
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
-          <Col span={24}>
-            <ProFormText
-              name="pwd"
-              label="登录密码"
-              placeholder="请输入登录密码"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
+          {modalType != 'edit' && (
+            <Col span={24}>
+              <ProFormText
+                name="pwd"
+                label="登录密码"
+                placeholder="请输入登录密码"
+                rules={[{ required: true, message: '不能为空' }]}
+              />
+            </Col>
+          )}
+
           <Col span={24}>
             <ProFormText
               name="real_name"
@@ -125,7 +130,7 @@ export default (props) => {
               name="identity_type"
               valueEnum={{
                 0: '平台管理⼯作⼈员',
-                1: ':平台使⽤⼈员',
+                1: '平台使⽤⼈员',
                 2: '专家',
               }}
               label="身份类别"
