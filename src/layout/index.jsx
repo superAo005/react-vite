@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link, useMatch, useLocation, useNavigate } from 'react-router-dom'
 
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Dropdown } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -10,6 +10,7 @@ import {
   UploadOutlined,
   SettingOutlined,
   UsergroupAddOutlined,
+  DownOutlined,
 } from '@ant-design/icons'
 const { SubMenu } = Menu
 
@@ -38,6 +39,28 @@ export default function Index(props) {
     console.log(111, uselocation.pathname)
     setDefaultSelectedKeys(uselocation.pathname)
   }, [location.href])
+  const onClick = ({ key }) => {
+    switch (key) {
+      case 'logout':
+        // TODO: 退出登录
+        // handleLogout(token)
+        break
+      default:
+        break
+    }
+  }
+  const menu = (
+    <Menu onClick={onClick}>
+      {/* <Menu.Item key="0">
+        <a href="https://www.antgroup.com">1st menu item</a>
+      </Menu.Item>
+      <Menu.Item key="1">
+        <a href="https://www.aliyun.com">2nd menu item</a>
+      </Menu.Item> */}
+      <Menu.Divider />
+      <Menu.Item key="logout">退出登录</Menu.Item>
+    </Menu>
+  )
   return (
     <>
       <Layout className="h-screen">
@@ -83,6 +106,15 @@ export default function Index(props) {
               className: 'trigger',
               onClick: toggle,
             })}
+
+            <div className="right-menu float-right mr-6">
+              <Dropdown overlay={menu} trigger={['hover']}>
+                <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                  用户名
+                  <DownOutlined />
+                </a>
+              </Dropdown>
+            </div>
           </Header>
           <Content
             style={{
