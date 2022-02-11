@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form'
+import { create, edit } from '@/services/user'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -77,16 +78,11 @@ export default (props) => {
             let params = {
               ...values,
             }
-            // let { code, message: msg } = await add(params)
-
-            // if (code == 0) {
-            //   message.success('提交成功')
-            //   props.reload()
-            //   return true
-            // } else {
-            //   message.error(msg)
-            //   return false
-            // }
+            if (modalType == 'edit') {
+              await edit(params)
+            } else {
+              await create(params)
+            }
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)
           }
