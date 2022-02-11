@@ -6,7 +6,7 @@ import { create, edit } from '@/services/expert'
 
 export default (props) => {
   const formItemLayout = {
-    labelCol: { span: 3 },
+    labelCol: { span: 4 },
     wrapperCol: { span: 17 },
   }
 
@@ -21,6 +21,8 @@ export default (props) => {
     ...tableRowData,
   })
 
+  // tableRowData
+  console.log('tableRowData', tableRowData)
   const onCancel = () => {
     formRef.current.resetFields()
   }
@@ -43,7 +45,7 @@ export default (props) => {
           // let data = body || {}
           // let data = {}
           // setDetail(data)
-          // modalForm.setFieldsValue(data)
+          modalForm.setFieldsValue(tableRowData)
         })()
       } else {
         modalForm.setFieldsValue({})
@@ -60,7 +62,7 @@ export default (props) => {
         initialValues={detail}
         formRef={formRef}
         form={modalForm}
-        width="700px"
+        width="650px"
         key="modalAddAndEdit"
         {...formItemLayout}
         layout="horizontal"

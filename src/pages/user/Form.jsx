@@ -37,18 +37,14 @@ export default (props) => {
           // } = await getDetail({
           //   sourceNo,
           // })
-          // if (code != 0) {
-          //   message.error(msg)
-          // }
-          // let data = body || {}
-          // let data = {}
-          // setDetail(tableRowData)
-          // modalForm.setFieldsValue(tableRowData)
+
+          modalForm.setFieldsValue({
+            ...tableRowData,
+            identity_type: tableRowData.identity_type + '',
+          })
         })()
       } else {
-        modalForm.setFieldsValue({
-          sourceType: 'cp',
-        })
+        modalForm.setFieldsValue({})
       }
     }
   }, [sourceNo, visible])
