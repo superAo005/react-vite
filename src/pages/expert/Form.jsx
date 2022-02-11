@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form'
+import { create, edit } from '@/services/expert'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -10,14 +11,14 @@ export default (props) => {
   }
 
   let { tableRowData, visible } = props
-  let { modalType, sourceNo } = tableRowData
+  let { modalType } = tableRowData
   const formRef = useRef()
   const [form] = Form.useForm()
   const [modalForm] = Form.useForm()
 
   // 详情数据
   const [detail] = useState({
-    sourceType: 'cp',
+    ...tableRowData,
   })
 
   const onCancel = () => {
@@ -40,18 +41,15 @@ export default (props) => {
           //   message.error(msg)
           // }
           // let data = body || {}
-          let data = {}
+          // let data = {}
           // setDetail(data)
-
-          modalForm.setFieldsValue(data)
+          // modalForm.setFieldsValue(data)
         })()
       } else {
-        modalForm.setFieldsValue({
-          sourceType: 'cp',
-        })
+        modalForm.setFieldsValue({})
       }
     }
-  }, [sourceNo, visible])
+  }, [visible])
 
   return (
     <>
@@ -75,26 +73,25 @@ export default (props) => {
             await form.validateFields()
 
             let params = {
+              ...tableRowData,
               ...values,
             }
-            // let { code, message: msg } = await add(params)
 
-            // if (code == 0) {
-            //   message.success('提交成功')
-            //   props.reload()
-            //   return true
-            // } else {
-            //   message.error(msg)
-            //   return false
-            // }
+            if (modalType == 'edit') {
+              await edit(params)
+            } else {
+              await create(params)
+            }
+            props.reload()
+            return true
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)
           }
         }}>
-        <Row>
+        <Row className="pl-20">
           <Col span={24}>
             <ProFormText
-              name="sourceCHName"
+              name="name"
               label="专家名称"
               placeholder="请输入专家名称"
               rules={[{ required: true, message: '不能为空' }]}
@@ -103,7 +100,7 @@ export default (props) => {
 
           <Col span={24}>
             <ProFormTextArea
-              name="sourceDesc"
+              name="remark"
               label="备注信息"
               placeholder="请输入备注信息 "
               rules={[{ required: true, message: '不能为空' }]}

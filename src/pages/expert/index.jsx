@@ -4,6 +4,7 @@ import { Button, message } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
+import { del, getPageList } from '@/services/expert'
 
 function TableList() {
   const actionRef = useRef()
@@ -62,6 +63,13 @@ function TableList() {
             编辑
           </a>
         </div>,
+        <a
+          key="del"
+          onClick={() => {
+            onDel(record)
+          }}>
+          删除
+        </a>,
       ],
     },
   ]
@@ -85,7 +93,9 @@ function TableList() {
 
     setEditRowData(record)
   }
-
+  const onDel = async (record) => {
+    await del(record.expert_id)
+  }
   return (
     <>
       <ProTable
@@ -108,19 +118,16 @@ function TableList() {
         request={async (params) => {
           const relParams = {
             ...params,
-            pageNo: params.current,
+            page: params.current,
+            page_size: params.pageSize,
           }
-          console.log(relParams)
-          const body = {}
-          // const { body, code, message: msg } = await query(relParams)
-          // if (code != 0) {
-          //   message.error(msg)
-          // }
-          // tempData = body?.dtoList
+
+          const { data } = await getPageList(relParams)
+
           return {
-            data: body?.dtoList || [],
+            data: data?.data || [],
             success: true,
-            total: body?.total || 0,
+            total: data?.page_info?.total_data || 0,
           }
         }}
         search={{
@@ -146,7 +153,7 @@ function TableList() {
       />
       <DetailForm
         key="EditorFormDetail"
-        title="数据源查看"
+        title="查看"
         visible={detailModalVisit}
         onVisibleChange={setDetailModalVisit}
         tableRowData={tableRowData}

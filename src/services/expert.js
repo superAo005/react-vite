@@ -29,7 +29,7 @@ export function edit(data) {
 
 // 编辑
 export function del(expert_id) {
-  return get({
+  return post({
     url: 'api/hnbc/psas/expert/del',
     data: { expert_id },
   })

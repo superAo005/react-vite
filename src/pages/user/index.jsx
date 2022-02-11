@@ -114,7 +114,6 @@ function TableList() {
             page: params.current,
             page_size: params.pageSize,
           }
-          console.log(relParams)
 
           const { data } = await getPageList(relParams)
 
