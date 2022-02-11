@@ -113,13 +113,13 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       port: 3005, // 你需要定义的端口号
       // "preinstall": "npx only-allow pnpm",
 
-      // proxy: {
-      //   '/api/': {
-      //     target: 'http://39.105.10.134:8998',
-      //     changeOrigin: true,
-      //     secure: false,
-      //   },
-      // },
+      proxy: {
+        '/api/': {
+          target: 'http://39.105.10.134:8998',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
     },
   }
 }

@@ -25,15 +25,14 @@ service.interceptors.request.use(
 )
 // 设置响应拦截器
 service.interceptors.response.use(
-  (res) => {
-    switch (res.data && res.data.code) {
-      case 0:
-        break
-      case 1:
-        break
-      case 2:
+  ({ data }) => {
+    console.log(data)
+
+    if (data.res != 1) {
+      message.error(data.msg)
     }
-    return Promise.resolve(res.data)
+
+    return Promise.resolve(data)
   },
   (err) => {
     switch (err.response.status) {

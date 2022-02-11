@@ -4,6 +4,7 @@ import { Button, message } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
+import { getPageList } from '@/services/user'
 
 function TableList() {
   const actionRef = useRef()
@@ -109,19 +110,19 @@ function TableList() {
         request={async (params) => {
           const relParams = {
             ...params,
-            pageNo: params.current,
+            page: params.current,
+            page_size: params.pageSize,
           }
           console.log(relParams)
-          const body = {}
-          // const { body, code, message: msg } = await query(relParams)
-          // if (code != 0) {
-          //   message.error(msg)
-          // }
+          // const body = {}
+
+          const { res } = await getPageList(relParams)
+
           // tempData = body?.dtoList
           return {
-            data: body?.dtoList || [],
+            data: res?.dtoList || [],
             success: true,
-            total: body?.total || 0,
+            total: res?.total || 0,
           }
         }}
         search={{
