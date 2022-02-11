@@ -116,13 +116,13 @@ function TableList() {
           console.log(relParams)
           // const body = {}
 
-          const { res } = await getPageList(relParams)
+          const { data } = await getPageList(relParams)
 
           // tempData = body?.dtoList
           return {
-            data: res?.dtoList || [],
+            data: data?.data || [],
             success: true,
-            total: res?.total || 0,
+            total: data?.page_info?.total_data || 0,
           }
         }}
         search={{
