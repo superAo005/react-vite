@@ -34,7 +34,9 @@
 .site-layout .site-layout-background {
   @apply bg-white;
 }
-
+.ant-card-body {
+  padding: 24px !important;
+}
 .h-screen .anticon {
   vertical-align: 0.125em;
 }

@@ -55,4 +55,26 @@ service.interceptors.response.use(
   }
 )
 
+export const get = (opts) => {
+  const defaultOptions = {
+    method: 'GET',
+    url: '',
+    data: {},
+    params: {},
+  }
+  const options = Object.assign({}, defaultOptions, opts)
+  return service(options)
+}
+
+export const post = (opts) => {
+  const defaultOptions = {
+    method: 'POST',
+    url: '',
+    data: {},
+    params: {},
+  }
+  const options = Object.assign({}, defaultOptions, opts)
+  return service(options)
+}
+
 export default service

@@ -125,7 +125,7 @@ function TableList() {
         }}
         search={{
           defaultCollapsed: false,
-          labelWidth: 120,
+          labelWidth: 80,
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
