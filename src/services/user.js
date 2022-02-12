@@ -10,6 +10,14 @@ export function getPageList(data) {
     data,
   })
 }
+
+// 登录
+export function login(data) {
+  return post({
+    url: 'api/hnbc/psas/auth/to/login',
+    data,
+  })
+}
 // 新增
 export function create(data) {
   return post({

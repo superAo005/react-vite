@@ -1,9 +1,26 @@
 import { LoginForm, ProFormText } from '@ant-design/pro-form'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { useState } from 'react'
+
+import { Form, Input, Button, Checkbox, Tabs } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { login } from '@/services/user'
+import { useNavigate } from 'react-router-dom'
+
 export default () => {
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values)
+  const [loginType, setLoginType] = useState('0')
+  const navigate = useNavigate()
+
+  const onFinish = async (values) => {
+    console.log('Received values of form: ', values, loginType)
+
+    const { data } = await login({
+      ...values,
+      type: +loginType,
+    })
+
+    localStorage.setItem('token', data?.token)
+    localStorage.setItem('account', data?.login_account)
+    navigate('/user')
   }
   return (
     <div className="h-screen  login-page">
@@ -44,12 +61,38 @@ export default () => {
         initialValues={{ remember: true }}
         onFinish={onFinish}>
         <h3 className="title">专家后台管理系统</h3>
-        <Form.Item name="login_account" rules={[{ required: true, message: '请输入登录账号' }]}>
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="请输入登录账号"
-          />
-        </Form.Item>
+
+        <Tabs
+          className="m-auto"
+          activeKey={loginType}
+          onChange={(activeKey) => setLoginType(activeKey)}>
+          <Tabs.TabPane key={1} tab={'账号密码登录'} />
+          <Tabs.TabPane key={0} tab={'手机号登录'} />
+        </Tabs>
+
+        {loginType == 1 && (
+          <>
+            <Form.Item name="account" rules={[{ required: true, message: '请输入登录账号' }]}>
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="请输入登录账号"
+              />
+            </Form.Item>
+          </>
+        )}
+        {loginType == 0 && (
+          <>
+            <Form.Item
+              name="cellphone_number"
+              rules={[{ required: true, message: '请输入手机号' }]}>
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="请输入手机号"
+              />
+            </Form.Item>
+          </>
+        )}
+
         <Form.Item name="pwd" rules={[{ required: true, message: '请输入登录密码' }]}>
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}

@@ -8,21 +8,17 @@ import { message } from 'antd'
 const service = axios.create({
   timeout: 2500,
 })
+
 // 设置拦截器
+
 service.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = localStorage.getItem('token')
+    config.headers.Authorization = 'Bearer ' + localStorage.getItem('token')
     return config
   },
   (err) => Promise.reject(err)
 )
-service.interceptors.request.use(
-  (config) => {
-    config.headers.Authorization = localStorage.getItem('token')
-    return config
-  },
-  (err) => Promise.reject(err)
-)
+
 // 设置响应拦截器
 service.interceptors.response.use(
   ({ data }) => {

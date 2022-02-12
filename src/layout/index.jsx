@@ -25,7 +25,7 @@ export default function Index(props) {
 
   const match = useMatch(uselocation.pathname)
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
-
+  const account = localStorage.getItem('account') || '未知用户'
   console.log(uselocation)
   console.log('match', match)
   const toggle = () => {
@@ -127,7 +127,7 @@ export default function Index(props) {
             <div className="right-menu float-right mr-6">
               <Dropdown overlay={menu} trigger={['hover']}>
                 <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                  用户名
+                  {account}
                   <DownOutlined />
                 </a>
               </Dropdown>
