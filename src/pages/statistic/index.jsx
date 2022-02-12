@@ -68,6 +68,7 @@ function TableList() {
             page_size: params.pageSize,
           }
 
+          console.log('relParams', relParams)
           const { data } = await getStatsList(relParams)
 
           return {

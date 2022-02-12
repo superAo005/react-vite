@@ -120,7 +120,7 @@ export default function Index(props) {
               '0002fc9b8d534e8eb075eb6a0a590002',
               '0003dd6b8d534e8eb075fb6a0a590003',
             ]) && (
-              <Menu.Item key="/statistic " icon={<AppstoreOutlined />}>
+              <Menu.Item key="/statistic" icon={<AppstoreOutlined />}>
                 抽取统计
               </Menu.Item>
             )}
