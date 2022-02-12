@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link, useMatch, useLocation, useNavigate } from 'react-router-dom'
 
-import { Layout, Menu, Dropdown } from 'antd'
+import { Layout, Menu, Dropdown, Modal } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,6 +11,8 @@ import {
   SettingOutlined,
   UsergroupAddOutlined,
   DownOutlined,
+  AppstoreOutlined,
+  SearchOutlined,
 } from '@ant-design/icons'
 const { SubMenu } = Menu
 
@@ -43,11 +45,23 @@ export default function Index(props) {
     switch (key) {
       case 'logout':
         // TODO: 退出登录
-        // handleLogout(token)
+        handleLogout()
         break
       default:
         break
     }
+  }
+  const handleLogout = (token) => {
+    Modal.confirm({
+      title: '注销',
+      content: '确定要退出系统吗?',
+      okText: '确定',
+      cancelText: '取消',
+      onOk: () => {
+        // logout(token);
+        navigate('login')
+      },
+    })
   }
   const menu = (
     <Menu onClick={onClick}>
@@ -72,32 +86,35 @@ export default function Index(props) {
             defaultSelectedKeys={defaultSelectedKeys}
             selectedKeys={defaultSelectedKeys}
             onClick={onItemClick}>
-            <Menu.Item key="/" icon={<VideoCameraOutlined />}>
-              {/* <Link to="/">nav 1</Link> */}
+            {/* <Menu.Item key="/" icon={<VideoCameraOutlined />}>
               nav 1
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="/user" icon={<UsergroupAddOutlined />}>
-              {/* <Link to="detail">nav 2</Link> */}
               用户管理
             </Menu.Item>
             <Menu.Item key="/expert" icon={<UserOutlined />}>
-              {/* <Link to="detail">nav 2</Link> */}
               专家管理
             </Menu.Item>
-            <Menu.Item key="/table" icon={<UploadOutlined />}>
+            <Menu.Item key="/extract" icon={<SearchOutlined />}>
+              专家抽取
+            </Menu.Item>
+            <Menu.Item key="/statistic " icon={<AppstoreOutlined />}>
+              抽取统计
+            </Menu.Item>
+            {/* <Menu.Item key="/table" icon={<UploadOutlined />}>
               <Link to="table"> table</Link>
             </Menu.Item>
 
             <Menu.Item key="/template" icon={<UploadOutlined />}>
               <Link to="template"> template</Link>
-            </Menu.Item>
-
+            </Menu.Item> */}
+            {/* 
             <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
               <Menu.Item key="7">Option 7</Menu.Item>
               <Menu.Item key="8">Option 8</Menu.Item>
               <Menu.Item key="9">Option 9</Menu.Item>
               <Menu.Item key="10">Option 10</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
           </Menu>
         </Sider>
         <Layout className="site-layout">

@@ -56,3 +56,11 @@ export function enableFeatureFunction(param) {
     param,
   })
 }
+
+// 专家抽取统计
+export function getStatsList(param) {
+  return post({
+    url: 'api/hnbc/psas/project/list/query/stats',
+    param,
+  })
+}

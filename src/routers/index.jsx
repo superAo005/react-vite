@@ -13,6 +13,8 @@ const NoMatch = lazy(() => import('@/pages/noMatch'))
 const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
 const Expert = lazy(() => import('@/pages/expert'))
+const Statistic = lazy(() => import('@/pages/statistic'))
+const Extract = lazy(() => import('@/pages/extract'))
 
 // import Home from '@/pages/home'
 // import Detail from '@/pages/detail'
@@ -46,6 +48,23 @@ const routeList = [
         element: (
           <Suspense fallback={<Loading />}>
             <Expert />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'extract',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Extract />
+          </Suspense>
+        ),
+      },
+
+      {
+        path: 'statistic',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Statistic />
           </Suspense>
         ),
       },
