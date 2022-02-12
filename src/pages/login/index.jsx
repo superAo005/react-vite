@@ -17,10 +17,18 @@ export default () => {
       ...values,
       type: +loginType,
     })
-
+    const roleList = data?.role_list || []
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
-    navigate('/user')
+    localStorage.setItem('roleList', JSON.stringify(data?.role_list))
+
+    if (roleList.includes('0001ec6b8d534e8eb075fb6a0a590001')) {
+      navigate('/user')
+    } else if (roleList.includes('0002fc9b8d534e8eb075eb6a0a590002')) {
+      navigate('/expert')
+    } else {
+      navigate('/statistic')
+    }
   }
   return (
     <div className="h-screen  login-page">

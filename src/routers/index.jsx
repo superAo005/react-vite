@@ -27,15 +27,6 @@ const routeList = [
     element: <LayoutPage />,
     children: [
       {
-        path: '/',
-        // index: true,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
         path: 'user',
         element: (
           <Suspense fallback={<Loading />}>

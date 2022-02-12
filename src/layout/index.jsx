@@ -63,6 +63,14 @@ export default function Index(props) {
       },
     })
   }
+
+  const showMenu = (needRoles) => {
+    const allRoles = JSON.parse(localStorage.getItem('roleList'))
+    let intersectionRoles = needRoles.filter(function (val) {
+      return allRoles.indexOf(val) > -1
+    })
+    return intersectionRoles.length > 0
+  }
   const menu = (
     <Menu onClick={onClick}>
       {/* <Menu.Item key="0">
@@ -89,18 +97,34 @@ export default function Index(props) {
             {/* <Menu.Item key="/" icon={<VideoCameraOutlined />}>
               nav 1
             </Menu.Item> */}
-            <Menu.Item key="/user" icon={<UsergroupAddOutlined />}>
-              用户管理
-            </Menu.Item>
-            <Menu.Item key="/expert" icon={<UserOutlined />}>
-              专家管理
-            </Menu.Item>
-            <Menu.Item key="/extract" icon={<SearchOutlined />}>
-              专家抽取
-            </Menu.Item>
-            <Menu.Item key="/statistic " icon={<AppstoreOutlined />}>
-              抽取统计
-            </Menu.Item>
+
+            {showMenu(['0001ec6b8d534e8eb075fb6a0a590001']) && (
+              <Menu.Item key="/user" icon={<UsergroupAddOutlined />}>
+                用户管理
+              </Menu.Item>
+            )}
+
+            {showMenu(['0001ec6b8d534e8eb075fb6a0a590001', '0002fc9b8d534e8eb075eb6a0a590002']) && (
+              <Menu.Item key="/expert" icon={<UserOutlined />}>
+                专家管理
+              </Menu.Item>
+            )}
+
+            {showMenu(['0001ec6b8d534e8eb075fb6a0a590001', '0002fc9b8d534e8eb075eb6a0a590002']) && (
+              <Menu.Item key="/extract" icon={<SearchOutlined />}>
+                专家抽取
+              </Menu.Item>
+            )}
+            {showMenu([
+              '0001ec6b8d534e8eb075fb6a0a590001',
+              '0002fc9b8d534e8eb075eb6a0a590002',
+              '0003dd6b8d534e8eb075fb6a0a590003',
+            ]) && (
+              <Menu.Item key="/statistic " icon={<AppstoreOutlined />}>
+                抽取统计
+              </Menu.Item>
+            )}
+
             {/* <Menu.Item key="/table" icon={<UploadOutlined />}>
               <Link to="table"> table</Link>
             </Menu.Item>
