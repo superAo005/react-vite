@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import ProForm, { ProFormText, ProFormDigit, ProFormTextArea } from '@ant-design/pro-form'
 
+import { useLocation } from 'react-router-dom'
 // import TagCanvas from './tagcanvas'
 import TagCanvas from 'tag-canvas'
 import { getPageList, selectList } from '@/services/expert'
@@ -30,12 +31,16 @@ export default function Index(props) {
     labelCol: { span: 5 },
     wrapperCol: { span: 17 },
   }
-
+  const location = useLocation()
+  console.log('location', location.state)
   const formRef = useRef()
   const [form] = Form.useForm()
   const [modalForm] = Form.useForm()
-
-  const [detail] = useState({})
+  const state = location.state
+  const [detail] = useState({
+    project_name: state?.record?.name,
+    remark: state?.record?.remark,
+  })
   const [selectedList, setSelectedList] = useState([])
   const [expertTags, setExpertTags] = useState([])
 
@@ -51,6 +56,9 @@ export default function Index(props) {
       })
       console.log('data', data)
       setExpertTags(data?.data)
+
+      // modalForm.setFieldsValue({ project_name: state.name, remark: state.remark })
+
       TagCanvas.Start('tagCanvas', `tags`, {
         textColour: null,
         dragControl: 1,
@@ -86,8 +94,8 @@ export default function Index(props) {
   }
   return (
     <>
-      <Row>
-        <Col span={6} className="pt-60 ">
+      <Row className="bg-white ">
+        <Col flex="500px" className="pt-60 pl-5 pb-5">
           <ProForm
             initialValues={detail}
             formRef={formRef}
@@ -174,7 +182,7 @@ export default function Index(props) {
             </Row>
           </ProForm>
         </Col>
-        <Col span={18}>
+        <Col flex="auto">
           <canvas className="canvas h-full w-full" id="tagCanvas">
             <div id={`tags`} className="tag-cloud-tags">
               <ul>

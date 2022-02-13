@@ -19,18 +19,17 @@ function TableList() {
     {
       title: '登录账号',
       dataIndex: 'login_account',
+      hideInSearch: true,
     },
 
     {
       title: '真实姓名',
       dataIndex: 'real_name',
-
       hideInSearch: true,
     },
     {
       title: '手机号',
       dataIndex: 'mobile',
-      hideInSearch: true,
     },
 
     {

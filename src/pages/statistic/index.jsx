@@ -1,23 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-
+import { useNavigate } from 'react-router-dom'
 import { getStatsList } from '@/services/expert'
 
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
+  const navigate = useNavigate()
 
   const initColumns = [
     {
       title: '项目名称',
       dataIndex: 'name',
-      width: 120,
     },
     {
       title: '抽取专家',
       dataIndex: 'expert_select_details',
       hideInSearch: true,
-      width: 120,
       render: (_) => {
         return <>{Array.isArray(_) ? _.map((item) => <p key={item.name}>{item.name}</p>) : _}</>
       },
@@ -27,19 +26,34 @@ function TableList() {
       title: '备注信息',
       dataIndex: 'remark',
       hideInSearch: true,
-      width: 120,
     },
     {
       title: '项目创建人',
       dataIndex: 'creator',
       hideInSearch: true,
-      width: 120,
     },
     {
       title: '创建时间',
       dataIndex: 'create_time',
       hideInSearch: true,
-      width: 100,
+    },
+    {
+      title: '操作',
+      key: 'option',
+      width: 150,
+      valueType: 'option',
+      fixed: 'right',
+      align: 'center',
+      render: (_, record) => [
+        <a
+          key="del"
+          onClick={() => {
+            // onDel(record)
+            navigate(`/extract`, { state: { record } })
+          }}>
+          重新抽取
+        </a>,
+      ],
     },
   ]
 

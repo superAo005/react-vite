@@ -18,7 +18,7 @@ export default (props) => {
   // 详情数据
   const [detail] = useState({
     ...tableRowData,
-    identity_type: tableRowData.identity_type + '',
+    identity_type: '0',
   })
 
   const onCancel = () => {
@@ -113,6 +113,11 @@ export default (props) => {
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
+          {modalType == 'edit' && (
+            <Col span={24}>
+              <ProFormText name="pwd" label="新密码" placeholder="请输入新登录密码" />
+            </Col>
+          )}
           <Col span={24}>
             <ProFormText
               name="mobile"
