@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Outlet, Link, useMatch, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, Link, useMatch, useLocation, useNavigate, Navigate } from 'react-router-dom'
 
 import { Layout, Menu, Dropdown, Modal } from 'antd'
 import {
@@ -22,7 +22,11 @@ export default function Index(props) {
 
   let uselocation = useLocation()
   const navigate = useNavigate()
-
+  const token = localStorage.getItem('token')
+  if (!token) {
+    navigate('/login')
+    return <Navigate to="/login" replace />
+  }
   const match = useMatch(uselocation.pathname)
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
   const account = localStorage.getItem('account') || '未知用户'

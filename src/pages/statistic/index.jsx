@@ -15,7 +15,8 @@ function TableList() {
     },
     {
       title: '抽取专家',
-      dataIndex: 'name',
+      dataIndex: 'expert_select_details',
+      hideInSearch: true,
       width: 120,
       render: (_) => {
         return <>{Array.isArray(_) ? _.map((item) => <p key={item.name}>{item.name}</p>) : _}</>
@@ -25,13 +26,13 @@ function TableList() {
     {
       title: '备注信息',
       dataIndex: 'remark',
-
       hideInSearch: true,
       width: 120,
     },
     {
       title: '项目创建人',
       dataIndex: 'creator',
+      hideInSearch: true,
       width: 120,
     },
     {

@@ -57,6 +57,14 @@ export function enableFeatureFunction(param) {
   })
 }
 
+// 专家抽取
+export function selectList(data) {
+  return post({
+    url: 'api/hnbc/psas/project/expert/select',
+    data,
+  })
+}
+
 // 专家抽取统计
 export function getStatsList(data) {
   return post({

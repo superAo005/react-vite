@@ -1,11 +1,12 @@
 // import TagsCanvas from '@/components/TagsCanvas'
-import { Row, Col, Button, Form } from 'antd'
+import { Row, Col, Button, Form, message } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 
-import ProForm, { ProFormText, ProFormDigit } from '@ant-design/pro-form'
+import ProForm, { ProFormText, ProFormDigit, ProFormTextArea } from '@ant-design/pro-form'
 
 // import TagCanvas from './tagcanvas'
 import TagCanvas from 'tag-canvas'
+import { getPageList, selectList } from '@/services/expert'
 const tags = [
   { value: 'Javascript', weight: 30 },
   { value: 'React', weight: 30 },
@@ -16,9 +17,17 @@ const tags = [
   { value: 'Redux', weight: 20 },
   { value: 'NodeJS', weight: 20 },
 ]
+
+const waitTime = (time = 2000) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
+}
 export default function Index(props) {
   const formItemLayout = {
-    labelCol: { span: 4 },
+    labelCol: { span: 5 },
     wrapperCol: { span: 17 },
   }
 
@@ -27,20 +36,30 @@ export default function Index(props) {
   const [modalForm] = Form.useForm()
 
   const [detail] = useState({})
+  const [selectedList, setSelectedList] = useState([])
+  const [expertTags, setExpertTags] = useState([])
 
   const onCancel = () => {
     formRef.current.resetFields()
   }
+
   useEffect(() => {
-    // TagCanvas.Start(id, `${id}-tags`, { weight, weightFrom, ...options })
-    TagCanvas.Start('tagCanvas', `tags`, {
-      textColour: null,
-      dragControl: 1,
-      decel: 0.95,
-      textHeight: 14,
-      minSpeed: 0.01,
-      initial: [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)],
-    })
+    ;(async () => {
+      const { data } = await getPageList({
+        page: 1,
+        page_size: 999,
+      })
+      console.log('data', data)
+      setExpertTags(data?.data)
+      TagCanvas.Start('tagCanvas', `tags`, {
+        textColour: null,
+        dragControl: 1,
+        decel: 0.95,
+        textHeight: 14,
+        minSpeed: 0.01,
+        initial: [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)],
+      })
+    })()
   }, [])
   const getSpeed = () => {
     return [0.1 * Math.random() + 0.01, -(0.1 * Math.random() + 0.01)]
@@ -50,6 +69,16 @@ export default function Index(props) {
   }
   const handleStop = () => {
     TagCanvas.SetSpeed('tagCanvas', getSpeed())
+  }
+  const handleSubmit = async () => {
+    const values = await formRef.current?.validateFieldsReturnFormatValue?.()
+    let params = {
+      ...values,
+      type: 1,
+      expert_id_list: selectedList.map((item) => item.expert_id),
+    }
+    const { data } = await selectList(params)
+    message.success('抽取成功，请到统计中查看')
   }
   return (
     <>
@@ -77,14 +106,19 @@ export default function Index(props) {
                   display: 'none',
                 },
               },
-              submitButtonProps: {
-                style: {
-                  width: '345px',
-                  marginLeft: '15px',
-                },
-              },
+              // submitButtonProps: {
+              //   style: {
+              //     width: '345px',
+              //     marginLeft: '15px',
+              //   },
+              // },
               render: (props, doms) => {
-                return [...doms.reverse()]
+                return [
+                  ...doms.reverse(),
+                  <Button htmlType="button" type="primary" onClick={handleSubmit} key="edit">
+                    提交
+                  </Button>,
+                ]
               },
             }}
             onFinish={async (values) => {
@@ -92,15 +126,15 @@ export default function Index(props) {
                 await form.validateFields()
 
                 console.log('values', values)
-                // let params = {
-                //   ...tableRowData,
-                //   ...values,
-                // }
-                // if (modalType == 'edit') {
-                //   await edit(params)
-                // } else {
-                //   await create(params)
-                // }
+                let params = {
+                  ...values,
+                  type: 0,
+                }
+                handleStart()
+                const { data } = await selectList(params)
+                await waitTime()
+                handleStop()
+                setSelectedList(data?.expert_list)
                 return true
               } catch (errorInfo) {
                 console.log('Failed:', errorInfo)
@@ -115,13 +149,20 @@ export default function Index(props) {
                   rules={[{ required: true, message: '不能为空' }]}
                 />
               </Col>
-
+              <Col span={24}>
+                <ProFormTextArea
+                  name="remark"
+                  label="备注信息"
+                  placeholder="请输入备注信息 "
+                  rules={[{ required: true, message: '不能为空' }]}
+                />
+              </Col>
               <Col span={24}>
                 <ProFormDigit
                   label="抽取个数"
-                  name="input-number"
+                  name="number"
                   min={1}
-                  max={10}
+                  max={5}
                   rules={[{ required: true, message: '不能为空' }]}
                   fieldProps={{ precision: 0 }}
                 />
@@ -133,32 +174,33 @@ export default function Index(props) {
           <canvas className="canvas h-full w-full" id="tagCanvas">
             <div id={`tags`} className="tag-cloud-tags">
               <ul>
-                {tags.map((tag) => {
-                  if (tag.value) {
+                {expertTags.map((tag) => {
+                  if (tag.expert_id) {
                     return (
-                      <li key={tag.value}>
-                        <a data-weight={tag.weight}>{tag.value}</a>
+                      <li key={tag.expert_id}>
+                        <a data-weight={20}>{tag.name}</a>
                       </li>
                     )
                   }
-                  return (
-                    <li key={tag}>
-                      <a>{tag}</a>
-                    </li>
-                  )
+                  // return (
+                  //   <li key={tag}>
+                  //     <a>{tag}</a>
+                  //   </li>
+                  // )
                 })}
               </ul>
             </div>
           </canvas>
 
           <div className="batch flexbox">
-            {tags.map((tag) => {
-              return (
-                <div key={tag.value} className="player">
-                  {tag.value}
-                </div>
-              )
-            })}
+            {selectedList.length > 0 &&
+              selectedList.map((tag) => {
+                return (
+                  <div key={tag.expert_id} className="player">
+                    {tag.expert_name}
+                  </div>
+                )
+              })}
           </div>
         </Col>
       </Row>

@@ -45,13 +45,13 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        <a
-          key="look"
-          onClick={() => {
-            onView(record)
-          }}>
-          查看
-        </a>,
+        // <a
+        //   key="look"
+        //   onClick={() => {
+        //     onView(record)
+        //   }}>
+        //   查看
+        // </a>,
         <div
           key="edit"
           className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>

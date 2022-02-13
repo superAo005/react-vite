@@ -50,13 +50,13 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        <a
-          key="look"
-          onClick={() => {
-            onView(record)
-          }}>
-          查看
-        </a>,
+        // <a
+        //   key="look"
+        //   onClick={() => {
+        //     onView(record)
+        //   }}>
+        //   查看
+        // </a>,
         <a
           key="edit"
           onClick={() => {

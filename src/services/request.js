@@ -6,7 +6,7 @@ import { message } from 'antd'
 // import qs from "qs";
 // 用户请求设置的方法
 const service = axios.create({
-  timeout: 2500,
+  timeout: 25000,
 })
 
 // 设置拦截器
@@ -34,6 +34,7 @@ service.interceptors.response.use(
     switch (err.response.status) {
       case 401:
         sessionStorage.clear()
+        location.hash = '/login'
         break
       case 404:
         message.error(err.message)
@@ -41,7 +42,6 @@ service.interceptors.response.use(
         break
       case 500:
         message.error(err.message)
-
         break
       case 502:
         message.error(err.message)
