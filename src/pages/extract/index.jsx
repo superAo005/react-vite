@@ -71,6 +71,10 @@ export default function Index(props) {
     TagCanvas.SetSpeed('tagCanvas', getSpeed())
   }
   const handleSubmit = async () => {
+    if (selectedList.length === 0) {
+      message.error('请先抽取专家')
+      return
+    }
     const values = await formRef.current?.validateFieldsReturnFormatValue?.()
     let params = {
       ...values,
