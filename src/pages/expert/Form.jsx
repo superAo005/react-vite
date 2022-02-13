@@ -78,7 +78,7 @@ export default (props) => {
               ...tableRowData,
               ...values,
             }
-
+            delete params.modalType
             if (modalType == 'edit') {
               await edit(params)
             } else {
@@ -99,7 +99,14 @@ export default (props) => {
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
-
+          <Col span={24}>
+            <ProFormText
+              name="login_account"
+              label="登录账号"
+              placeholder="请输入登录账号"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
           {modalType != 'edit' && (
             <Col span={24}>
               <ProFormText

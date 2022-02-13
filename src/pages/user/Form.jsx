@@ -19,7 +19,7 @@ export default (props) => {
   // 详情数据
   const [detail] = useState({
     ...tableRowData,
-    identity_type: '0',
+    role_id: '0',
   })
   const [roleList, setRoleList] = useState([])
   const onCancel = () => {
@@ -44,12 +44,12 @@ export default (props) => {
 
             modalForm.setFieldsValue({
               ...tableRowData,
-              identity_type: tableRowData.identity_type + '',
+              role_id: tableRowData.role_id + '',
             })
           })()
         } else {
           modalForm.setFieldsValue({
-            identity_type: data[0].role_id,
+            role_id: data[0].role_id,
           })
         }
       }
@@ -135,7 +135,7 @@ export default (props) => {
           </Col>
           <Col span={24}>
             <ProFormSelect
-              name="identity_type"
+              name="role_id"
               options={roleList}
               fieldProps={{
                 fieldNames: { label: 'role_name', value: 'role_id' },
