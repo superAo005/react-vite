@@ -103,6 +103,7 @@ function TableList() {
 
   const onDel = async (record) => {
     await del(record.uid)
+    reload()
   }
 
   return (

@@ -95,6 +95,7 @@ function TableList() {
   }
   const onDel = async (record) => {
     await del(record.expert_id)
+    reload()
   }
   return (
     <>
