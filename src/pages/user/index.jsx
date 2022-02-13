@@ -28,6 +28,12 @@ function TableList() {
       hideInSearch: true,
     },
     {
+      title: '所属角色',
+      dataIndex: 'role_name',
+      hideInSearch: true,
+    },
+
+    {
       title: '手机号',
       dataIndex: 'mobile',
     },

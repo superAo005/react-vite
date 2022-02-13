@@ -17,10 +17,10 @@ export default () => {
       ...values,
       type: +loginType,
     })
-    const roleList = data?.role_list || []
+    const roleList = [data?.role_id] || []
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
-    localStorage.setItem('roleList', JSON.stringify(data?.role_list))
+    localStorage.setItem('roleList', JSON.stringify([data?.role_id]))
 
     if (roleList.includes('0001ec6b8d534e8eb075fb6a0a590001')) {
       navigate('/user')
