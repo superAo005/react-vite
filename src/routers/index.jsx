@@ -12,6 +12,7 @@ const TemplateList = lazy(() => import('@/pages/table'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
 const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
+const Role = lazy(() => import('@/pages/role'))
 const Expert = lazy(() => import('@/pages/expert'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
@@ -31,6 +32,14 @@ const routeList = [
         element: (
           <Suspense fallback={<Loading />}>
             <User />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'role',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Role />
           </Suspense>
         ),
       },

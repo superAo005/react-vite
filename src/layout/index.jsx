@@ -6,15 +6,13 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  SettingOutlined,
   UsergroupAddOutlined,
   DownOutlined,
   AppstoreOutlined,
   SearchOutlined,
+  KeyOutlined,
 } from '@ant-design/icons'
-const { SubMenu } = Menu
+// const { SubMenu } = Menu
 
 const { Header, Sider, Content } = Layout
 export default function Index(props) {
@@ -105,6 +103,11 @@ export default function Index(props) {
             {showMenu(['0001ec6b8d534e8eb075fb6a0a590001']) && (
               <Menu.Item key="/user" icon={<UsergroupAddOutlined />}>
                 用户管理
+              </Menu.Item>
+            )}
+            {showMenu(['0001ec6b8d534e8eb075fb6a0a590001']) && (
+              <Menu.Item key="/role" icon={<KeyOutlined />}>
+                角色管理
               </Menu.Item>
             )}
 

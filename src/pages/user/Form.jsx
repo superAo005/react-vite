@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect } from '@ant-design/pro-form'
 import { create, edit } from '@/services/user'
+import { getPageList } from '@/services/role'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -20,34 +21,40 @@ export default (props) => {
     ...tableRowData,
     identity_type: '0',
   })
-
+  const [roleList, setRoleList] = useState([])
   const onCancel = () => {
     formRef.current.resetFields()
   }
 
   // 获取详情
   useEffect(() => {
-    if (visible) {
-      if (modalType == 'edit') {
-        ;(async () => {
-          // const {
-          //   body,
-          //   code,
-          //   message: msg,
-          // } = await getDetail({
-          //   sourceNo,
-          // })
+    ;(async () => {
+      if (visible) {
+        const { data } = await getPageList({})
+        setRoleList(data)
+        if (modalType == 'edit') {
+          ;(async () => {
+            // const {
+            //   body,
+            //   code,
+            //   message: msg,
+            // } = await getDetail({
+            //   sourceNo,
+            // })
 
+            modalForm.setFieldsValue({
+              ...tableRowData,
+              identity_type: tableRowData.identity_type + '',
+            })
+          })()
+        } else {
           modalForm.setFieldsValue({
-            ...tableRowData,
-            identity_type: tableRowData.identity_type + '',
+            identity_type: data[0].role_id,
           })
-        })()
-      } else {
-        modalForm.setFieldsValue({})
+        }
       }
-    }
-  }, [sourceNo, visible])
+    })()
+  }, [visible])
 
   return (
     <>
@@ -129,13 +136,11 @@ export default (props) => {
           <Col span={24}>
             <ProFormSelect
               name="identity_type"
-              valueEnum={{
-                0: '平台管理⼯作⼈员',
-                1: '平台使⽤⼈员',
-                2: '专家',
+              options={roleList}
+              fieldProps={{
+                fieldNames: { label: 'role_name', value: 'role_id' },
               }}
-              label="身份类别"
-              placeholder="请输入备注信息 "
+              label="角色"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
