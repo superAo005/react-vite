@@ -99,37 +99,36 @@ export default (props) => {
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
-          <Col span={24}>
-            <ProFormText
-              name="login_account"
-              label="登录账号"
-              placeholder="请输入登录账号"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
+
           {modalType != 'edit' && (
-            <Col span={24}>
-              <ProFormText
-                name="pwd"
-                label="登录密码"
-                placeholder="请输入登录密码"
-                rules={[{ required: true, message: '不能为空' }]}
-              />
-            </Col>
+            <>
+              <Col span={24}>
+                <ProFormText
+                  name="login_account"
+                  label="登录账号"
+                  placeholder="请输入登录账号"
+                  rules={[{ required: true, message: '不能为空' }]}
+                />
+              </Col>
+              <Col span={24}>
+                <ProFormText
+                  name="pwd"
+                  label="登录密码"
+                  placeholder="请输入登录密码"
+                  rules={[{ required: true, message: '不能为空' }]}
+                />
+              </Col>
+              <Col span={24}>
+                <ProFormText
+                  name="mobile"
+                  label="手机号"
+                  placeholder="请输入手机号"
+                  rules={[{ required: true, message: '不能为空' }]}
+                />
+              </Col>
+            </>
           )}
-          {modalType == 'edit' && (
-            <Col span={24}>
-              <ProFormText name="pwd" label="新密码" placeholder="请输入新登录密码" />
-            </Col>
-          )}
-          <Col span={24}>
-            <ProFormText
-              name="mobile"
-              label="手机号"
-              placeholder="请输入手机号"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col>
+
           <Col span={24}>
             <ProFormTextArea
               name="remark"
