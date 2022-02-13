@@ -3,6 +3,8 @@ import ProTable from '@ant-design/pro-table'
 import { useNavigate } from 'react-router-dom'
 import { getStatsList } from '@/services/expert'
 
+import { Tag } from 'antd'
+
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
@@ -18,7 +20,17 @@ function TableList() {
       dataIndex: 'expert_select_details',
       hideInSearch: true,
       render: (_) => {
-        return <>{Array.isArray(_) ? _.map((item) => <p key={item.name}>{item.name}</p>) : _}</>
+        return (
+          <>
+            {Array.isArray(_)
+              ? _.map((item) => (
+                  <Tag color="blue" key={item.name}>
+                    {item.name}
+                  </Tag>
+                ))
+              : _}
+          </>
+        )
       },
     },
 

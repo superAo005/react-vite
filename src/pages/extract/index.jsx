@@ -142,6 +142,9 @@ export default function Index(props) {
                   ...values,
                   type: 0,
                 }
+                if (state?.record?.pid) {
+                  params['pid'] = state?.record?.pid
+                }
                 handleStart()
                 const { data } = await selectList(params)
                 await waitTime()
