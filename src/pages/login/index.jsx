@@ -1,7 +1,6 @@
-import { LoginForm, ProFormText } from '@ant-design/pro-form'
 import { useState } from 'react'
 
-import { Form, Input, Button, Checkbox, Tabs } from 'antd'
+import { Form, Input, Button, Tabs } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { login } from '@/services/user'
 import { useNavigate } from 'react-router-dom'

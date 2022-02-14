@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import ProTable from '@ant-design/pro-table'
 import { useNavigate } from 'react-router-dom'
 import { getStatsList } from '@/services/expert'
