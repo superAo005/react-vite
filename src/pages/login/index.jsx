@@ -13,10 +13,11 @@ export default () => {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values, loginType)
 
-    const { data } = await login({
+    const { res, data } = await login({
       ...values,
       type: +loginType,
     })
+    if (res != 1) return
     const roleList = [data?.role_id] || []
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
