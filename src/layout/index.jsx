@@ -89,7 +89,7 @@ export default function Index(props) {
     <>
       <Layout className="h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo" />
+          <div className="logo">专家抽取系统</div>
           <Menu
             theme="dark"
             mode="inline"

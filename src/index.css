@@ -31,7 +31,7 @@
 }
 
 .logo {
-  @apply h-8 m-4 bg-gray-200 bg-opacity-30;
+  @apply h-8 m-4  bg-opacity-30 text-white text-center leading-8 text-xl;
 }
 
 .login-page {

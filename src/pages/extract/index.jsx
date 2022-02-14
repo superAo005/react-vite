@@ -196,7 +196,9 @@ export default function Index(props) {
                   if (tag.expert_id) {
                     return (
                       <li key={tag.expert_id}>
-                        <a data-weight={20}>{tag.name}</a>
+                        <a href="javascript:void(0);" data-weight={20}>
+                          {tag.name}
+                        </a>
                       </li>
                     )
                   }
