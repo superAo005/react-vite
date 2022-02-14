@@ -89,6 +89,9 @@ export default function Index(props) {
       type: 1,
       expert_id_list: selectedList.map((item) => item.expert_id),
     }
+    if (state?.record?.pid) {
+      params['pid'] = state?.record?.pid
+    }
     const { data } = await selectList(params)
     message.success('抽取成功，请到统计中查看')
   }
