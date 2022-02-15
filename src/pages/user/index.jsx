@@ -110,7 +110,7 @@ function TableList() {
     <>
       <ProTable
         headerTitle=""
-        rowKey="u_id"
+        rowKey="uid"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}

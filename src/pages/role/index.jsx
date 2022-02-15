@@ -1,16 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import ProTable from '@ant-design/pro-table'
 
 import { Tag } from 'antd'
 
-import { useNavigate } from 'react-router-dom'
-import { getStatsList } from '@/services/expert'
 import { getPageList } from '@/services/role'
 
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
-  const navigate = useNavigate()
 
   const initColumns = [
     {
@@ -67,7 +64,7 @@ function TableList() {
     <>
       <ProTable
         headerTitle=""
-        rowKey="expert_id"
+        rowKey="role_id"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
