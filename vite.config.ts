@@ -2,7 +2,7 @@ import { ConfigEnv, UserConfigExport } from 'vite'
 // import reactRefresh from '@vitejs/plugin-react-refresh'
 import react from '@vitejs/plugin-react'
 import * as path from 'path'
-import styleImport from 'vite-plugin-style-import'
+import styleImport, { AntdResolve } from 'vite-plugin-style-import'
 
 // import vitePluginImp from 'vite-plugin-imp'
 
@@ -75,15 +75,16 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       //   ],
       // }),
       styleImport({
-        libs: [
-          {
-            libraryName: 'antd',
-            esModule: true,
-            resolveStyle: (name) => {
-              return `antd/es/${name}/style/index`
-            },
-          },
-        ],
+        resolves: [AntdResolve()],
+        // libs: [
+        //   {
+        //     libraryName: 'antd',
+        //     esModule: true,
+        //     resolveStyle: (name) => {
+        //       return `antd/es/${name}/style/index`
+        //     },
+        //   },
+        // ],
       }),
     ],
     build: {

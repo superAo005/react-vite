@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-descriptions": "^1.10.36",
     "@ant-design/pro-form": "^1.52.14",
     "@ant-design/pro-table": "^2.62.8",
     "@reduxjs/toolkit": "^1.5.0",

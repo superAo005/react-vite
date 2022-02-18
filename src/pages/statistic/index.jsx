@@ -10,6 +10,11 @@ function TableList() {
   const formRef = useRef()
   const navigate = useNavigate()
 
+  const showButton = (needRole) => {
+    const allRoles = JSON.parse(localStorage.getItem('roleList'))
+    debugger
+    return !allRoles.includes(needRole)
+  }
   const initColumns = [
     {
       title: '项目名称',
@@ -56,16 +61,20 @@ function TableList() {
       valueType: 'option',
       fixed: 'right',
       align: 'center',
-      render: (_, record) => [
-        <a
-          key="del"
-          onClick={() => {
-            // onDel(record)
-            navigate(`/extract`, { state: { record } })
-          }}>
-          重新抽取
-        </a>,
-      ],
+      render: (_, record) => {
+        if (showButton('0003dd6b8d534e8eb075fb6a0a590003')) {
+          return [
+            <a
+              key="del"
+              onClick={() => {
+                // onDel(record)
+                navigate(`/extract`, { state: { record } })
+              }}>
+              重新抽取
+            </a>,
+          ]
+        }
+      },
     },
   ]
 

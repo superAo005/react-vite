@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Col, Row } from 'antd'
 import { ModalForm } from '@ant-design/pro-form'
-import { EditableProTable } from '@ant-design/pro-table'
+import ProDescriptions from '@ant-design/pro-descriptions'
 
 export default (props) => {
   const formItemLayout = {
@@ -11,7 +11,7 @@ export default (props) => {
   const { tableRowData, visible } = props
   const { sourceNo } = tableRowData
   const formRef = useRef()
-
+  console.log('tableRowData', tableRowData)
   // 详情数据
   const [detail, setDetail] = useState({
     selectSource: 'cp',
@@ -74,7 +74,7 @@ export default (props) => {
       onVisibleChange={props.onVisibleChange}
       initialValues={detail}
       formRef={formRef}
-      width="850px"
+      width="450px"
       {...formItemLayout}
       layout="horizontal"
       labelAlign="left"
@@ -85,7 +85,42 @@ export default (props) => {
           },
         },
       }}>
-      详情
+      <Row>
+        <Col span={16} offset={6}>
+          <ProDescriptions
+            dataSource={tableRowData}
+            // request={async () => {
+            //   return Promise.resolve({
+            //     success: true,
+            //     data: {
+            //     },
+            //   })
+            // }}
+            column={1}
+            columns={[
+              {
+                title: '专家姓名',
+                dataIndex: 'name',
+                width: 120,
+              },
+
+              {
+                title: '备注信息',
+                dataIndex: 'remark',
+
+                hideInSearch: true,
+                width: 120,
+              },
+
+              {
+                title: '创建时间',
+                dataIndex: 'create_time',
+                hideInSearch: true,
+                width: 100,
+              },
+            ]}></ProDescriptions>
+        </Col>
+      </Row>
     </ModalForm>
   )
 }

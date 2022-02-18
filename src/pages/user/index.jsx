@@ -55,13 +55,13 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        // <a
-        //   key="look"
-        //   onClick={() => {
-        //     onView(record)
-        //   }}>
-        //   查看
-        // </a>,
+        <a
+          key="look"
+          onClick={() => {
+            onView(record)
+          }}>
+          查看
+        </a>,
         <a
           key="edit"
           onClick={() => {
@@ -152,7 +152,7 @@ function TableList() {
       />
       <DetailForm
         key="EditorFormDetail"
-        title="数据源查看"
+        title="查看详情"
         visible={detailModalVisit}
         onVisibleChange={setDetailModalVisit}
         tableRowData={tableRowData}
