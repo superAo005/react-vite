@@ -104,9 +104,38 @@ const routeList = [
   },
 ]
 
-const RenderRouter = () => {
+const RenderRouter = (props) => {
   const element = useRoutes(routeList)
   return element
 }
 
+let obj = {
+  name: 'root',
+  children: [
+    {
+      name: 'a',
+      children: [],
+    },
+    {
+      name: 'b',
+      children: [],
+    },
+  ],
+}
+function removeDuplicate(root, name) {
+  if (root.name == name) {
+    return void 0
+  }
+
+  for (let i = 0; i < root?.children?.length; i++) {
+    let res = arguments.callee(root.children[i], name)
+    if (res) {
+      root.children[i] = res
+    } else {
+      root.children.splice(i, 1)
+    }
+  }
+  return root
+}
+// console.log(removeDuplicate(obj, 'a'))
 export default RenderRouter

@@ -4,10 +4,13 @@ import { Form, Input, Button, Tabs } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { login } from '@/services/user'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setInfo } from '@/store/stateSlice/userSlice'
 
 export default () => {
   const [loginType, setLoginType] = useState('0')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onFinish = async (values) => {
     console.log('Received values of form: ', values, loginType)
@@ -17,6 +20,8 @@ export default () => {
       type: +loginType,
     })
     if (res != 1) return
+
+    dispatch(setInfo(data))
     const roleList = [data?.role_id] || []
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
