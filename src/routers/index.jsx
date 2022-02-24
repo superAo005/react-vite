@@ -14,6 +14,7 @@ const Role = lazy(() => import('@/pages/role'))
 const Expert = lazy(() => import('@/pages/expert'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
+const Test = lazy(() => import('@/pages/test'))
 
 // import Home from '@/pages/home'
 // import Detail from '@/pages/detail'
@@ -33,6 +34,7 @@ const routeList = [
           </Suspense>
         ),
       },
+
       {
         path: 'role',
         element: (
@@ -99,6 +101,14 @@ const routeList = [
     element: (
       <Suspense fallback={<Loading />}>
         <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: 'test',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Test />
       </Suspense>
     ),
   },

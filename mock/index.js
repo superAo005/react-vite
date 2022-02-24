@@ -53,4 +53,15 @@ export default [
       }
     },
   },
+  {
+    url: '/api/getCreator',
+    method: 'get',
+    response: () => {
+      return {
+        code: 0,
+        msg: '请求成功',
+        data: { a: 1, b: 2, c: 3 },
+      }
+    },
+  },
 ]

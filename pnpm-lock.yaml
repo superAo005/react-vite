@@ -10,6 +10,7 @@ specifiers:
   '@babel/preset-typescript': ^7.13.0
   '@reduxjs/toolkit': ^1.5.0
   '@types/babel__core': ^7.1.17
+  '@types/lodash-es': ^4.17.6
   '@types/node': ^16.11.11
   '@types/react': ^17.0.2
   '@types/react-dom': ^17.0.1
@@ -65,6 +66,7 @@ devDependencies:
   '@babel/preset-react': 7.16.7
   '@babel/preset-typescript': 7.16.7
   '@types/babel__core': 7.1.18
+  '@types/lodash-es': 4.17.6
   '@types/node': 16.11.25
   '@types/react': 17.0.39
   '@types/react-dom': 17.0.11
@@ -2732,6 +2734,16 @@ packages:
 
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha1-l+3JA36gw4WFMgsolk3eOznkZg0=, tarball: '@types/json-schema/download/@types/json-schema-7.0.9.tgz'}
+    dev: true
+
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha1-wu1MgyD/pvEbQ+uJ6eruxllmoKA=, tarball: '@types/lodash-es/download/@types/lodash-es-4.17.6.tgz'}
+    dependencies:
+      '@types/lodash': 4.14.178
+    dev: true
+
+  /@types/lodash/4.14.178:
+    resolution: {integrity: sha1-NB9tIkfbUo1KE927N0vNyAQG9Pg=, tarball: '@types/lodash/download/@types/lodash-4.14.178.tgz'}
     dev: true
 
   /@types/mockjs/1.0.6:
