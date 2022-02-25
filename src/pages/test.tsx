@@ -46,7 +46,7 @@ const routeList = [
   },
 ]
 
-function arrayTreeFilter(data, predicate) {
+function filterRoutes(data, predicate) {
   const nodes = cloneDeep(data)
   // 如果已经没有节点了，结束递归
   if (!(nodes && nodes.length)) {
@@ -59,11 +59,11 @@ function arrayTreeFilter(data, predicate) {
       // 如果自己（节点）符合条件，直接加入到新的节点集
       newChildren.push(node)
       // 并接着处理其 children,（因为父节点符合，子节点一定要在，所以这一步就不递归了）
-      //   node.children = arrayTreeFilter(node.children, predicate)
+      //   node.children = filterRoutes(node.children, predicate)
     } else {
       // 如果自己不符合条件，需要根据子集来判断它是否将其加入新节点集
-      // 根据递归调用 arrayTreeFilter() 的返回值来判断
-      const subs = arrayTreeFilter(node.children, predicate)
+      // 根据递归调用 filterRoutes() 的返回值来判断
+      const subs = filterRoutes(node.children, predicate)
       // 以下两个条件任何一个成立，当前节点都应该加入到新子节点集中
       // 1. 子孙节点中存在符合条件的，即 subs 数组中有值
       // 2. 自己本身符合条件
@@ -76,13 +76,7 @@ function arrayTreeFilter(data, predicate) {
   return newChildren
 }
 
-const res = arrayTreeFilter(routeList, (item: any) => {
-  //   debugger
-  //   if (!item.auth) {
-  //     return true
-  //   }
-  return ['admin', 'user', 'static'].includes(item.auth)
-})
+const res = filterRoutes(routeList, (item: any) => ['admin', 'user', 'static'].includes(item.auth))
 console.log(res)
 export default function Test(props) {
   return <>sss</>

@@ -10,7 +10,7 @@ const App = () => {
   return (
     <HashRouter>
       <Suspense fallback={<LoadingComponent />}>
-        <RenderRouter userInfo={userInfo} />
+        <RenderRouter userInfo={userInfo} roles={userInfo?.roles} />
       </Suspense>
     </HashRouter>
   )

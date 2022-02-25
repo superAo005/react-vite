@@ -21,7 +21,12 @@ export default () => {
     })
     if (res != 1) return
 
-    dispatch(setInfo(data))
+    dispatch(
+      setInfo({
+        ...data,
+        roles: ['user:view', 'role:view'],
+      })
+    )
     const roleList = [data?.role_id] || []
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
