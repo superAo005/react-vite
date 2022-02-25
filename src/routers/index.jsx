@@ -90,7 +90,6 @@ const routeList = [
         path: '*',
         name: 'No Match',
         auth: 'static',
-
         key: '*',
         element: (
           <Suspense fallback={<Loading />}>
@@ -102,7 +101,6 @@ const routeList = [
   },
   {
     path: 'login',
-    auth: 'static',
     element: (
       <Suspense fallback={<Loading />}>
         <Login />
@@ -111,7 +109,6 @@ const routeList = [
   },
   {
     path: 'test',
-    auth: 'static',
     element: (
       <Suspense fallback={<Loading />}>
         <Test />
@@ -152,7 +149,10 @@ function filterRoutes(data, predicate) {
 
 const RenderRouter = (props) => {
   const { roles = [] } = props
-  let filetRouteList = filterRoutes(routeList, (item) => [...roles, 'static'].includes(item.auth))
+  let filetRouteList = filterRoutes(
+    routeList,
+    (item) => !item.auth || [...roles].includes(item.auth)
+  )
 
   const element = useRoutes(filetRouteList)
   return element
