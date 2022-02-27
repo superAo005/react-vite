@@ -13,34 +13,44 @@ import {
   KeyOutlined,
 } from '@ant-design/icons'
 // const { SubMenu } = Menu
+import { useSelector } from 'react-redux'
 
+import { filterRoutes } from '@/utils'
+
+import { routeList } from '@/routers'
 const { Header, Sider, Content } = Layout
 export default function Index(props) {
   const [collapsed, setCollapsed] = useState(false)
 
   let uselocation = useLocation()
   const navigate = useNavigate()
-  const token = localStorage.getItem('token')
-  if (!token) {
-    navigate('/login')
-    return <Navigate to="/login" replace />
-  }
+  // const token = localStorage.getItem('token')
+  // if (!token) {
+  //   navigate('/login')
+  //   return <Navigate to="/login" replace />
+  // }
   const match = useMatch(uselocation.pathname)
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
   const account = localStorage.getItem('account') || '未知用户'
-  console.log(uselocation)
-  console.log('match', match)
+  // console.log(uselocation)
+  // console.log('match', match)
+
+  const roles = useSelector((state) => state?.user?.info?.roles)
+  const filetRouteList = filterRoutes(roles, routeList)
+  debugger
+  console.log('roles', roles)
+  console.log('rolesfiletRouteList', filetRouteList)
   const toggle = () => {
     setCollapsed(!collapsed)
   }
 
   const onItemClick = ({ item, key, keyPath }) => {
-    console.log('item', item)
+    // console.log('item', item)
     navigate(key)
   }
 
   useEffect(() => {
-    console.log(111, uselocation.pathname)
+    // console.log(111, uselocation.pathname)
     setDefaultSelectedKeys(uselocation.pathname)
   }, [location.href])
   const onClick = ({ key }) => {

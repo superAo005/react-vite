@@ -5,6 +5,7 @@ import { useRoutes } from 'react-router-dom'
 import LayoutPage from '@/layout'
 import Loading from '@/components/Loading'
 
+import { filterRoutes } from '@/utils'
 import { cloneDeep } from 'lodash-es'
 const TableList = lazy(() => import('@/pages/table'))
 const TemplateList = lazy(() => import('@/pages/table'))
@@ -29,6 +30,7 @@ const routeList = [
     children: [
       {
         path: 'user',
+        title: '用户管理',
         auth: 'user:view',
         element: (
           <Suspense fallback={<Loading />}>
@@ -39,6 +41,7 @@ const routeList = [
 
       {
         path: 'role',
+        title: '角色管理',
         element: (
           <Suspense fallback={<Loading />}>
             <Role />
@@ -47,6 +50,7 @@ const routeList = [
       },
       {
         path: 'expert',
+        title: '专家管理',
         element: (
           <Suspense fallback={<Loading />}>
             <Expert />
@@ -55,6 +59,8 @@ const routeList = [
       },
       {
         path: 'extract',
+        title: '专家抽取',
+        auth: 'extract:view',
         element: (
           <Suspense fallback={<Loading />}>
             <Extract />
@@ -64,6 +70,7 @@ const routeList = [
 
       {
         path: 'statistic',
+        title: '统计分析',
         element: (
           <Suspense fallback={<Loading />}>
             <Statistic />
@@ -89,7 +96,6 @@ const routeList = [
       {
         path: '*',
         name: 'No Match',
-        auth: 'static',
         key: '*',
         element: (
           <Suspense fallback={<Loading />}>
@@ -117,45 +123,60 @@ const routeList = [
   },
 ]
 
-function filterRoutes(data, predicate) {
-  const nodes = cloneDeep(data)
-  // 如果已经没有节点了，结束递归
-  if (!(nodes && nodes.length)) {
-    return
-  }
-  const newChildren = []
-  for (const node of nodes) {
-    // debugger
-    if (predicate(node)) {
-      // 如果自己（节点）符合条件，直接加入到新的节点集
-      newChildren.push(node)
-      // 并接着处理其 children,（因为父节点符合，子节点一定要在，所以这一步就不递归了）
-      //   node.children = filterRoutes(node.children, predicate)
-    } else {
-      // 如果自己不符合条件，需要根据子集来判断它是否将其加入新节点集
-      // 根据递归调用 filterRoutes() 的返回值来判断
-      const subs = filterRoutes(node.children, predicate)
-      // 以下两个条件任何一个成立，当前节点都应该加入到新子节点集中
-      // 1. 子孙节点中存在符合条件的，即 subs 数组中有值
-      // 2. 自己本身符合条件
-      if ((subs && subs.length) || predicate(node)) {
-        node.children = subs
-        newChildren.push(node)
-      }
-    }
-  }
-  return newChildren
-}
+// function filterRoutes(data, predicate) {
+//   const nodes = cloneDeep(data)
+//   // 如果已经没有节点了，结束递归
+//   if (!(nodes && nodes.length)) {
+//     return
+//   }
+//   const newChildren = []
+//   for (const node of nodes) {
+//     if (predicate(node)) {
+//       // 如果自己（节点）符合条件，直接加入到新的节点集
+//       newChildren.push(node)
+//       // 并接着处理其 children,（因为父节点符合，子节点一定要在，所以这一步就不递归了）
+//       //   node.children = filterRoutes(node.children, predicate)
+//     } else {
+//       // 如果自己不符合条件，需要根据子集来判断它是否将其加入新节点集
+//       // 根据递归调用 filterRoutes() 的返回值来判断
+//       const subs = filterRoutes(node.children, predicate)
+//       // 以下两个条件任何一个成立，当前节点都应该加入到新子节点集中
+//       // 1. 子孙节点中存在符合条件的，即 subs 数组中有值
+//       // 2. 自己本身符合条件
+//       if ((subs && subs.length) || predicate(node)) {
+//         node.children = subs
+//         newChildren.push(node)
+//       }
+//     }
+//   }
+//   return newChildren
+// }
 
 const RenderRouter = (props) => {
-  const { roles = [] } = props
+  let { roles = [] } = props
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  roles = userInfo?.roles || []
+  console.log('RenderRouter', roles)
   let filetRouteList = filterRoutes(
-    routeList,
-    (item) => !item.auth || [...roles].includes(item.auth)
+    roles,
+    routeList
+    // (item) => (!item.auth && !(item?.children?.length > 0)) || [...roles].includes(item.auth)
+    // (item) => {
+    //   if (!item.auth && !item?.children) {
+    //     return true
+    //   } else {
+    //     return [...roles].includes(item.auth)
+    //   }
+    // }
   )
-
-  const element = useRoutes(filetRouteList)
-  return element
+  console.log('filetRouteList', filetRouteList)
+  return useRoutes(filetRouteList)
+  // const Element = useRoutes(filetRouteList)
+  // return (
+  //   <Suspense fallback={<Loading />}>
+  //     {Element}
+  //   </Suspense>
+  // )
 }
-
+export { routeList }
 export default RenderRouter

@@ -12,7 +12,6 @@ function TableList() {
 
   const showButton = (needRole) => {
     const allRoles = JSON.parse(localStorage.getItem('roleList'))
-    debugger
     return !allRoles.includes(needRole)
   }
   const initColumns = [

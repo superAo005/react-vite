@@ -9,9 +9,9 @@ const App = () => {
 
   return (
     <HashRouter>
-      <Suspense fallback={<LoadingComponent />}>
-        <RenderRouter userInfo={userInfo} roles={userInfo?.roles} />
-      </Suspense>
+      {/* <Suspense fallback={<LoadingComponent />}> */}
+      <RenderRouter userInfo={userInfo} roles={userInfo?.roles} />
+      {/* </Suspense> */}
     </HashRouter>
   )
 }

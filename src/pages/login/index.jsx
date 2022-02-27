@@ -28,6 +28,7 @@ export default () => {
       })
     )
     const roleList = [data?.role_id] || []
+    localStorage.setItem('userInfo', JSON.stringify(data))
     localStorage.setItem('token', data?.token)
     localStorage.setItem('account', data?.login_account)
     localStorage.setItem('roleList', JSON.stringify([data?.role_id]))

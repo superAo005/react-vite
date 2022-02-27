@@ -34,7 +34,7 @@ service.interceptors.response.use(
     switch (err.response.status) {
       case 401:
         sessionStorage.clear()
-        location.hash = '/login'
+        // location.hash = '/login'
         break
       case 404:
         message.error(err.message)
