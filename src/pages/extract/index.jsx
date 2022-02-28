@@ -149,10 +149,11 @@ export default function Index(props) {
                   params['pid'] = state?.record?.pid
                 }
                 handleStart()
-                const { data } = await selectList(params)
+                const { data = {} } = await selectList(params)
+
                 await waitTime()
                 handleStop()
-                setSelectedList(data?.expert_list)
+                setSelectedList(data?.expert_list || [])
                 return true
               } catch (errorInfo) {
                 console.log('Failed:', errorInfo)
