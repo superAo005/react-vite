@@ -50,12 +50,12 @@ export default function Index(props) {
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await getPageList({
+      const { data = {} } = await getPageList({
         page: 1,
         page_size: 999,
       })
       console.log('data', data)
-      setExpertTags(data?.data)
+      setExpertTags(data?.data || [])
 
       // modalForm.setFieldsValue({ project_name: state.name, remark: state.remark })
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button, message } from 'antd'
+import { Button, message, Popconfirm } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
@@ -63,13 +63,10 @@ function TableList() {
             编辑
           </a>
         </div>,
-        <a
-          key="del"
-          onClick={() => {
-            onDel(record)
-          }}>
-          删除
-        </a>,
+
+        <Popconfirm key="del" title="确定删除吗?" onConfirm={() => onDel(record)}>
+          <a key="del">删除</a>
+        </Popconfirm>,
       ],
     },
   ]
@@ -123,7 +120,7 @@ function TableList() {
             page_size: params.pageSize,
           }
 
-          const { data } = await getPageList(relParams)
+          const { data = {} } = await getPageList(relParams)
 
           return {
             data: data?.data || [],

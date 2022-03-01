@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button } from 'antd'
+import { Button, Popconfirm } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
@@ -70,13 +70,10 @@ function TableList() {
           }}>
           编辑
         </a>,
-        <a
-          key="del"
-          onClick={() => {
-            onDel(record)
-          }}>
-          删除
-        </a>,
+
+        <Popconfirm key="del" title="确定删除吗?" onConfirm={() => onDel(record)}>
+          <a key="del">删除</a>
+        </Popconfirm>,
       ],
     },
   ]
