@@ -20,7 +20,7 @@ export default (props) => {
   }
 
   let { tableRowData, visible } = props
-  let { modalType, sourceNo } = tableRowData
+  let { modalType } = tableRowData
   const formRef = useRef()
   const [form] = Form.useForm()
   const [modalForm] = Form.useForm()
@@ -95,6 +95,8 @@ export default (props) => {
               await create(params)
             }
             props.reload()
+            formRef.current.resetFields()
+
             return true
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)

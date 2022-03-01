@@ -32,9 +32,17 @@ function TableList() {
       dataIndex: 'role_name',
       hideInSearch: true,
     },
-
+    {
+      title: '手机或姓名搜索',
+      dataIndex: 'keyword',
+      hideInTable: true,
+      fieldProps: {
+        placeholder: '请输入手机号或姓名',
+      },
+    },
     {
       title: '手机号',
+      hideInSearch: true,
       dataIndex: 'mobile',
     },
 
@@ -128,7 +136,7 @@ function TableList() {
         }}
         search={{
           defaultCollapsed: false,
-          labelWidth: 80,
+          labelWidth: 'auto',
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button

@@ -40,6 +40,7 @@ export default function Index(props) {
   const [detail] = useState({
     project_name: state?.record?.name,
     remark: state?.record?.remark,
+    number: state?.record?.expert_select_details?.length || '',
   })
   const [selectedList, setSelectedList] = useState([])
   const [expertTags, setExpertTags] = useState([])
@@ -93,6 +94,7 @@ export default function Index(props) {
       params['pid'] = state?.record?.pid
     }
     const { data } = await selectList(params)
+    formRef.current?.resetFields()
     message.success('抽取成功，请到统计中查看')
   }
   return (

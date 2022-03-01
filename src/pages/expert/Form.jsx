@@ -85,6 +85,8 @@ export default (props) => {
               await create(params)
             }
             props.reload()
+            formRef.current.resetFields()
+
             return true
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)
