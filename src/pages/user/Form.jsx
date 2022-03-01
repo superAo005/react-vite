@@ -5,13 +5,7 @@ import { create, edit } from '@/services/user'
 import { getPageList } from '@/services/role'
 // import ProCard from '@ant-design/pro-card'
 
-export function validatorFn(rule, val, callback) {
-  let reg = /^1[0-9]{10}$/
-  if (reg.test(val)) {
-    callback()
-  }
-  callback('手机号格式不正确')
-}
+import { validatorMobile } from '@/utils'
 
 export default (props) => {
   const formItemLayout = {
@@ -140,7 +134,7 @@ export default (props) => {
               name="mobile"
               label="手机号"
               placeholder="请输入手机号"
-              rules={[{ required: true, message: '不能为空' }, { validator: validatorFn }]}
+              rules={[{ required: true, message: '不能为空' }, { validator: validatorMobile }]}
             />
           </Col>
           <Col span={24}>

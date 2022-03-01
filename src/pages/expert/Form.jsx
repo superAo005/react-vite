@@ -4,6 +4,7 @@ import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-des
 import { create, edit } from '@/services/expert'
 // import ProCard from '@ant-design/pro-card'
 
+import { validatorMobile } from '@/utils'
 export default (props) => {
   const formItemLayout = {
     labelCol: { span: 4 },
@@ -125,7 +126,7 @@ export default (props) => {
                   name="mobile"
                   label="手机号"
                   placeholder="请输入手机号"
-                  rules={[{ required: true, message: '不能为空' }]}
+                  rules={[{ required: true, message: '不能为空' }, { validator: validatorMobile }]}
                 />
               </Col>
             </>
