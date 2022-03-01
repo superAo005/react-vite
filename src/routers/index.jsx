@@ -18,10 +18,10 @@ const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
 const Test = lazy(() => import('@/pages/test'))
 
-// import Home from '@/pages/home'
-// import Detail from '@/pages/detail'
-// import TableList from '@/pages/table'
-// import NoMatch from '@/pages/noMatch'
+// 实现懒加载的用Suspense包裹 定义函数
+const lazyLoad = (children) => {
+  return <Suspense fallback={Loading}>{children}</Suspense>
+}
 
 const routeList = [
   {
@@ -31,45 +31,30 @@ const routeList = [
       {
         path: 'user',
         title: '用户管理',
+        icon: 'user',
         auth: 'user:view',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <User />
-          </Suspense>
-        ),
+        element: lazyLoad(<User />),
       },
 
       {
         path: 'role',
         title: '角色管理',
         auth: 'role:view',
-
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Role />
-          </Suspense>
-        ),
+        icon: 'team',
+        element: lazyLoad(<Role />),
       },
       {
         path: 'expert',
         title: '专家管理',
         auth: 'expert:view',
 
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Expert />
-          </Suspense>
-        ),
+        element: lazyLoad(<Expert />),
       },
       {
         path: 'extract',
         title: '专家抽取',
         auth: 'extract:view',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Extract />
-          </Suspense>
-        ),
+        element: lazyLoad(<Extract />),
       },
 
       {
@@ -84,94 +69,124 @@ const routeList = [
           {
             path: 'table',
             title: '表格',
-            element: (
-              <Suspense fallback={<Loading />}>
-                <TableList />
-              </Suspense>
-            ),
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table2',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table3',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table4',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table5',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table6',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table7',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table9',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'template',
+            title: 'template',
+            element: lazyLoad(<TemplateList />),
           },
         ],
       },
-      // {
-      //   path: 'table',
-      //   element: (
-      //     <Suspense fallback={<Loading />}>
-      //       <TableList />
-      //     </Suspense>
-      //   ),
-      // },
       {
-        path: 'template',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <TemplateList />
-          </Suspense>
-        ),
+        path: 'components2',
+        title: '组件2',
+        children: [
+          {
+            path: 'table',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table2',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table3',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table4',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table5',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table6',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table7',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'table9',
+            title: '表格',
+            element: lazyLoad(<TableList />),
+          },
+          {
+            path: 'template',
+            title: 'template',
+            element: lazyLoad(<TemplateList />),
+          },
+        ],
       },
       {
         path: '*',
         name: 'No Match',
         key: '*',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <NoMatch />
-          </Suspense>
-        ),
+        element: lazyLoad(<NoMatch />),
       },
     ],
   },
   {
     path: 'login',
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Login />
-      </Suspense>
-    ),
+    element: lazyLoad(<Login />),
   },
   {
     path: 'test',
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Test />
-      </Suspense>
-    ),
+    element: lazyLoad(<Test />),
   },
 ]
-
-// function filterRoutes(data, predicate) {
-//   const nodes = cloneDeep(data)
-//   // 如果已经没有节点了，结束递归
-//   if (!(nodes && nodes.length)) {
-//     return
-//   }
-//   const newChildren = []
-//   for (const node of nodes) {
-//     if (predicate(node)) {
-//       // 如果自己（节点）符合条件，直接加入到新的节点集
-//       newChildren.push(node)
-//       // 并接着处理其 children,（因为父节点符合，子节点一定要在，所以这一步就不递归了）
-//       //   node.children = filterRoutes(node.children, predicate)
-//     } else {
-//       // 如果自己不符合条件，需要根据子集来判断它是否将其加入新节点集
-//       // 根据递归调用 filterRoutes() 的返回值来判断
-//       const subs = filterRoutes(node.children, predicate)
-//       // 以下两个条件任何一个成立，当前节点都应该加入到新子节点集中
-//       // 1. 子孙节点中存在符合条件的，即 subs 数组中有值
-//       // 2. 自己本身符合条件
-//       if ((subs && subs.length) || predicate(node)) {
-//         node.children = subs
-//         newChildren.push(node)
-//       }
-//     }
-//   }
-//   return newChildren
-// }
 
 const RenderRouter = (props) => {
   let { roles = [] } = props
   const userInfo = JSON.parse(localStorage.getItem('userInfo'))
   roles = userInfo?.roles || []
-  console.log('RenderRouter', roles)
+  // console.log('RenderRouter', roles)
   let filetRouteList = filterRoutes(
     roles,
     routeList
@@ -184,14 +199,8 @@ const RenderRouter = (props) => {
     //   }
     // }
   )
-  console.log('filetRouteList', filetRouteList)
+  // console.log('filetRouteList', filetRouteList)
   return useRoutes(filetRouteList)
-  // const Element = useRoutes(filetRouteList)
-  // return (
-  //   <Suspense fallback={<Loading />}>
-  //     {Element}
-  //   </Suspense>
-  // )
 }
 export { routeList }
 export default RenderRouter

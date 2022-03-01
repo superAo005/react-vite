@@ -8,6 +8,7 @@ import {
   Navigate,
   matchRoutes,
 } from 'react-router-dom'
+import iconMap from './iconMap'
 
 import { Layout, Menu, Dropdown, Modal } from 'antd'
 
@@ -123,9 +124,8 @@ export default function Index(props) {
       if (item?.title) {
         if (!item.children) {
           pre.push(
-            <Menu.Item key={item.path}>
+            <Menu.Item key={item.path} icon={iconMap[item?.icon || 'user']}>
               <Link to={item.path}>
-                {item.icon ? <Icon type={item.icon} /> : null}
                 <span>{item.title}</span>
               </Link>
             </Menu.Item>
@@ -135,12 +135,8 @@ export default function Index(props) {
           pre.push(
             <SubMenu
               key={item.path}
-              title={
-                <span>
-                  {item.icon ? <Icon type={item.icon} /> : null}
-                  <span>{item.title}</span>
-                </span>
-              }>
+              icon={iconMap[item?.icon || 'user']}
+              title={<span>{item.title}</span>}>
               {getMenuNodes(item.children)}
             </SubMenu>
           )
