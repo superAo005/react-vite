@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Outlet, Link, useMatch, useLocation, useNavigate, Navigate } from 'react-router-dom'
 
 import { Layout, Menu, Dropdown, Modal } from 'antd'
-import {
+
+const { SubMenu } = Menu
+import Icon, {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
@@ -72,6 +74,51 @@ export default function Index(props) {
       return allRoles.indexOf(val) > -1
     })
     return intersectionRoles.length > 0
+  }
+
+  // 菜单渲染
+  const getMenuNodes = (menuList) => {
+    // 得到当前请求的路由路径
+    const path = this.props.location.pathname
+    return menuList.reduce((pre, item) => {
+      if (this.filterMenuItem(item)) {
+        if (!item.children) {
+          pre.push(
+            <Menu.Item key={item.path}>
+              <Link to={item.path}>
+                {item.icon ? <Icon type={item.icon} /> : null}
+                <span>{item.title}</span>
+              </Link>
+            </Menu.Item>
+          )
+        } else {
+          // 查找一个与当前请求路径匹配的子Item
+          const cItem = item.children.find((cItem) => path.indexOf(cItem.path) === 0)
+          // 如果存在, 说明当前item的子列表需要打开
+          if (cItem) {
+            this.setState((state) => ({
+              openKey: [...state.openKey, item.path],
+            }))
+          }
+
+          // 向pre添加<SubMenu>
+          pre.push(
+            <SubMenu
+              key={item.path}
+              title={
+                <span>
+                  {item.icon ? <Icon type={item.icon} /> : null}
+                  <span>{item.title}</span>
+                </span>
+              }>
+              {this.getMenuNodes(item.children)}
+            </SubMenu>
+          )
+        }
+      }
+
+      return pre
+    }, [])
   }
   const menu = (
     <Menu onClick={onClick}>
