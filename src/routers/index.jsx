@@ -42,6 +42,8 @@ const routeList = [
       {
         path: 'role',
         title: '角色管理',
+        auth: 'role:view',
+
         element: (
           <Suspense fallback={<Loading />}>
             <Role />
@@ -51,6 +53,8 @@ const routeList = [
       {
         path: 'expert',
         title: '专家管理',
+        auth: 'expert:view',
+
         element: (
           <Suspense fallback={<Loading />}>
             <Expert />
@@ -71,20 +75,31 @@ const routeList = [
       {
         path: 'statistic',
         title: '统计分析',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Statistic />
-          </Suspense>
-        ),
+        element: null,
       },
       {
-        path: 'table',
-        element: (
-          <Suspense fallback={<Loading />}>
-            <TableList />
-          </Suspense>
-        ),
+        path: 'components',
+        title: '组件',
+        children: [
+          {
+            path: 'table',
+            title: '表格',
+            element: (
+              <Suspense fallback={<Loading />}>
+                <TableList />
+              </Suspense>
+            ),
+          },
+        ],
       },
+      // {
+      //   path: 'table',
+      //   element: (
+      //     <Suspense fallback={<Loading />}>
+      //       <TableList />
+      //     </Suspense>
+      //   ),
+      // },
       {
         path: 'template',
         element: (
