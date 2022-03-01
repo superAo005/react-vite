@@ -23,9 +23,10 @@ import Icon, {
   SearchOutlined,
   KeyOutlined,
 } from '@ant-design/icons'
-// const { SubMenu } = Menu
+
 import { useSelector } from 'react-redux'
 
+import ScrollBar from '@/components/ScrollBar'
 import { filterMenuRoutes } from '@/utils'
 
 import { routeList } from '@/routers'
@@ -170,27 +171,32 @@ export default function Index(props) {
   return (
     <>
       <Layout className="h-screen">
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo">专家抽取系统</div>
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={defaultSelectedKeys}
-            selectedKeys={defaultSelectedKeys}
-            defaultOpenKeys={defaultOpenKeys}
-            // openKeys={defaultOpenKeys}
-            // onClick={onItemClick}
-          >
-            {getMenuNodes(sideMenuList)}
+        <Sider trigger={null} collapsible collapsed={collapsed} className="h-screen overflow-auto">
+          <ScrollBar
+            options={{
+              // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
+              suppressScrollX: true,
+            }}>
+            <div className="logo">专家抽取系统</div>
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={defaultSelectedKeys}
+              selectedKeys={defaultSelectedKeys}
+              defaultOpenKeys={defaultOpenKeys}
+              // openKeys={defaultOpenKeys}
+              // onClick={onItemClick}
+            >
+              {getMenuNodes(sideMenuList)}
 
-            {/* <Menu.Item key="/table" icon={<UploadOutlined />}>
+              {/* <Menu.Item key="/table" icon={<UploadOutlined />}>
               <Link to="table"> table</Link>
             </Menu.Item>
 
             <Menu.Item key="/template" icon={<UploadOutlined />}>
               <Link to="template"> template</Link>
             </Menu.Item> */}
-            {/* 
+              {/* 
             <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
               <Menu.Item key="7">Option 7</Menu.Item>
               <Menu.Item key="8">Option 8</Menu.Item>
@@ -198,7 +204,8 @@ export default function Index(props) {
               <Menu.Item key="10">O
               {}ption 10</Menu.Item>
             </SubMenu> */}
-          </Menu>
+            </Menu>
+          </ScrollBar>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>

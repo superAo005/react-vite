@@ -35,6 +35,7 @@ specifiers:
   postcss-nested: ^5.0.5
   react: ^17.0.1
   react-dom: ^17.0.1
+  react-perfect-scrollbar: ^1.5.8
   react-redux: ^7.2.2
   react-router-dom: ^6.2.1
   redux-persist: ^6.0.0
@@ -58,6 +59,7 @@ dependencies:
   nprogress: 0.2.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-perfect-scrollbar: 1.5.8_react-dom@17.0.2+react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
   react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
   redux-persist: registry.npmmirror.com/redux-persist/6.0.0
@@ -4945,6 +4947,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /perfect-scrollbar/1.5.5:
+    resolution: {integrity: sha1-QaIRovtSpxke/zAUMhNOpHBSsn8=, tarball: perfect-scrollbar/download/perfect-scrollbar-1.5.5.tgz}
+    dev: false
+
   /picocolors/1.0.0:
     resolution: {integrity: sha1-y1vcdP8/UYkiNur3nWi8RFZKuBw=, tarball: picocolors/download/picocolors-1.0.0.tgz}
     dev: true
@@ -5607,6 +5613,18 @@ packages:
 
   /react-is/17.0.2:
     resolution: {integrity: sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=, tarball: react-is/download/react-is-17.0.2.tgz}
+    dev: false
+
+  /react-perfect-scrollbar/1.5.8_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-OAlZOHoyXFydAmivwIs/c+1bMHg=, tarball: react-perfect-scrollbar/download/react-perfect-scrollbar-1.5.8.tgz}
+    peerDependencies:
+      react: '>=16.3.3'
+      react-dom: '>=16.3.3'
+    dependencies:
+      perfect-scrollbar: 1.5.5
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-redux/7.2.6_react-dom@17.0.2+react@17.0.2:
