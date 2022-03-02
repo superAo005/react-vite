@@ -65,7 +65,7 @@
 
 .layout {
   .header {
-    @apply p-0 h-12  	w-full  leading-[3rem] z-50 flex text-white;
+    @apply p-0 h-12  	w-full  leading-[3rem] z-50 flex text-white items-center;
     .ant-dropdown-link {
       @apply text-white;
     }
@@ -83,15 +83,21 @@
   .side {
     height: calc(100vh - 48px);
     @apply bg-white;
+    .ant-layout-sider-trigger {
+      @apply bg-white;
+      .anticon {
+        @apply text-black;
+      }
+    }
   }
 }
 
 .ant-card-body {
   padding: 24px !important;
 }
-/*.h-screen .anticon {
+.h-screen .anticon {
   vertical-align: 0.125em;
-}*/
+}
 .batch {
   position: absolute;
   width: 50%;

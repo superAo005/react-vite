@@ -185,9 +185,10 @@ export default function Index(props) {
         </Header>
         <Layout className="site-layout-background">
           <Sider
-            trigger={null}
+            // trigger={null}
             collapsible
             collapsed={collapsed}
+            onCollapse={setCollapsed}
             className="side overflow-auto site-layout-background">
             <ScrollBar
               options={{
