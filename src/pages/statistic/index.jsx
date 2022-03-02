@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import ProTable from '@ant-design/pro-table'
 import { useNavigate } from 'react-router-dom'
 import { getStatsList } from '@/services/expert'
+import DetailForm from './DetailForm'
 
 import { Tag } from 'antd'
 
@@ -9,10 +10,12 @@ function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
   const navigate = useNavigate()
-
+  const [detailModalVisit, setDetailModalVisit] = useState(false)
+  const [editModalVisit, setEditModalVisit] = useState(false)
+  const [tableRowData, setTableRowData] = useState({})
+  const [editRowData, setEditRowData] = useState({})
   const showButton = (needRole) => {
     const allRoles = JSON.parse(localStorage.getItem('roleList'))
-    debugger
     return !allRoles.includes(needRole)
   }
   const initColumns = [
@@ -65,6 +68,13 @@ function TableList() {
         if (showButton('0003dd6b8d534e8eb075fb6a0a590003')) {
           return [
             <a
+              key="look"
+              onClick={() => {
+                onView(record)
+              }}>
+              查看
+            </a>,
+            <a
               key="del"
               onClick={() => {
                 // onDel(record)
@@ -73,11 +83,39 @@ function TableList() {
               重新抽取
             </a>,
           ]
+        } else {
+          return [
+            <a
+              key="look"
+              onClick={() => {
+                onView(record)
+              }}>
+              查看
+            </a>,
+          ]
         }
       },
     },
   ]
+  const reload = () => {
+    actionRef.current.reload()
+  }
 
+  /**
+   * 查看数据源
+   */
+  const onView = async (record) => {
+    setDetailModalVisit(true)
+    setTableRowData(record)
+  }
+  /**
+   * 编辑数据源
+   */
+  const onEdit = async (record) => {
+    setEditModalVisit(true)
+
+    setEditRowData(record)
+  }
   return (
     <>
       <ProTable
@@ -122,6 +160,14 @@ function TableList() {
         manualRequest={false}
         toolBarRender={false}
       />
+      <DetailForm
+        key="EditorFormDetail"
+        title="查看"
+        visible={detailModalVisit}
+        onVisibleChange={setDetailModalVisit}
+        tableRowData={tableRowData}
+        onEdit={onEdit}
+        reload={reload}></DetailForm>
       ,
     </>
   )

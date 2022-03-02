@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Col, Row } from 'antd'
+import { Col, Row, Tag } from 'antd'
 import { ModalForm } from '@ant-design/pro-form'
 import ProDescriptions from '@ant-design/pro-descriptions'
 
@@ -9,52 +9,11 @@ export default (props) => {
     wrapperCol: { span: 18 },
   }
   const { tableRowData, visible } = props
-  const { sourceNo } = tableRowData
   const formRef = useRef()
-  console.log('tableRowData', tableRowData)
   // 详情数据
-  const [detail, setDetail] = useState({
-    selectSource: 'cp',
-    sql: 'select * from table',
-  })
+  const [detail, setDetail] = useState({})
 
   // const [sqlDataSource, setSqlDataSource] = useState(false)
-
-  const columns = [
-    {
-      title: 'field',
-      dataIndex: 'field',
-      width: '30%',
-      editable: () => {
-        return false
-      },
-    },
-    {
-      title: 'type',
-      key: 'state',
-      dataIndex: 'type',
-      valueType: 'select',
-      editable: () => false,
-      valueEnum: {
-        all: { text: '全部', status: 'Default' },
-        open: {
-          text: '未解决',
-          status: 'Error',
-        },
-        closed: {
-          text: '已解决',
-          status: 'Success',
-        },
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-      editable: () => {
-        return false
-      },
-    },
-  ]
 
   // 获取详情
   useEffect(() => {
@@ -65,7 +24,7 @@ export default (props) => {
         setDetail(data)
       })()
     }
-  }, [sourceNo, visible])
+  }, [visible])
 
   return (
     <ModalForm
@@ -92,11 +51,28 @@ export default (props) => {
             column={1}
             columns={[
               {
-                title: '专家姓名',
+                title: '项目名称',
                 dataIndex: 'name',
                 width: 120,
               },
-
+              {
+                title: '抽取专家',
+                dataIndex: 'expert_select_details',
+                hideInSearch: true,
+                render: (_) => {
+                  return (
+                    <>
+                      {Array.isArray(_)
+                        ? _.map((item) => (
+                            <Tag color="blue" key={item.name}>
+                              {item.name}
+                            </Tag>
+                          ))
+                        : _}
+                    </>
+                  )
+                },
+              },
               {
                 title: '备注信息',
                 dataIndex: 'remark',
