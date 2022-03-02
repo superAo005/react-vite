@@ -197,10 +197,10 @@ export default function Index(props) {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            {/* {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: toggle,
-            })}
+            })} */}
 
             <div className="right-menu float-right mr-6">
               <Dropdown overlay={menu} trigger={['hover']}>
