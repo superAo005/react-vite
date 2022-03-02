@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities; /* 252526 */
 
-/* .monaco-editor .suggest-details,
-.monaco-editor .suggest-widget {
-  background-color: #f3f3f3 !important;
-} */
-
-/* // body {
-//   #monaco_editor {
-//     width: 900px;
-//     height: 900px;
-//   }
-// }
-*/
-
 .ant-btn-primary {
   background-color: #1890ff;
 }
@@ -30,9 +17,11 @@
   color: #1890ff;
 }
 
+/*
 .logo {
   @apply h-8 m-4  bg-opacity-30 text-white text-center leading-8 text-xl;
 }
+*/
 
 .login-page {
   background: url('@/assets/bg.jpg') no-repeat no-repeat;
@@ -43,6 +32,7 @@
   background-size: cover;
 }
 
+/* 登录页*/
 .login-form {
   border-radius: 6px;
   background: #fff;
@@ -72,9 +62,29 @@
 .canvas {
   background: url('@/assets/bg.jpg') no-repeat right;
 }
-.site-layout .site-layout-background {
-  @apply bg-white;
+
+.layout {
+  .header {
+    padding: 0px;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    z-index: 100;
+    right: 0px;
+  }
+
+  .side {
+    height: calc(100vh - 48px);
+    @apply bg-white;
+  }
+  .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.3);
+  }
 }
+
 .ant-card-body {
   padding: 24px !important;
 }

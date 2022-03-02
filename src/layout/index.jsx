@@ -170,67 +170,62 @@ export default function Index(props) {
   )
   return (
     <>
-      <Layout className="h-screen">
-        <Sider trigger={null} collapsible collapsed={collapsed} className="h-screen overflow-auto">
-          <ScrollBar
-            options={{
-              // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
-              suppressScrollX: true,
-            }}>
-            <div className="logo">专家抽取系统</div>
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={defaultSelectedKeys}
-              selectedKeys={defaultSelectedKeys}
-              defaultOpenKeys={defaultOpenKeys}
-              // openKeys={defaultOpenKeys}
-              // onClick={onItemClick}
-            >
-              {getMenuNodes(sideMenuList)}
+      <Layout className="h-screen layout">
+        <Header className="header h-14">
+          <div className="logo" />
+          {/* <div className="logo">专家抽取系统</div> */}
 
-              {/* <Menu.Item key="/table" icon={<UploadOutlined />}>
-              <Link to="table"> table</Link>
-            </Menu.Item>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger',
+            onClick: toggle,
+          })}
 
-            <Menu.Item key="/template" icon={<UploadOutlined />}>
-              <Link to="template"> template</Link>
-            </Menu.Item> */}
-              {/* 
-            <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-              <Menu.Item key="9">Option 9</Menu.Item>
-              <Menu.Item key="10">O
-              {}ption 10</Menu.Item>
-            </SubMenu> */}
-            </Menu>
-          </ScrollBar>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: toggle,
-            })}
+          <div className="right-menu float-right mr-6">
+            <Dropdown overlay={menu} trigger={['hover']}>
+              <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                {account}
+                <DownOutlined />
+              </a>
+            </Dropdown>
+          </div>
+          {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+            <Menu.Item key="1">nav 1</Menu.Item>
+            <Menu.Item key="2">nav 2</Menu.Item>
+            <Menu.Item key="3">nav 3</Menu.Item>
+          </Menu> */}
+        </Header>
+        {/* <Content> */}
+        <Layout className="site-layout-background">
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            className="side overflow-auto site-layout-background">
+            <ScrollBar
+              options={{
+                // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
+                suppressScrollX: true,
+              }}>
+              <Menu
+                // theme="dark"
+                mode="inline"
+                defaultSelectedKeys={defaultSelectedKeys}
+                selectedKeys={defaultSelectedKeys}
+                defaultOpenKeys={defaultOpenKeys}
+                // style={{ height: 'cacl(100% - 64px)' }}
+                // openKeys={defaultOpenKeys}
+                // onClick={onItemClick}
+              >
+                {getMenuNodes(sideMenuList)}
+              </Menu>
+            </ScrollBar>
+          </Sider>
 
-            <div className="right-menu float-right mr-6">
-              <Dropdown overlay={menu} trigger={['hover']}>
-                <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                  {account}
-                  <DownOutlined />
-                </a>
-              </Dropdown>
-            </div>
-          </Header>
-          <Content
-            style={{
-              margin: '24px 16px',
-              minHeight: 280,
-            }}>
+          <Content className="p-6">
             <Outlet></Outlet>
           </Content>
         </Layout>
+        {/* </Content> */}
       </Layout>
     </>
   )
