@@ -65,23 +65,21 @@
 
 .layout {
   .header {
-    padding: 0px;
-    height: 48px;
-    line-height: 48px;
-    width: 100%;
-    z-index: 100;
-    right: 0px;
+    @apply p-0 h-12  	w-full  leading-[3rem] z-50 flex;
+    .logo {
+      @apply h-8 m-2  text-white text-center leading-8 text-xl;
+    }
+    .center {
+      @apply flex-1;
+    }
+    .right-menu {
+      @apply flex  float-right;
+    }
   }
 
   .side {
     height: calc(100vh - 48px);
     @apply bg-white;
-  }
-  .logo {
-    float: left;
-    width: 120px;
-    height: 31px;
-    background: rgba(255, 255, 255, 0.3);
   }
 }
 

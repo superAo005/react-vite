@@ -36,11 +36,7 @@ export default function Index(props) {
 
   let uselocation = useLocation()
   const navigate = useNavigate()
-  // const token = localStorage.getItem('token')
-  // if (!token) {
-  //   navigate('/login')
-  //   return <Navigate to="/login" replace />
-  // }
+
   const match = useMatch(uselocation.pathname)
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
 
@@ -65,7 +61,6 @@ export default function Index(props) {
   const filetRouteList = filterMenuRoutes(roles, routeList)
 
   // 侧边栏菜单，约定只取数组第一项
-
   const sideMenuList = filetRouteList[0].children
   // console.log('rolesfiletRouteList', filetRouteList)
   // console.log('sideMenuList', sideMenuList)
@@ -73,10 +68,10 @@ export default function Index(props) {
     setCollapsed(!collapsed)
   }
 
-  const onItemClick = ({ item, key, keyPath }) => {
-    console.log('onItemClick', item)
-    navigate(key)
-  }
+  // const onItemClick = ({ item, key, keyPath }) => {
+  //   console.log('onItemClick', item)
+  //   navigate(key)
+  // }
 
   useEffect(() => {
     console.log('uselocation.pathname', uselocation.pathname)
@@ -172,14 +167,13 @@ export default function Index(props) {
     <>
       <Layout className="h-screen layout">
         <Header className="header h-14">
-          <div className="logo" />
-          {/* <div className="logo">专家抽取系统</div> */}
+          <div className="logo">专家抽取系统</div>
 
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+          {/* {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: toggle,
-          })}
-
+          })} */}
+          <div className="center"></div>
           <div className="right-menu float-right mr-6">
             <Dropdown overlay={menu} trigger={['hover']}>
               <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
@@ -188,13 +182,7 @@ export default function Index(props) {
               </a>
             </Dropdown>
           </div>
-          {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu> */}
         </Header>
-        {/* <Content> */}
         <Layout className="site-layout-background">
           <Sider
             trigger={null}
@@ -212,7 +200,6 @@ export default function Index(props) {
                 defaultSelectedKeys={defaultSelectedKeys}
                 selectedKeys={defaultSelectedKeys}
                 defaultOpenKeys={defaultOpenKeys}
-                // style={{ height: 'cacl(100% - 64px)' }}
                 // openKeys={defaultOpenKeys}
                 // onClick={onItemClick}
               >
@@ -225,7 +212,6 @@ export default function Index(props) {
             <Outlet></Outlet>
           </Content>
         </Layout>
-        {/* </Content> */}
       </Layout>
     </>
   )
