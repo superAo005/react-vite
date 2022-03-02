@@ -6,7 +6,6 @@ import LayoutPage from '@/layout'
 import Loading from '@/components/Loading'
 
 import { filterRoutes } from '@/utils'
-import { cloneDeep } from 'lodash-es'
 const TableList = lazy(() => import('@/pages/table'))
 const TemplateList = lazy(() => import('@/pages/table'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
@@ -60,7 +59,7 @@ const routeList = [
       {
         path: 'statistic',
         title: '统计分析',
-        element: null,
+        element: lazyLoad(<Statistic />),
       },
       {
         path: 'components',
@@ -186,20 +185,7 @@ const RenderRouter = (props) => {
   let { roles = [] } = props
   const userInfo = JSON.parse(localStorage.getItem('userInfo'))
   roles = userInfo?.roles || []
-  // console.log('RenderRouter', roles)
-  let filetRouteList = filterRoutes(
-    roles,
-    routeList
-    // (item) => (!item.auth && !(item?.children?.length > 0)) || [...roles].includes(item.auth)
-    // (item) => {
-    //   if (!item.auth && !item?.children) {
-    //     return true
-    //   } else {
-    //     return [...roles].includes(item.auth)
-    //   }
-    // }
-  )
-  // console.log('filetRouteList', filetRouteList)
+  let filetRouteList = filterRoutes(roles, routeList)
   return useRoutes(filetRouteList)
 }
 export { routeList }
