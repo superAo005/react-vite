@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 import iconMap from './iconMap'
 
-import { Layout, Menu, Dropdown, Modal } from 'antd'
+import { Layout, Menu, Dropdown, Modal, Button } from 'antd'
 
 const { SubMenu } = Menu
 import Icon, {
@@ -178,7 +178,7 @@ export default function Index(props) {
             <Dropdown overlay={menu} trigger={['hover']}>
               <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
                 {account}
-                <DownOutlined />
+                <DownOutlined className="ml-1" />
               </a>
             </Dropdown>
           </div>
