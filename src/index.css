@@ -84,7 +84,7 @@
     height: calc(100vh - 48px);
     @apply bg-white;
     .ant-layout-sider-trigger {
-      @apply bg-white;
+      @apply bg-white border-gray-200	 border-t;
       .anticon {
         @apply text-black;
       }
