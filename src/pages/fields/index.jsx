@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button, message, Popconfirm } from 'antd'
+import { Button, Popconfirm } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/expert'
+import { del, getPageList } from '@/services/user'
 
 function TableList() {
   const actionRef = useRef()
@@ -17,96 +17,33 @@ function TableList() {
 
   const initColumns = [
     {
-      title: '专家姓名',
-      dataIndex: 'name',
-      width: 120,
-    },
-    {
-      title: '性别',
-      dataIndex: 'gender',
-      valueEnum: {
-        0: '男',
-        1: '女',
-      },
+      title: '领域名称',
+      dataIndex: 'login_account',
       hideInSearch: true,
     },
 
-    {
-      title: '民族',
-      dataIndex: 'gender',
-      hideInSearch: true,
-    },
-    {
-      title: '政治面貌',
-      dataIndex: 'political_status',
-      hideInSearch: true,
-    },
-    {
-      title: '籍贯',
-      dataIndex: 'birthplace',
-      hideInSearch: true,
-    },
-    {
-      title: '毕业院校',
-      dataIndex: 'graduate_school',
-      hideInSearch: true,
-    },
-    {
-      title: '专业',
-      dataIndex: 'major',
-      hideInSearch: true,
-    },
-
-    {
-      title: '学历',
-      dataIndex: 'education',
-      hideInSearch: true,
-    },
-    {
-      title: '学⼠',
-      dataIndex: 'degree',
-      hideInSearch: true,
-    },
-    {
-      title: '公司名称',
-      dataIndex: 'company',
-      hideInSearch: true,
-    },
-    {
-      title: '职称',
-      dataIndex: 'professional_title',
-      hideInSearch: true,
-    },
-    {
-      title: '研究成果',
-      dataIndex: 'research_findings',
-      hideInSearch: true,
-    },
-    {
-      title: '擅长领域',
-      dataIndex: 'areas_of_expertise_id',
-      hideInSearch: true,
-    },
-
-    {
-      title: '备注信息',
-      dataIndex: 'remark',
-
-      hideInSearch: true,
-      width: 120,
-    },
+    // {
+    //   title: '手机或姓名搜索',
+    //   dataIndex: 'keyword',
+    //   hideInTable: true,
+    //   fieldProps: {
+    //     placeholder: '请输入手机号或姓名',
+    //   },
+    // },
 
     {
       title: '创建时间',
       dataIndex: 'create_time',
       hideInSearch: true,
-      width: 100,
     },
-
+    {
+      title: '更新时间',
+      dataIndex: 'update_time',
+      hideInSearch: true,
+    },
     {
       title: '操作',
       key: 'option',
-      width: 150,
       valueType: 'option',
       fixed: 'right',
       align: 'center',
@@ -118,17 +55,14 @@ function TableList() {
           }}>
           查看
         </a>,
-        <div
+        <a
           key="edit"
-          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
-          <a
-            onClick={() => {
-              record.modalType = 'edit'
-              onEdit(record)
-            }}>
-            编辑
-          </a>
-        </div>,
+          onClick={() => {
+            record.modalType = 'edit'
+            onEdit(record)
+          }}>
+          编辑
+        </a>,
 
         <Popconfirm key="del" title="确定删除吗?" onConfirm={() => onDel(record)}>
           <a key="del">删除</a>
@@ -156,29 +90,20 @@ function TableList() {
 
     setEditRowData(record)
   }
+
   const onDel = async (record) => {
-    await del(record.expert_id)
+    await del(record.uid)
     reload()
   }
+
   return (
     <>
       <ProTable
         headerTitle=""
-        rowKey="expert_id"
+        rowKey="uid"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
-        // rowSelection={{
-        //   // 自定义选择项参考: https://ant.design/components/table-cn/#components-table-demo-row-selection-custom
-        //   // 注释该行则默认不显示下拉选项
-        //   // selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        //   selectedRowKeys,
-        //   // onChange: onSelectChange,
-        //   onChange: (selectedRowKeys) => {
-        //     console.log('selectedRowKeys changed: ', selectedRowKeys)
-        //     setSelectedRowKeys(selectedRowKeys)
-        //   },
-        // }}
         request={async (params) => {
           const relParams = {
             ...params,
@@ -186,7 +111,7 @@ function TableList() {
             page_size: params.pageSize,
           }
 
-          const { data = {} } = await getPageList(relParams)
+          const { data } = await getPageList(relParams)
 
           return {
             data: data?.data || [],
@@ -196,7 +121,7 @@ function TableList() {
         }}
         search={{
           defaultCollapsed: false,
-          labelWidth: 80,
+          labelWidth: 'auto',
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
@@ -211,13 +136,13 @@ function TableList() {
             </Button>,
           ],
         }}
-        scroll={{ x: 1000 }}
+        scroll={{ x: 1200 }}
         manualRequest={false}
         toolBarRender={false}
       />
       <DetailForm
         key="EditorFormDetail"
-        title="查看"
+        title="查看详情"
         visible={detailModalVisit}
         onVisibleChange={setDetailModalVisit}
         tableRowData={tableRowData}

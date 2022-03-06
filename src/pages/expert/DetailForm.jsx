@@ -20,42 +20,6 @@ export default (props) => {
 
   // const [sqlDataSource, setSqlDataSource] = useState(false)
 
-  const columns = [
-    {
-      title: 'field',
-      dataIndex: 'field',
-      width: '30%',
-      editable: () => {
-        return false
-      },
-    },
-    {
-      title: 'type',
-      key: 'state',
-      dataIndex: 'type',
-      valueType: 'select',
-      editable: () => false,
-      valueEnum: {
-        all: { text: '全部', status: 'Default' },
-        open: {
-          text: '未解决',
-          status: 'Error',
-        },
-        closed: {
-          text: '已解决',
-          status: 'Success',
-        },
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-      editable: () => {
-        return false
-      },
-    },
-  ]
-
   // 获取详情
   useEffect(() => {
     if (visible) {
@@ -96,7 +60,72 @@ export default (props) => {
                 dataIndex: 'name',
                 width: 120,
               },
+              {
+                title: '性别',
+                dataIndex: 'gender',
+                valueEnum: {
+                  0: '男',
+                  1: '女',
+                },
+                hideInSearch: true,
+              },
 
+              {
+                title: '民族',
+                dataIndex: 'gender',
+                hideInSearch: true,
+              },
+              {
+                title: '政治面貌',
+                dataIndex: 'political_status',
+                hideInSearch: true,
+              },
+              {
+                title: '籍贯',
+                dataIndex: 'birthplace',
+                hideInSearch: true,
+              },
+              {
+                title: '毕业院校',
+                dataIndex: 'graduate_school',
+                hideInSearch: true,
+              },
+              {
+                title: '专业',
+                dataIndex: 'major',
+                hideInSearch: true,
+              },
+
+              {
+                title: '学历',
+                dataIndex: 'education',
+                hideInSearch: true,
+              },
+              {
+                title: '学⼠',
+                dataIndex: 'degree',
+                hideInSearch: true,
+              },
+              {
+                title: '公司名称',
+                dataIndex: 'company',
+                hideInSearch: true,
+              },
+              {
+                title: '职称',
+                dataIndex: 'professional_title',
+                hideInSearch: true,
+              },
+              {
+                title: '研究成果',
+                dataIndex: 'research_findings',
+                hideInSearch: true,
+              },
+              {
+                title: '擅长领域',
+                dataIndex: 'areas_of_expertise_id',
+                hideInSearch: true,
+              },
               {
                 title: '备注信息',
                 dataIndex: 'remark',

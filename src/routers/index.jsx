@@ -14,6 +14,7 @@ const Role = lazy(() => import('@/pages/role'))
 const Expert = lazy(() => import('@/pages/expert'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
+const Fields = lazy(() => import('@/pages/fields'))
 const Test = lazy(() => import('@/pages/test'))
 
 // import Home from '@/pages/home'
@@ -51,6 +52,15 @@ const routeList = [
           </Suspense>
         ),
       },
+      {
+        path: 'fields',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Fields />
+          </Suspense>
+        ),
+      },
+
       {
         path: 'extract',
         element: (

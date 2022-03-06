@@ -163,7 +163,11 @@ export default function Index(props) {
                 专家管理
               </Menu.Item>
             )}
-
+            {showMenu(['0001ec6b8d534e8eb075fb6a0a590001', '0002fc9b8d534e8eb075eb6a0a590002']) && (
+              <Menu.Item key="/fields" icon={<UserOutlined />}>
+                领域管理
+              </Menu.Item>
+            )}
             {showMenu(['0001ec6b8d534e8eb075fb6a0a590001', '0002fc9b8d534e8eb075eb6a0a590002']) && (
               <Menu.Item key="/extract" icon={<SearchOutlined />}>
                 专家抽取

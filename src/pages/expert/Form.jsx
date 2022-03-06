@@ -7,7 +7,7 @@ import { create, edit } from '@/services/expert'
 import { validatorMobile } from '@/utils'
 export default (props) => {
   const formItemLayout = {
-    labelCol: { span: 4 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 17 },
   }
 
@@ -63,7 +63,7 @@ export default (props) => {
         initialValues={detail}
         formRef={formRef}
         form={modalForm}
-        width="650px"
+        width="750px"
         key="modalAddAndEdit"
         {...formItemLayout}
         layout="horizontal"
@@ -93,8 +93,8 @@ export default (props) => {
             console.log('Failed:', errorInfo)
           }
         }}>
-        <Row className="pl-20">
-          <Col span={24}>
+        <Row className="pl-2">
+          <Col span={12}>
             <ProFormText
               name="name"
               label="专家名称"
@@ -105,7 +105,7 @@ export default (props) => {
 
           {modalType != 'edit' && (
             <>
-              <Col span={24}>
+              <Col span={12}>
                 <ProFormText
                   name="login_account"
                   label="登录账号"
@@ -113,7 +113,7 @@ export default (props) => {
                   rules={[{ required: true, message: '不能为空' }]}
                 />
               </Col>
-              <Col span={24}>
+              <Col span={12}>
                 <ProFormText
                   name="pwd"
                   label="登录密码"
@@ -121,7 +121,7 @@ export default (props) => {
                   rules={[{ required: true, message: '不能为空' }]}
                 />
               </Col>
-              <Col span={24}>
+              <Col span={12}>
                 <ProFormText
                   name="mobile"
                   label="手机号"
@@ -132,7 +132,113 @@ export default (props) => {
             </>
           )}
 
-          <Col span={24}>
+          <Col span={12}>
+            <ProFormSelect
+              name="gender"
+              valueEnum={{
+                0: '男',
+                1: '女',
+              }}
+              label="性别"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={12}>
+            <ProFormText
+              name="nation"
+              label="民族"
+              placeholder="请输入民族"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={12}>
+            <ProFormText
+              name="political_status"
+              label="政治面貌"
+              placeholder="请输入政治面貌"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={12}>
+            <ProFormText
+              name="birthplace"
+              label="籍贯"
+              placeholder="请输入籍贯"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="education"
+              label="学历"
+              placeholder="请输入学历"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="degree"
+              label="学位"
+              placeholder="请输入学位"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="graduate_school"
+              label="毕业院校"
+              placeholder="请输入毕业院校"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="major"
+              label="专业"
+              placeholder="请输入专业"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="company"
+              label="公司名称"
+              placeholder="请输入公司名称"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="professional_title"
+              label="职称"
+              placeholder="请输入职称"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="research_findings"
+              label="研究成果"
+              placeholder="请输入研究成果"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={12}>
+            <ProFormSelect
+              name="areas_of_expertise_id"
+              valueEnum={{
+                0: '男',
+                1: '女',
+              }}
+              label="擅长领域"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
             <ProFormTextArea
               name="remark"
               label="备注信息"
