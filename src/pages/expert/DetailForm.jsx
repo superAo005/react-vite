@@ -38,7 +38,7 @@ export default (props) => {
       onVisibleChange={props.onVisibleChange}
       initialValues={detail}
       formRef={formRef}
-      width="450px"
+      width="550px"
       {...formItemLayout}
       layout="horizontal"
       labelAlign="left"
@@ -50,10 +50,10 @@ export default (props) => {
         },
       }}>
       <Row>
-        <Col span={16} offset={6}>
+        <Col span={20} offset={3}>
           <ProDescriptions
             dataSource={tableRowData}
-            column={1}
+            column={2}
             columns={[
               {
                 title: '专家姓名',
