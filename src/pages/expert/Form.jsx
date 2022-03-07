@@ -5,6 +5,7 @@ import { create, edit } from '@/services/expert'
 // import ProCard from '@ant-design/pro-card'
 
 import { validatorMobile } from '@/utils'
+import { getList } from '@/services/fields'
 export default (props) => {
   const formItemLayout = {
     labelCol: { span: 6 },
@@ -30,9 +31,11 @@ export default (props) => {
 
   // 获取详情
   useEffect(() => {
-    if (visible) {
-      if (modalType == 'edit') {
-        ;(async () => {
+    ;(async () => {
+      // 领域 list
+      const list = await getList()
+      if (visible) {
+        if (modalType == 'edit') {
           // const {
           //   body,
           //   code,
@@ -47,11 +50,11 @@ export default (props) => {
           // let data = {}
           // setDetail(data)
           modalForm.setFieldsValue(tableRowData)
-        })()
-      } else {
-        modalForm.setFieldsValue({})
+        } else {
+          modalForm.setFieldsValue({})
+        }
       }
-    }
+    })()
   }, [visible])
 
   return (

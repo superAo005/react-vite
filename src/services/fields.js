@@ -51,17 +51,3 @@ export function view(param) {
     param,
   })
 }
-// 删除
-export function deleteFeatureFunction(param) {
-  return post({
-    url: 'featureFunction/delete',
-    param,
-  })
-}
-// 申请上下线
-export function enableFeatureFunction(param) {
-  return post({
-    url: 'featureFunction/enable',
-    param,
-  })
-}
