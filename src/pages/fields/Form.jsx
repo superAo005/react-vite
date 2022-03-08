@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect } from '@ant-design/pro-form'
-import { create, edit } from '@/services/user'
+import { create, edit } from '@/services/fields'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -92,8 +92,8 @@ export default (props) => {
           <Col span={24}>
             <ProFormText
               name="name"
-              label="登录账号"
-              placeholder="请输入登录账号"
+              label="领域名称"
+              placeholder="请输入领域名称"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>

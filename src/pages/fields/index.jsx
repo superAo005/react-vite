@@ -4,7 +4,7 @@ import { Button, Popconfirm } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/user'
+import { del, getPageList } from '@/services/fields'
 
 function TableList() {
   const actionRef = useRef()
@@ -18,7 +18,7 @@ function TableList() {
   const initColumns = [
     {
       title: '领域名称',
-      dataIndex: 'login_account',
+      dataIndex: 'name',
       hideInSearch: true,
     },
 
@@ -92,7 +92,7 @@ function TableList() {
   }
 
   const onDel = async (record) => {
-    await del(record.uid)
+    await del(record.id)
     reload()
   }
 
@@ -100,7 +100,7 @@ function TableList() {
     <>
       <ProTable
         headerTitle=""
-        rowKey="uid"
+        rowKey="id"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}

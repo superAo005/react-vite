@@ -37,10 +37,10 @@ export function edit(data) {
 }
 
 // 编辑
-export function del(u_id) {
+export function del(id) {
   return post({
     url: 'api/hnbc/psas/dict/expertise/del',
-    data: { u_id },
+    data: { id },
   })
 }
 

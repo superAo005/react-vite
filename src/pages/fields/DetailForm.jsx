@@ -18,44 +18,6 @@ export default (props) => {
     sql: 'select * from table',
   })
 
-  // const [sqlDataSource, setSqlDataSource] = useState(false)
-
-  const columns = [
-    {
-      title: 'field',
-      dataIndex: 'field',
-      width: '30%',
-      editable: () => {
-        return false
-      },
-    },
-    {
-      title: 'type',
-      key: 'state',
-      dataIndex: 'type',
-      valueType: 'select',
-      editable: () => false,
-      valueEnum: {
-        all: { text: '全部', status: 'Default' },
-        open: {
-          text: '未解决',
-          status: 'Error',
-        },
-        closed: {
-          text: '已解决',
-          status: 'Success',
-        },
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-      editable: () => {
-        return false
-      },
-    },
-  ]
-
   // 获取详情
   useEffect(() => {
     if (visible) {
@@ -99,33 +61,17 @@ export default (props) => {
             column={1}
             columns={[
               {
-                title: '登录账号',
-                dataIndex: 'login_account',
-              },
-              {
-                title: '真实姓名',
-                dataIndex: 'real_name',
-              },
-              {
-                title: '所属角色',
-                dataIndex: 'role_name',
-                hideInSearch: true,
-              },
-
-              {
-                title: '手机号',
-                dataIndex: 'mobile',
+                title: '领域名称',
+                dataIndex: 'name',
               },
 
               {
                 title: '创建时间',
                 dataIndex: 'create_time',
-                hideInSearch: true,
               },
               {
                 title: '更新时间',
                 dataIndex: 'update_time',
-                hideInSearch: true,
               },
             ]}></ProDescriptions>
         </Col>
