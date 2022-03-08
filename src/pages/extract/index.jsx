@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom'
 import TagCanvas from 'tag-canvas'
 import { getPageList, selectList } from '@/services/expert'
 
-import { getPageList as getFieldList } from '@/services/fields'
+import { getList as getFieldList } from '@/services/fields'
 
 const waitTime = (time = 2000) => {
   return new Promise((resolve) => {
@@ -55,11 +55,7 @@ export default function Index(props) {
   useEffect(() => {
     ;(async () => {
       // 领域 list
-      const { data } = await getFieldList({
-        page: 1,
-        pageSize: 20,
-        page_size: 20,
-      })
+      const { data } = await getFieldList()
       const list = data?.data || []
       const listEnumMap = list?.reduce((pre, next) => {
         pre[next.id] = next.name

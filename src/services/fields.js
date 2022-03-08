@@ -12,7 +12,7 @@ export function getPageList(data) {
 }
 
 //  获取表格列表
-export function getList(data) {
+export function getList(data = {}) {
   return post({
     url: 'api/hnbc/psas/dict/expertise/list',
     data,

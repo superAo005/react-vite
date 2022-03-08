@@ -33,7 +33,7 @@ export default (props) => {
   useEffect(() => {
     ;(async () => {
       // 领域 list
-      // const list = await getList()
+      const list = await getList()
       if (visible) {
         if (modalType == 'edit') {
           // const {

@@ -5,7 +5,7 @@ import { Button, message, Popconfirm } from 'antd'
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/expert'
-import { getPageList as getFieldList } from '@/services/fields'
+import { getList as getFieldList } from '@/services/fields'
 
 function TableList() {
   const actionRef = useRef()
@@ -21,11 +21,7 @@ function TableList() {
   useEffect(() => {
     ;(async () => {
       // 领域 list
-      const { data } = await getFieldList({
-        page: 1,
-        pageSize: 20,
-        page_size: 20,
-      })
+      const { data } = await getFieldList()
       const list = data?.data || []
       const listEnumMap = list?.reduce((pre, next) => {
         pre[next.id] = next.name
