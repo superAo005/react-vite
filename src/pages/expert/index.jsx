@@ -5,6 +5,7 @@ import { Button, message, Popconfirm } from 'antd'
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/expert'
+import { getPageList as getFieldList } from '@/services/fields'
 
 function TableList() {
   const actionRef = useRef()
@@ -14,6 +15,26 @@ function TableList() {
   const [editModalVisit, setEditModalVisit] = useState(false)
   const [tableRowData, setTableRowData] = useState({})
   const [editRowData, setEditRowData] = useState({})
+  const [listEnum, setListEnum] = useState({})
+
+  // 获取详情
+  useEffect(() => {
+    ;(async () => {
+      // 领域 list
+      const { data } = await getFieldList({
+        page: 1,
+        pageSize: 20,
+        page_size: 20,
+      })
+      const list = data?.data || []
+      const listEnumMap = list?.reduce((pre, next) => {
+        pre[next.id] = next.name
+        return pre
+      }, {})
+
+      setListEnum(listEnumMap)
+    })()
+  }, [])
 
   const initColumns = [
     {
@@ -86,6 +107,7 @@ function TableList() {
       title: '擅长领域',
       dataIndex: 'areas_of_expertise_id',
       hideInSearch: true,
+      valueEnum: listEnum,
     },
 
     {
@@ -219,6 +241,7 @@ function TableList() {
         key="EditorFormDetail"
         title="查看"
         visible={detailModalVisit}
+        listEnum={listEnum}
         onVisibleChange={setDetailModalVisit}
         tableRowData={tableRowData}
         onEdit={onEdit}
@@ -227,6 +250,7 @@ function TableList() {
         key="EditorFormEdit"
         visible={editModalVisit}
         onVisibleChange={setEditModalVisit}
+        listEnum={listEnum}
         tableRowData={editRowData}
         title={editRowData.modalType == 'edit' ? '编辑' : '新增'}
         reload={reload}></EditorForm>

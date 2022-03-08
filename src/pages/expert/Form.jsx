@@ -12,7 +12,7 @@ export default (props) => {
     wrapperCol: { span: 17 },
   }
 
-  let { tableRowData, visible } = props
+  const { tableRowData, visible, listEnum } = props
   let { modalType } = tableRowData
   const formRef = useRef()
   const [form] = Form.useForm()
@@ -33,7 +33,7 @@ export default (props) => {
   useEffect(() => {
     ;(async () => {
       // 领域 list
-      const list = await getList()
+      // const list = await getList()
       if (visible) {
         if (modalType == 'edit') {
           // const {
@@ -233,10 +233,7 @@ export default (props) => {
           <Col span={12}>
             <ProFormSelect
               name="areas_of_expertise_id"
-              valueEnum={{
-                0: '男',
-                1: '女',
-              }}
+              valueEnum={listEnum}
               label="擅长领域"
               rules={[{ required: true, message: '不能为空' }]}
             />

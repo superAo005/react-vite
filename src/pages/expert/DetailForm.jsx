@@ -8,7 +8,7 @@ export default (props) => {
     labelCol: { span: 5 },
     wrapperCol: { span: 18 },
   }
-  const { tableRowData, visible } = props
+  const { tableRowData, visible, listEnum } = props
   const { sourceNo } = tableRowData
   const formRef = useRef()
   console.log('tableRowData', tableRowData)
@@ -124,6 +124,8 @@ export default (props) => {
               {
                 title: '擅长领域',
                 dataIndex: 'areas_of_expertise_id',
+                valueEnum: listEnum,
+
                 hideInSearch: true,
               },
               {
