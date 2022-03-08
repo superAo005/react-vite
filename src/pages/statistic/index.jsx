@@ -3,6 +3,7 @@ import ProTable from '@ant-design/pro-table'
 import { useNavigate } from 'react-router-dom'
 import { getStatsList } from '@/services/expert'
 import DetailForm from './DetailForm'
+import ReviewsForm from './ReviewsForm'
 
 import { Tag } from 'antd'
 
@@ -13,6 +14,8 @@ function TableList() {
   const [detailModalVisit, setDetailModalVisit] = useState(false)
   const [editModalVisit, setEditModalVisit] = useState(false)
   const [tableRowData, setTableRowData] = useState({})
+  const [reviewModalVisit, setReviewModalVisit] = useState(false)
+  const [reviewData, setReviewData] = useState({})
   const [editRowData, setEditRowData] = useState({})
   const showButton = (needRole) => {
     const allRoles = JSON.parse(localStorage.getItem('roleList'))
@@ -32,7 +35,7 @@ function TableList() {
           <>
             {Array.isArray(_)
               ? _.map((item) => (
-                  <Tag color="blue" key={item.name}>
+                  <Tag color="blue" key={item.name} onClick={() => onReviewView(item)}>
                     {item.name}
                   </Tag>
                 ))
@@ -102,12 +105,21 @@ function TableList() {
   }
 
   /**
-   * 查看数据源
+   * 查看详情
    */
   const onView = async (record) => {
     setDetailModalVisit(true)
     setTableRowData(record)
   }
+
+  /**
+   * 查看专家评审经历
+   */
+  const onReviewView = async (record) => {
+    setReviewModalVisit(true)
+    setReviewData(record)
+  }
+
   /**
    * 编辑数据源
    */
@@ -120,7 +132,7 @@ function TableList() {
     <>
       <ProTable
         headerTitle=""
-        rowKey="expert_id"
+        rowKey="pid"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
@@ -168,6 +180,14 @@ function TableList() {
         tableRowData={tableRowData}
         onEdit={onEdit}
         reload={reload}></DetailForm>
+      <ReviewsForm
+        key="ReviewsForm"
+        title="查看"
+        visible={reviewModalVisit}
+        onVisibleChange={setReviewModalVisit}
+        tableRowData={reviewData}
+        onEdit={onEdit}
+        reload={reload}></ReviewsForm>
       ,
     </>
   )
