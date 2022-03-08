@@ -2,22 +2,21 @@
 import { Row, Col, Button, Form, message } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 
-import ProForm, { ProFormText, ProFormDigit, ProFormTextArea } from '@ant-design/pro-form'
+import ProForm, {
+  ProFormText,
+  ProFormDigit,
+  ProFormTextArea,
+  ProFormRadio,
+  ProFormSelect,
+  ProFormDependency,
+} from '@ant-design/pro-form'
 
 import { useLocation } from 'react-router-dom'
 // import TagCanvas from './tagcanvas'
 import TagCanvas from 'tag-canvas'
 import { getPageList, selectList } from '@/services/expert'
-const tags = [
-  { value: 'Javascript', weight: 30 },
-  { value: 'React', weight: 30 },
-  { value: 'HTML5', weight: 20 },
-  { value: 'CSS3', weight: 20 },
-  { value: 'PHP', weight: 30 },
-  { value: 'Git', weight: 20 },
-  { value: 'Redux', weight: 20 },
-  { value: 'NodeJS', weight: 20 },
-]
+
+import { getPageList as getFieldList } from '@/services/fields'
 
 const waitTime = (time = 2000) => {
   return new Promise((resolve) => {
@@ -41,6 +40,7 @@ export default function Index(props) {
     project_name: state?.record?.name,
     remark: state?.record?.remark,
     number: state?.record?.expert_select_details?.length || '',
+    method: state?.record?.method || 0,
   })
   const [selectedList, setSelectedList] = useState([])
   const [expertTags, setExpertTags] = useState([])
@@ -49,6 +49,26 @@ export default function Index(props) {
     formRef.current.resetFields()
   }
 
+  const [listEnum, setListEnum] = useState({})
+
+  // 获取详情
+  useEffect(() => {
+    ;(async () => {
+      // 领域 list
+      const { data } = await getFieldList({
+        page: 1,
+        pageSize: 20,
+        page_size: 20,
+      })
+      const list = data?.data || []
+      const listEnumMap = list?.reduce((pre, next) => {
+        pre[next.id] = next.name
+        return pre
+      }, {})
+
+      setListEnum(listEnumMap)
+    })()
+  }, [])
   useEffect(() => {
     ;(async () => {
       const { data = {} } = await getPageList({
@@ -170,6 +190,38 @@ export default function Index(props) {
                   rules={[{ required: true, message: '不能为空' }]}
                 />
               </Col>
+
+              <Col span={24}>
+                <ProFormRadio.Group
+                  label="抽取方式"
+                  name="method"
+                  initialValue={0}
+                  options={[
+                    {
+                      label: '随机抽取',
+                      value: 0,
+                    },
+                    {
+                      label: '指定领域',
+                      value: 1,
+                    },
+                  ]}
+                />
+              </Col>
+
+              <Col span={24}>
+                <ProFormDependency name={['method']}>
+                  {({ method }) => (
+                    <ProFormSelect
+                      name="areas_of_expertise_id"
+                      valueEnum={listEnum}
+                      label="擅长领域"
+                      rules={method == 1 ? [{ required: true, message: '不能为空' }] : []}
+                    />
+                  )}
+                </ProFormDependency>
+              </Col>
+
               <Col span={24}>
                 <ProFormTextArea
                   name="remark"
