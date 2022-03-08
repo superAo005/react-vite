@@ -50,7 +50,7 @@ function TableList() {
 
     {
       title: '民族',
-      dataIndex: 'gender',
+      dataIndex: 'nation',
       hideInSearch: true,
     },
     {
