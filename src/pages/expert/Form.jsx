@@ -4,7 +4,7 @@ import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-des
 import { create, edit } from '@/services/expert'
 // import ProCard from '@ant-design/pro-card'
 
-import { validatorMobile } from '@/utils'
+import { validatorEmail, validatorMobile } from '@/utils'
 import { getList } from '@/services/fields'
 export default (props) => {
   const formItemLayout = {
@@ -134,7 +134,23 @@ export default (props) => {
               </Col>
             </>
           )}
+          <Col span={12}>
+            <ProFormText
+              name="qq"
+              label="QQ"
+              placeholder="请输入QQ号"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
 
+          <Col span={12}>
+            <ProFormText
+              name="email"
+              label="Email"
+              placeholder="请输入Email号"
+              rules={[{ required: true, message: '不能为空' }, { validator: validatorEmail }]}
+            />
+          </Col>
           <Col span={12}>
             <ProFormSelect
               name="gender"
@@ -208,8 +224,16 @@ export default (props) => {
           <Col span={12}>
             <ProFormText
               name="company"
-              label="公司名称"
-              placeholder="请输入公司名称"
+              label="单位"
+              placeholder="请输入单位"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+          <Col span={12}>
+            <ProFormText
+              name="job"
+              label="职务"
+              placeholder="请输入职务"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>

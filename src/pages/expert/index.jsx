@@ -85,8 +85,13 @@ function TableList() {
       hideInSearch: true,
     },
     {
-      title: '公司名称',
+      title: '单位',
       dataIndex: 'company',
+      hideInSearch: true,
+    },
+    {
+      title: '职务',
+      dataIndex: 'job',
       hideInSearch: true,
     },
     {

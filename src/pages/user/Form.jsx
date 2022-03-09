@@ -5,7 +5,7 @@ import { create, edit } from '@/services/user'
 import { getPageList } from '@/services/role'
 // import ProCard from '@ant-design/pro-card'
 
-import { validatorMobile } from '@/utils'
+import { validatorEmail, validatorMobile } from '@/utils'
 
 export default (props) => {
   const formItemLayout = {
@@ -135,6 +135,23 @@ export default (props) => {
               label="手机号"
               placeholder="请输入手机号"
               rules={[{ required: true, message: '不能为空' }, { validator: validatorMobile }]}
+            />
+          </Col>
+          <Col span={24}>
+            <ProFormText
+              name="qq"
+              label="QQ"
+              placeholder="请输入QQ号"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={24}>
+            <ProFormText
+              name="email"
+              label="Email"
+              placeholder="请输入Email号"
+              rules={[{ required: true, message: '不能为空' }, { validator: validatorEmail }]}
             />
           </Col>
           <Col span={24}>

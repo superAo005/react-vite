@@ -67,79 +67,79 @@ export default (props) => {
                   0: '男',
                   1: '女',
                 },
-                hideInSearch: true,
               },
-
+              {
+                title: '手机号',
+                dataIndex: 'mobile',
+              },
+              {
+                title: 'QQ号',
+                dataIndex: 'qq',
+              },
+              {
+                title: 'Email',
+                dataIndex: 'email',
+              },
               {
                 title: '民族',
                 dataIndex: 'nation',
-                hideInSearch: true,
               },
               {
                 title: '政治面貌',
                 dataIndex: 'political_status',
-                hideInSearch: true,
               },
               {
                 title: '籍贯',
                 dataIndex: 'birthplace',
-                hideInSearch: true,
               },
               {
                 title: '毕业院校',
                 dataIndex: 'graduate_school',
-                hideInSearch: true,
               },
               {
                 title: '专业',
                 dataIndex: 'major',
-                hideInSearch: true,
               },
 
               {
                 title: '学历',
                 dataIndex: 'education',
-                hideInSearch: true,
               },
               {
                 title: '学⼠',
                 dataIndex: 'degree',
-                hideInSearch: true,
               },
               {
-                title: '公司名称',
+                title: '单位',
                 dataIndex: 'company',
-                hideInSearch: true,
+              },
+              {
+                title: '职务',
+                dataIndex: 'job',
               },
               {
                 title: '职称',
                 dataIndex: 'professional_title',
-                hideInSearch: true,
               },
               {
                 title: '研究成果',
                 dataIndex: 'research_findings',
-                hideInSearch: true,
               },
               {
                 title: '擅长领域',
                 dataIndex: 'areas_of_expertise_id',
                 valueEnum: listEnum,
-
-                hideInSearch: true,
               },
               {
                 title: '备注信息',
                 dataIndex: 'remark',
 
-                hideInSearch: true,
                 width: 120,
               },
 
               {
                 title: '创建时间',
                 dataIndex: 'create_time',
-                hideInSearch: true,
                 width: 100,
               },
             ]}></ProDescriptions>

@@ -18,44 +18,6 @@ export default (props) => {
     sql: 'select * from table',
   })
 
-  // const [sqlDataSource, setSqlDataSource] = useState(false)
-
-  const columns = [
-    {
-      title: 'field',
-      dataIndex: 'field',
-      width: '30%',
-      editable: () => {
-        return false
-      },
-    },
-    {
-      title: 'type',
-      key: 'state',
-      dataIndex: 'type',
-      valueType: 'select',
-      editable: () => false,
-      valueEnum: {
-        all: { text: '全部', status: 'Default' },
-        open: {
-          text: '未解决',
-          status: 'Error',
-        },
-        closed: {
-          text: '已解决',
-          status: 'Success',
-        },
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-      editable: () => {
-        return false
-      },
-    },
-  ]
-
   // 获取详情
   useEffect(() => {
     if (visible) {
@@ -118,14 +80,21 @@ export default (props) => {
               },
 
               {
+                title: 'QQ号',
+                dataIndex: 'qq',
+              },
+              {
+                title: 'Email',
+                dataIndex: 'email',
+              },
+
+              {
                 title: '创建时间',
                 dataIndex: 'create_time',
-                hideInSearch: true,
               },
               {
                 title: '更新时间',
                 dataIndex: 'update_time',
-                hideInSearch: true,
               },
             ]}></ProDescriptions>
         </Col>

@@ -179,15 +179,6 @@ export default function Index(props) {
             }}>
             <Row className="">
               <Col span={24}>
-                <ProFormText
-                  name="project_name"
-                  label="所属项目"
-                  placeholder="请输入项目名称"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-
-              <Col span={24}>
                 <ProFormRadio.Group
                   label="抽取方式"
                   name="method"
@@ -198,23 +189,33 @@ export default function Index(props) {
                       value: 0,
                     },
                     {
-                      label: '指定领域',
+                      label: '指定抽取',
                       value: 1,
                     },
                   ]}
                 />
               </Col>
+              <Col span={24}>
+                <ProFormText
+                  name="project_name"
+                  label="所属项目"
+                  placeholder="请输入项目名称"
+                  rules={[{ required: true, message: '不能为空' }]}
+                />
+              </Col>
 
               <Col span={24}>
                 <ProFormDependency name={['method']}>
-                  {({ method }) => (
-                    <ProFormSelect
-                      name="areas_of_expertise_id"
-                      valueEnum={listEnum}
-                      label="擅长领域"
-                      rules={method == 1 ? [{ required: true, message: '不能为空' }] : []}
-                    />
-                  )}
+                  {({ method }) =>
+                    method == 1 && (
+                      <ProFormSelect
+                        name="areas_of_expertise_id"
+                        valueEnum={listEnum}
+                        label="擅长领域"
+                        rules={[{ required: true, message: '不能为空' }]}
+                      />
+                    )
+                  }
                 </ProFormDependency>
               </Col>
 
