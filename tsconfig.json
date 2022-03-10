@@ -20,7 +20,7 @@
       "@/*": ["src/*"]
     },
     "types": ["vite/client", "node"],
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": false,
     "suppressImplicitAnyIndexErrors": true,
     // "strict": true,
