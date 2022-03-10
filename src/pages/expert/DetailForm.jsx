@@ -106,7 +106,7 @@ export default (props) => {
                 dataIndex: 'education',
               },
               {
-                title: '学⼠',
+                title: '学位',
                 dataIndex: 'degree',
               },
               {

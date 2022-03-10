@@ -80,7 +80,7 @@ function TableList() {
       hideInSearch: true,
     },
     {
-      title: '学⼠',
+      title: '学位',
       dataIndex: 'degree',
       hideInSearch: true,
     },
