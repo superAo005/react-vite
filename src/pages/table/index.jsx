@@ -4,7 +4,18 @@ import { Button, message } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
+import { Select, Radio } from 'antd'
 
+const { Option } = Select
+
+const children = []
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>)
+}
+
+function handleChange(value) {
+  console.log(`Selected: ${value}`)
+}
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
@@ -88,6 +99,14 @@ function TableList() {
 
   return (
     <>
+      <Select
+        mode="multiple"
+        placeholder="Please select"
+        defaultValue={['a10', 'c12']}
+        onChange={handleChange}
+        style={{ width: '100%' }}>
+        {children}
+      </Select>
       <ProTable
         headerTitle=""
         rowKey="sourceNo"
@@ -118,7 +137,7 @@ function TableList() {
           // }
           // tempData = body?.dtoList
           return {
-            data: body?.dtoList || [],
+            data: body?.dtoList || [{ remark: '' }],
             success: true,
             total: body?.total || 0,
           }

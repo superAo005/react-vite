@@ -90,6 +90,10 @@
       }
     }
   }
+  .ant-layout-content {
+    height: calc(100vh - 48px);
+    @apply overflow-auto;
+  }
 }
 
 .ant-card-body {
