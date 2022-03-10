@@ -135,12 +135,7 @@ export default (props) => {
             </>
           )}
           <Col span={12}>
-            <ProFormText
-              name="qq"
-              label="QQ"
-              placeholder="请输入QQ号"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
+            <ProFormText name="qq" label="QQ" placeholder="请输入QQ号" />
           </Col>
 
           <Col span={12}>
@@ -263,12 +258,7 @@ export default (props) => {
             />
           </Col>
           <Col span={12}>
-            <ProFormTextArea
-              name="remark"
-              label="备注信息"
-              placeholder="请输入备注信息 "
-              rules={[{ required: true, message: '不能为空' }]}
-            />
+            <ProFormTextArea name="remark" label="备注信息" placeholder="请输入备注信息 " />
           </Col>
         </Row>
       </ModalForm>

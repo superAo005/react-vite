@@ -138,12 +138,7 @@ export default (props) => {
             />
           </Col>
           <Col span={24}>
-            <ProFormText
-              name="qq"
-              label="QQ"
-              placeholder="请输入QQ号"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
+            <ProFormText name="qq" label="QQ" placeholder="请输入QQ号" />
           </Col>
 
           <Col span={24}>

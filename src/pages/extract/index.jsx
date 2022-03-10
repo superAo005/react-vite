@@ -233,7 +233,6 @@ export default function Index(props) {
                   label="抽取个数"
                   name="number"
                   min={1}
-                  max={5}
                   rules={[{ required: true, message: '不能为空' }]}
                   fieldProps={{ precision: 0 }}
                 />

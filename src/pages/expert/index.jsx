@@ -37,6 +37,7 @@ function TableList() {
       title: '专家姓名',
       dataIndex: 'name',
       width: 120,
+      ellipsis: true,
     },
     {
       title: '性别',
@@ -67,6 +68,7 @@ function TableList() {
       title: '毕业院校',
       dataIndex: 'graduate_school',
       hideInSearch: true,
+      ellipsis: true,
     },
     {
       title: '专业',
@@ -88,33 +90,38 @@ function TableList() {
       title: '单位',
       dataIndex: 'company',
       hideInSearch: true,
+      ellipsis: true,
     },
     {
       title: '职务',
       dataIndex: 'job',
       hideInSearch: true,
+      ellipsis: true,
     },
     {
       title: '职称',
       dataIndex: 'professional_title',
       hideInSearch: true,
+      ellipsis: true,
     },
     {
       title: '研究成果',
       dataIndex: 'research_findings',
       hideInSearch: true,
+      ellipsis: true,
     },
     {
       title: '擅长领域',
       dataIndex: 'areas_of_expertise_id',
       hideInSearch: true,
       valueEnum: listEnum,
+      ellipsis: true,
     },
 
     {
       title: '备注信息',
       dataIndex: 'remark',
-
+      ellipsis: true,
       hideInSearch: true,
       width: 120,
     },
