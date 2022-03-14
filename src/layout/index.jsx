@@ -209,7 +209,7 @@ export default function Index(props) {
             </ScrollBar>
           </Sider>
 
-          <Content className="p-6">
+          <Content id="content" className="p-6 relative">
             <Outlet></Outlet>
           </Content>
         </Layout>

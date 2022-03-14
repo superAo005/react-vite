@@ -104,6 +104,7 @@ function TableList() {
         placeholder="Please select"
         defaultValue={['a10', 'c12']}
         onChange={handleChange}
+        getPopupContainer={() => document.getElementById('content')}
         style={{ width: '100%' }}>
         {children}
       </Select>
@@ -136,8 +137,18 @@ function TableList() {
           //   message.error(msg)
           // }
           // tempData = body?.dtoList
+          function randomString(e) {
+            e = e || 32
+            var t = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
+              a = t.length,
+              n = ''
+            for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a))
+            return n
+          }
+          // alert(randomString(6));
+
           return {
-            data: body?.dtoList || [{ remark: '' }],
+            data: body?.dtoList || [{ remark: randomString(10086) }],
             success: true,
             total: body?.total || 0,
           }
