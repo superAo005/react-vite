@@ -99,7 +99,7 @@ function TableList() {
 
   return (
     <>
-      <Select
+      {/* <Select
         mode="multiple"
         placeholder="Please select"
         defaultValue={['a10', 'c12']}
@@ -107,7 +107,7 @@ function TableList() {
         getPopupContainer={() => document.getElementById('content')}
         style={{ width: '100%' }}>
         {children}
-      </Select>
+      </Select> */}
       <ProTable
         headerTitle=""
         rowKey="sourceNo"
