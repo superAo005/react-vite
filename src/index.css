@@ -18,16 +18,16 @@
 .ant-btn-primary {
   background-color: #1890ff;
 }
-/* .ant-form-item-label>label::before {
+.ant-form-item-label > label::before {
   display: inline-block;
   margin-right: 4px;
   color: #ff4d4f;
   font-size: 14px;
-  font-family: SimSun,sans-serif;
+  font-family: SimSun, sans-serif;
   line-height: 1;
   content: '';
   width: 7px;
-} */
+}
 .trigger {
   padding: 0 24px;
   font-size: 18px;
