@@ -12,7 +12,6 @@ export default (props) => {
   const formRef = useRef()
   // 详情数据
   const [detail, setDetail] = useState({})
-
   // const [sqlDataSource, setSqlDataSource] = useState(false)
 
   // 获取详情
@@ -62,13 +61,15 @@ export default (props) => {
                 render: (_) => {
                   return (
                     <>
-                      {Array.isArray(_)
-                        ? _.map((item) => (
-                            <Tag color="blue" key={item.name}>
-                              {item.name}
-                            </Tag>
-                          ))
-                        : _}
+                      <div>
+                        {Array.isArray(_)
+                          ? _.map((item) => (
+                              <Tag color="blue" className=" !mb-2" key={item.name}>
+                                {item.name}
+                              </Tag>
+                            ))
+                          : _}
+                      </div>
                     </>
                   )
                 },
