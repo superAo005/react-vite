@@ -5,6 +5,9 @@
 .ant-btn-primary {
   background-color: #1890ff;
 }
+.ant-pro-card-body {
+  padding: 24px !important;
+}
 .trigger {
   padding: 0 24px;
   font-size: 18px;
