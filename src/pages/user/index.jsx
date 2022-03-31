@@ -135,7 +135,7 @@ function TableList() {
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
-              key="submit"
+              key="add"
               type="primary"
               onClick={() => {
                 onEdit({
@@ -165,7 +165,6 @@ function TableList() {
         tableRowData={editRowData}
         title={editRowData.modalType == 'edit' ? '编辑' : '新增'}
         reload={reload}></EditorForm>
-      ,
     </>
   )
 }
