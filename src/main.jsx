@@ -1,4 +1,6 @@
+// React 18
 import ReactDOM from 'react-dom'
+// import { createRoot } from 'react-dom/client'
 // import 'antd/dist/antd.less'
 
 // import 'antd/es/style/themes/index.less'
@@ -15,11 +17,24 @@ import store from './store'
 import { Provider } from 'react-redux'
 let persistor = persistStore(store)
 
+const container = document.getElementById('root')
+// const root = createRoot(container)
+// // 装载
+// root.render(
+//   <Provider store={store}>
+//     <PersistGate loading={null} persistor={persistor}>
+//       <App />
+//     </PersistGate>
+//   </Provider>
+// )
+// // 卸载
+// root.unmount()
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <App />
     </PersistGate>
   </Provider>,
-  document.getElementById('root')
+  container
 )
