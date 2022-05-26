@@ -1,126 +1,87 @@
-import { ConfigEnv, UserConfigExport } from 'vite'
-// import reactRefresh from '@vitejs/plugin-react-refresh'
-import react from '@vitejs/plugin-react'
-import * as path from 'path'
-import styleImport, { AntdResolve } from 'vite-plugin-style-import'
-
-// import vitePluginImp from 'vite-plugin-imp'
-
-// import usePluginImport from 'vite-plugin-importer'
-
-// import monacoEditorPlugin from 'vite-plugin-monaco-editor'
+import type { UserConfigExport, ConfigEnv } from 'vite'
+import { loadEnv } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh'
 import { viteMockServe } from 'vite-plugin-mock'
-import { dependencies } from './package.json'
+import { resolve } from 'path';
+import svgr from 'vite-plugin-svgr'
+import { getAliases } from "vite-aliases";
+import styleImport from 'vite-plugin-style-import';
 
-const reactVendorPackages = ['react', 'react-dom', 'react-router-dom']
-const reduxVendorPackages = ['@reduxjs/toolkit', 'react-redux']
+const aliases = getAliases();
 
-// 分包
-function renderChunks(deps: Record<string, string>) {
-  let chunks = {}
-  Object.keys(deps).forEach((key) => {
-    if (reactVendorPackages.includes(key)) return
-    if (reduxVendorPackages.includes(key)) return
-    chunks[key] = [key]
-  })
-  return chunks
+function pathResolve(dir: string) {
+  return resolve(__dirname, '.', dir);
 }
-// const uat = 'http://idata.fat4628.qa.nt.ctripcorp.com'
 
-export default ({ command }: ConfigEnv): UserConfigExport => {
+// https://vitejs.dev/config/
+export default ({ command } : { command: string}) => {
+  console.log('command:',)
   return {
     resolve: {
-      // alias: {
-      //   '@': path.resolve(__dirname, './src'),
-      // },
+      // alias: aliases,
       alias: [
         {
-          find: '@',
-          replacement: path.resolve(path.resolve(__dirname), 'src'),
+          // /@/xxxx  =>  src/xxx
+          find: /^~/,
+          replacement: pathResolve('node_modules') + '/',
         },
         {
-          find: '~antd',
-          replacement: path.resolve(path.resolve(__dirname), 'node_modules/antd'),
+          // /@/xxxx  =>  src/xxx
+          find: /@\//,
+          replacement: pathResolve('src') + '/',
         },
       ],
     },
-
+    optimizeDeps: {
+      include: [
+        '@ant-design/colors',
+        '@ant-design/icons',
+      ],
+    },
+    // server: {
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://127.0.0.1:7770',
+    //       changeOrigin: true,
+    //       rewrite: path => path.replace(/^\/api/, '')
+    //     }
+    //   },
+    // },
     plugins: [
-      // reactRefresh(),
-      react(),
-      // monacoEditorPlugin(),
+      reactRefresh(),
+      svgr(),
       viteMockServe({
-        // default
         mockPath: 'mock',
+        supportTs: true,
+        watchFiles: true,
         localEnabled: command === 'serve',
+        logger: true,
       }),
-
-      // vitePluginImp({
-      //   libList: [
+      // styleImport({
+      //   libs: [
       //     {
-      //       libName: 'antd',
-      //       // style: (name) => {
-      //       //   if (/CompWithoutStyleFile/i.test(name)) {
-      //       //     // This will not import any style file
-      //       //     return false
-      //       //   }
-      //       //   if (name === 'col' || name === 'row') {
-      //       //     return 'antd/lib/style/index.css'
-      //       //   }
-      //       //   return `antd/es/${name}/style/index.css`
-      //       // },
-
-      //       style: (name) => `antd/es/${name}/style/css.js`,
+      //       libraryName: 'antd',
+      //       esModule: true,
+      //       resolveStyle: (name) => {
+      //         return `antd/es/${name}/style/index`;
+      //       },
       //     },
       //   ],
       // }),
-      styleImport({
-        resolves: [AntdResolve()],
-        // libs: [
-        //   {
-        //     libraryName: 'antd',
-        //     esModule: true,
-        //     resolveStyle: (name) => {
-        //       return `antd/es/${name}/style/index`
-        //     },
-        //   },
-        // ],
-      }),
     ],
-    build: {
-      target: 'es2018',
-      // do not set it as the context-path (this app uses "static")
-      assetsDir: 'assets',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            react: reactVendorPackages,
-            redux: reduxVendorPackages,
-            ...renderChunks(dependencies),
-          },
-        },
-      },
-    },
-
     css: {
+      modules: {
+        localsConvention: 'camelCaseOnly',
+      },
       preprocessorOptions: {
         less: {
-          // 支持内联 JavaScript
           javascriptEnabled: true,
-        },
-      },
-    },
-    server: {
-      port: 3005, // 你需要定义的端口号
-      // "preinstall": "npx only-allow pnpm",
-
-      proxy: {
-        '/api/': {
-          target: 'http://39.105.10.134:8998',
-          changeOrigin: true,
-          secure: false,
+          modifyVars: {
+            '@primary-color': '#1890ff',
+          },
         },
       },
     },
   }
 }
+
