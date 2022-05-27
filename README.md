@@ -9,37 +9,35 @@
 - Vite
 - Typescript
 
-
 ## 安装使用
 
 - 获取项目代码
 
 ```
  git clone http://git.dev.sh.ctripcorp.com/risk/vite-react.git
- ```
+```
 
 - 安装依赖
 
 ```
  cd react-vite-admin
- ```
+```
 
 ```
  npm install
- ```
+```
 
 - 运行
 
 ```
- npm dev
- ```
+ npm run dev
+```
 
 - 打包
 
 ```
- npm build
- ```
-
+ npm run build
+```
 
 ## 致谢
 

@@ -16,12 +16,12 @@ import { useGetCurrentUser } from './api'
 import { createBrowserHistory } from 'history'
 import { useRecoilState } from 'recoil'
 import { userState } from './stores/user'
-import { Locale } from './models/user'
-import LayoutPage from '@/pages/layout'
-import Dashboard from '@/pages/dashboard'
-import LoginPage from '@/pages/login'
-import NotFound from '@/pages/404'
-import Project from '@/pages/project'
+// import { Locale } from './models/user'
+// import LayoutPage from '@/pages/layout'
+// import Dashboard from '@/pages/dashboard'
+// import LoginPage from '@/pages/login'
+// import NotFound from '@/pages/404'
+// import Project from '@/pages/project'
 const history = createBrowserHistory()
 
 const App: React.FC = () => {
