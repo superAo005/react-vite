@@ -1,0 +1,44 @@
+.calculate__con {
+  display: flex;
+  align-items: center;
+  > div {
+    margin-right: 10px;
+  }
+  .calculate__con_leftselect {
+    position: relative;
+    width: 250px;
+    &-btn {
+      position: absolute;
+      top: -22px;
+      right: 3px;
+      z-index: 9999;
+      display: none;
+      &-icon {
+        color: #1890ff;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .calculate__con_leftselect:hover {
+    .calculate__con_leftselect-btn {
+      display: block;
+    }
+  }
+  .calculate__con_midoperator {
+    width: 120px;
+  }
+  .calculate__con_rightvalue {
+    width: 120px;
+  }
+  .calculate__con_delicon {
+    cursor: pointer;
+    &-icon {
+      color: #e26f53;
+      font-size: 16px;
+    }
+  }
+  .ant-select {
+    width: 100%;
+  }
+}

@@ -1,0 +1,16 @@
+.x6-graph-svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .x6-edge-tool {
+    &.x6-cell-tool-button {
+      .edge-button {
+        &:hover {
+          & + .edge-button-text {
+            fill: #1890FF;
+          }
+        }
+      }
+    }
+  }
+}

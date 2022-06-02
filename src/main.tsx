@@ -41,7 +41,6 @@ ReactDOM.render(
             <div
               style={{
                 width: '100vw',
-                height: '50px',
                 display: 'flex',
                 justifyContent: 'center',
               }}>

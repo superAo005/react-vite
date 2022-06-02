@@ -1,0 +1,58 @@
+.cfCustomerReactNode {
+  position: relative;
+  width: 178px;
+  &_innerContainer {
+    display: flex;
+    width: 100%;
+    min-height: 36px;
+    font-size: 14px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+    border: 1px solid #c3c8d5;
+    border-radius: 4px;
+    &_hightBorder {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      height: 100%;
+      padding: 2px;
+      border: 2px solid #c3c8d5;
+      transform: translate(-50%, -50%);
+      border-radius: 2px;
+      box-sizing: content-box;
+      animation: 120ms ease 0ms 2 alternate none running twinkling;
+
+      @keyframes twinkling {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &_leftBorder {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 4px 0 0 4px;
+  }
+  .cfCustomerReactNode_content{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.x6-graph-svg {
+  .x6-graph-svg-stage {
+    * {
+      transition: width, height, transform 300ms ease;
+    }
+  }
+}

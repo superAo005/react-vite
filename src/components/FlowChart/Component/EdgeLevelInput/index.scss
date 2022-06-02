@@ -1,0 +1,26 @@
+.edgeLevel {
+  border-radius: 1px;
+  overflow: hidden;
+  .level-input {
+    display: inline-block;
+    box-sizing: content-box;
+    height: 14px;
+    min-width: 10px;
+    padding: 0 2px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    color: #212121;
+    font-size: 12px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    border: none;
+    text-align: center;
+    background-color: #d8d8d8;
+    &:focus-visible {
+      outline: none;
+    }
+    &.error {
+      border: 1px solid #feb663;
+    }
+  }
+}
