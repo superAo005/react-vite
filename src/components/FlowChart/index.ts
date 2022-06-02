@@ -1,7 +1,7 @@
 /* 流编辑器
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-11 14:35:50
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-07 14:59:46
  */
 import { Graph } from "@antv/x6";

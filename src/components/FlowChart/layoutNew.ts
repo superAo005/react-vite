@@ -1,7 +1,7 @@
 /* 布局排版管理
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-08 20:32:42
  */
 import { Graph, Node } from '@antv/x6'

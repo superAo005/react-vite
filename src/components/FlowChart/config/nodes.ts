@@ -1,7 +1,7 @@
 /* 节点类型字典
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-07 21:18:33
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-03-11 15:21:11
  */
 

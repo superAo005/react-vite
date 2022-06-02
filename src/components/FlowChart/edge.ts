@@ -1,7 +1,7 @@
 /* 边管理
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-03-31 17:38:01
  */
 import { Graph, Edge, Shape, Markup } from '@antv/x6'

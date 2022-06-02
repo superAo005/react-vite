@@ -1,7 +1,7 @@
 /* 节点管理
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-01 20:01:20
  */
 import { Cell, Graph, Node } from '@antv/x6'

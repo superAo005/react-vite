@@ -1,7 +1,7 @@
 /* 数据管理
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-03-10 21:12:30
  */
 import { Graph } from '@antv/x6'

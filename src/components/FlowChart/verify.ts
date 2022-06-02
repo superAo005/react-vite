@@ -1,8 +1,8 @@
 /** 合法校验
  * 1、活动节点 所在的所有路径 都要校验
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-07 16:44:47
  */
 import { Cell, Graph, Node } from '@antv/x6'

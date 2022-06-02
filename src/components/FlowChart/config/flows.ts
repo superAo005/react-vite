@@ -1,7 +1,7 @@
 /* 策略流类型字典
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-07 21:18:33
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-07 16:45:44
  */
 import { Options } from '@antv/x6/lib/graph/options'

@@ -1,8 +1,8 @@
 /** 事件监听处理
  * https://x6.antv.vision/zh/docs/tutorial/intermediate/events
- * @Author: ymiaomiao.yang
+ * @Author: superao
  * @Date: 2022-03-08 19:13:29
- * @Last Modified by: ymiaomiao.yang
+ * @Last Modified by: superao
  * @Last Modified time: 2022-04-08 14:36:18
  */
 import { Edge, Graph, Node } from '@antv/x6'
