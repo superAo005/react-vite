@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 import {
@@ -24,10 +24,15 @@ function layout(props) {
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="/" icon={<UserOutlined />}>
-            nav 1
+            <Link to={'/'}>
+              <span>首页</span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="/detail" icon={<VideoCameraOutlined />}>
             nav 2
+            <Link to="/detail">
+              <span>详情</span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<UploadOutlined />}>
             nav 3

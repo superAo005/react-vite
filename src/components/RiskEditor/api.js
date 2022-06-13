@@ -1,5 +1,6 @@
-const getIntelliSense = () => {
-  return fetch('/api/intellisense', {
+const getIntelliSense = (word) => {
+  // debugger
+  return fetch(`/api/intellisense?word=${encodeURIComponent(word)}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
