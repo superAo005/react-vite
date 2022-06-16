@@ -15,7 +15,6 @@ const Role = lazy(() => import('@/pages/role'))
 const Expert = lazy(() => import('@/pages/expert'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
-const Test = lazy(() => import('@/pages/test'))
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children) => {
@@ -174,10 +173,6 @@ const routeList = [
   {
     path: 'login',
     element: lazyLoad(<Login />),
-  },
-  {
-    path: 'test',
-    element: lazyLoad(<Test />),
   },
 ]
 

@@ -4,7 +4,18 @@ import { Button, message } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
+import { Select, Radio } from 'antd'
 
+const { Option } = Select
+
+const children = []
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>)
+}
+
+function handleChange(value) {
+  console.log(`Selected: ${value}`)
+}
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
@@ -88,6 +99,15 @@ function TableList() {
 
   return (
     <>
+      {/* <Select
+        mode="multiple"
+        placeholder="Please select"
+        defaultValue={['a10', 'c12']}
+        onChange={handleChange}
+        getPopupContainer={() => document.getElementById('content')}
+        style={{ width: '100%' }}>
+        {children}
+      </Select> */}
       <ProTable
         headerTitle=""
         rowKey="sourceNo"
@@ -117,8 +137,18 @@ function TableList() {
           //   message.error(msg)
           // }
           // tempData = body?.dtoList
+          function randomString(e) {
+            e = e || 32
+            var t = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
+              a = t.length,
+              n = ''
+            for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a))
+            return n
+          }
+          // alert(randomString(6));
+
           return {
-            data: body?.dtoList || [],
+            data: body?.dtoList || [{ remark: randomString(10086) }],
             success: true,
             total: body?.total || 0,
           }
