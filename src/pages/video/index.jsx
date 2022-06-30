@@ -61,13 +61,13 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        <a
-          key="look"
-          onClick={() => {
-            onView(record)
-          }}>
-          查看
-        </a>,
+        // <a
+        //   key="look"
+        //   onClick={() => {
+        //     onView(record)
+        //   }}>
+        //   查看
+        // </a>,
         <div
           key="edit"
           className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
@@ -110,7 +110,7 @@ function TableList() {
     setEditRowData(record)
   }
   const onDel = async (record) => {
-    await del(record.expert_id)
+    await del(record.id)
     reload()
   }
   return (
@@ -153,7 +153,7 @@ function TableList() {
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
-              key="submit"
+              key="add"
               type="primary"
               onClick={() => {
                 onEdit({
