@@ -21,7 +21,16 @@ function TableList() {
       title: '主题名称',
       dataIndex: 'name',
     },
-
+    {
+      title: '是否菜单',
+      dataIndex: 'ismenu',
+      hideInSearch: true,
+    },
+    {
+      title: '菜单名称',
+      dataIndex: 'menu_name',
+      hideInSearch: true,
+    },
     {
       title: '主题描述',
       dataIndex: 'desc',
