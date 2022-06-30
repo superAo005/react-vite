@@ -14,7 +14,7 @@ export function getPageList(data) {
 // 新增
 export function create(data) {
   return post({
-    url: '/api/hn/bpsa/video/info/add',
+    url: 'api/hn/bpsa/video/info/add',
     data,
   })
 }
@@ -22,7 +22,7 @@ export function create(data) {
 // 编辑更新
 export function update(data) {
   return post({
-    url: '/api/hn/bpsa/video/info/update',
+    url: 'api/hn/bpsa/video/info/update',
     data,
     showMsg: 'notification',
   })
@@ -31,7 +31,7 @@ export function update(data) {
 // 编辑
 export function del(id) {
   return post({
-    url: '/api/hn/bpsa/video/info/del',
+    url: 'api/hn/bpsa/video/info/del',
     data: { id },
   })
 }
@@ -39,7 +39,7 @@ export function del(id) {
 // 查看
 export function view(id) {
   return post({
-    url: `/api/hn/bpsa/video/info/query`,
+    url: `api/hn/bpsa/video/info/query`,
     data: { id },
   })
 }

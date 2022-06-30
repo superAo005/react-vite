@@ -6,7 +6,7 @@ import { get, post } from './request'
 //  获取表格列表
 export function getPageList(data) {
   return post({
-    url: 'api/hnbc/psas/user/list/query',
+    url: 'api/hn/bpsa/user/info/query/paging',
     data,
   })
 }
@@ -21,7 +21,7 @@ export function login(data) {
 // 新增
 export function create(data) {
   return post({
-    url: 'api/hnbc/psas/user/add',
+    url: 'api/hn/bpsa/user/info/add',
     data,
   })
 }
@@ -29,38 +29,24 @@ export function create(data) {
 // 编辑
 export function edit(data) {
   return post({
-    url: 'api/hnbc/psas/user/edit',
+    url: 'api/hn/bpsa/user/info/update',
     data,
     showMsg: 'notification',
   })
 }
 
-// 编辑
-export function del(u_id) {
+// 删除
+export function del(uid) {
   return post({
-    url: 'api/hnbc/psas/user/del',
-    data: { u_id },
+    url: 'api/hn/bpsa/user/info/del',
+    data: { uid },
   })
 }
 
 // 查看
-export function view(param) {
-  return get({
-    url: `featureFunction/detail`,
-    param,
-  })
-}
-// 删除
-export function deleteFeatureFunction(param) {
+export function view(uid) {
   return post({
-    url: 'featureFunction/delete',
-    param,
-  })
-}
-// 申请上下线
-export function enableFeatureFunction(param) {
-  return post({
-    url: 'featureFunction/enable',
-    param,
+    url: 'api/hn/bpsa/user/info/query',
+    data: { uid },
   })
 }
