@@ -13,6 +13,7 @@ import {
   BarChartOutlined,
   AreaChartOutlined,
   VideoCameraOutlined,
+  ProjectOutlined,
 } from '@ant-design/icons'
 
 export default {
@@ -30,4 +31,5 @@ export default {
   api: <ApiOutlined />,
   edit: <EditOutlined />,
   video: <VideoCameraOutlined />,
+  project: <ProjectOutlined />,
 }

@@ -13,6 +13,7 @@ const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
 const Role = lazy(() => import('@/pages/role'))
 const Video = lazy(() => import('@/pages/video'))
+const Category = lazy(() => import('@/pages/category'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 
 // 实现懒加载的用Suspense包裹 定义函数
@@ -47,6 +48,13 @@ const routeList = [
         icon: 'video',
         // auth: 'video:view',
         element: lazyLoad(<Video />),
+      },
+      {
+        path: 'category',
+        title: '主题分类',
+        icon: 'project',
+        // auth: 'video:view',
+        element: lazyLoad(<Category />),
       },
 
       {
