@@ -126,7 +126,7 @@ function TableList() {
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
             <Button
-              key="submit"
+              key="add"
               type="primary"
               onClick={() => {
                 onEdit({

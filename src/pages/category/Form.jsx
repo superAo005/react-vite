@@ -6,6 +6,7 @@ import {
   ProFormSelect,
   ProFormTextArea,
   ProFormRadio,
+  ProFormDependency,
 } from '@ant-design/pro-form'
 import { create, update } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
@@ -108,19 +109,36 @@ export default (props) => {
 
           <Col span={24}>
             <ProFormRadio.Group
-              name="radio"
+              name="ismenu"
               label="设为菜单:"
               options={[
                 {
                   label: '是',
-                  value: 'a',
+                  value: 1,
                 },
                 {
                   label: '否',
-                  value: 'b',
+                  value: 0,
                 },
               ]}
             />
+          </Col>
+          <Col span={24}>
+            <ProFormDependency name={['ismenu']}>
+              {({ ismenu }) => {
+                if (ismenu) {
+                  return (
+                    <ProFormText
+                      name="menu_name"
+                      label="菜单名称"
+                      placeholder="请输入菜单名称,不填取主题名称"
+                    />
+                  )
+                } else {
+                  return null
+                }
+              }}
+            </ProFormDependency>
           </Col>
 
           <Col span={24}>
