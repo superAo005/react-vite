@@ -18,27 +18,28 @@ export function view(param) {
     param,
   })
 }
+
 // 新增
 export function create(data) {
   return post({
-    url: 'api/hnbc/psas/user/add',
+    url: 'api/hn/bpsa/dict/video/category/info/add',
     data,
   })
 }
 
-// 编辑
-export function edit(data) {
+// 更新编辑
+export function update(data) {
   return post({
-    url: 'api/hnbc/psas/user/edit',
+    url: 'api/hn/bpsa/dict/video/category/info/update',
     data,
     showMsg: 'notification',
   })
 }
 
-// 编辑
-export function del(u_id) {
+// 删除
+export function del(id) {
   return post({
-    url: 'api/hnbc/psas/user/del',
-    data: { u_id },
+    url: 'api/hn/bpsa/dict/video/category/info/del',
+    data: { id },
   })
 }

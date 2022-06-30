@@ -11,56 +11,35 @@ export function getPageList(data) {
   })
 }
 
-// 登录
-export function login(data) {
-  return post({
-    url: 'api/hnbc/psas/auth/to/login',
-    data,
-  })
-}
 // 新增
 export function create(data) {
   return post({
-    url: 'api/hnbc/psas/user/add',
+    url: '/api/hn/bpsa/video/info/add',
     data,
   })
 }
 
-// 编辑
-export function edit(data) {
+// 编辑更新
+export function update(data) {
   return post({
-    url: 'api/hnbc/psas/user/edit',
+    url: '/api/hn/bpsa/video/info/update',
     data,
     showMsg: 'notification',
   })
 }
 
 // 编辑
-export function del(u_id) {
+export function del(id) {
   return post({
-    url: 'api/hnbc/psas/user/del',
-    data: { u_id },
+    url: '/api/hn/bpsa/video/info/del',
+    data: { id },
   })
 }
 
 // 查看
-export function view(param) {
-  return get({
-    url: `featureFunction/detail`,
-    param,
-  })
-}
-// 删除
-export function deleteFeatureFunction(param) {
+export function view(id) {
   return post({
-    url: 'featureFunction/delete',
-    param,
-  })
-}
-// 申请上下线
-export function enableFeatureFunction(param) {
-  return post({
-    url: 'featureFunction/enable',
-    param,
+    url: `/api/hn/bpsa/video/info/query`,
+    data: { id },
   })
 }
