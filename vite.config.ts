@@ -116,7 +116,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
 
       proxy: {
         '/api/': {
-          target: 'http://39.105.10.134:8998',
+          target: 'http://39.105.10.134:8999',
           changeOrigin: true,
           secure: false,
         },

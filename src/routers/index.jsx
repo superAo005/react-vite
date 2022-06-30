@@ -13,6 +13,7 @@ const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
 const Role = lazy(() => import('@/pages/role'))
 const Expert = lazy(() => import('@/pages/expert'))
+const Video = lazy(() => import('@/pages/video'))
 const Statistic = lazy(() => import('@/pages/statistic'))
 const Extract = lazy(() => import('@/pages/extract'))
 
@@ -47,6 +48,13 @@ const routeList = [
         auth: 'expert:view',
 
         element: lazyLoad(<Expert />),
+      },
+      {
+        path: 'video',
+        title: '视频管理',
+        icon: 'video',
+        // auth: 'video:view',
+        element: lazyLoad(<Video />),
       },
       {
         path: 'extract',

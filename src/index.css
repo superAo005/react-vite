@@ -8,6 +8,11 @@
 .ant-pro-card-body {
   padding: 24px !important;
 }
+
+.ant-image-preview-img-wrapper {
+  display: flex;
+  justify-content: center;
+}
 .trigger {
   padding: 0 24px;
   font-size: 18px;
