@@ -12,10 +12,8 @@ const NoMatch = lazy(() => import('@/pages/noMatch'))
 const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
 const Role = lazy(() => import('@/pages/role'))
-const Expert = lazy(() => import('@/pages/expert'))
 const Video = lazy(() => import('@/pages/video'))
 const Statistic = lazy(() => import('@/pages/statistic'))
-const Extract = lazy(() => import('@/pages/extract'))
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children) => {
@@ -42,25 +40,13 @@ const routeList = [
         icon: 'team',
         element: lazyLoad(<Role />),
       },
-      {
-        path: 'expert',
-        title: '专家管理',
-        auth: 'expert:view',
 
-        element: lazyLoad(<Expert />),
-      },
       {
         path: 'video',
         title: '视频管理',
         icon: 'video',
         // auth: 'video:view',
         element: lazyLoad(<Video />),
-      },
-      {
-        path: 'extract',
-        title: '专家抽取',
-        auth: 'extract:view',
-        element: lazyLoad(<Extract />),
       },
 
       {
