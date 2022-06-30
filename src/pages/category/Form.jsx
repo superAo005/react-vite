@@ -1,7 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
-import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form'
-import { create, edit } from '@/services/expert'
+import {
+  ModalForm,
+  ProFormText,
+  ProFormSelect,
+  ProFormTextArea,
+  ProFormRadio,
+} from '@ant-design/pro-form'
+import { create, update } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -80,7 +86,7 @@ export default (props) => {
             }
             delete params.modalType
             if (modalType == 'edit') {
-              await edit(params)
+              await update(params)
             } else {
               await create(params)
             }
@@ -94,48 +100,31 @@ export default (props) => {
           <Col span={24}>
             <ProFormText
               name="name"
-              label="专家名称"
-              placeholder="请输入专家名称"
+              label="主题名称"
+              placeholder="请输入主题名称"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
 
-          {modalType != 'edit' && (
-            <>
-              <Col span={24}>
-                <ProFormText
-                  name="login_account"
-                  label="登录账号"
-                  placeholder="请输入登录账号"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-              <Col span={24}>
-                <ProFormText
-                  name="pwd"
-                  label="登录密码"
-                  placeholder="请输入登录密码"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-              <Col span={24}>
-                <ProFormText
-                  name="mobile"
-                  label="手机号"
-                  placeholder="请输入手机号"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-            </>
-          )}
+          <Col span={24}>
+            <ProFormRadio.Group
+              name="radio"
+              label="设为菜单:"
+              options={[
+                {
+                  label: '是',
+                  value: 'a',
+                },
+                {
+                  label: '否',
+                  value: 'b',
+                },
+              ]}
+            />
+          </Col>
 
           <Col span={24}>
-            <ProFormTextArea
-              name="remark"
-              label="备注信息"
-              placeholder="请输入备注信息 "
-              rules={[{ required: true, message: '不能为空' }]}
-            />
+            <ProFormTextArea name="desc" label="描述信息" placeholder="请输入描述信息 " />
           </Col>
         </Row>
       </ModalForm>
