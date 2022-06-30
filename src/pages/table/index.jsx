@@ -5,6 +5,7 @@ import { Button, message } from 'antd'
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { Select, Radio } from 'antd'
+import useUrlState from '@ahooksjs/use-url-state'
 
 const { Option } = Select
 
@@ -24,6 +25,7 @@ function TableList() {
   const [editModalVisit, setEditModalVisit] = useState(false)
   const [tableRowData, setTableRowData] = useState({})
   const [editRowData, setEditRowData] = useState({})
+  const [state, setState] = useUrlState({ count: '1' })
 
   const initColumns = [
     {
@@ -146,7 +148,8 @@ function TableList() {
             return n
           }
           // alert(randomString(6));
-
+          debugger
+          setState(params)
           return {
             data: body?.dtoList || [{ remark: randomString(10086) }],
             success: true,

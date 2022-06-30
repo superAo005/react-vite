@@ -40,7 +40,13 @@ const completionCss = [
     //   insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
   },
 ]
-
+const waitTime = (time = 2000) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
+}
 export default [
   {
     url: '/api/intellisense',
@@ -86,6 +92,7 @@ export default [
     url: '/api/hnbc/psas/user/list/query',
     method: 'POST',
     response: () => {
+      // await waitTime(1000)
       return {
         res: 1,
         data: {
