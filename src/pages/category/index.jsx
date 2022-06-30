@@ -26,11 +26,11 @@ function TableList() {
       dataIndex: 'ismenu',
       hideInSearch: true,
     },
-    {
-      title: '菜单名称',
-      dataIndex: 'menu_name',
-      hideInSearch: true,
-    },
+    // {
+    //   title: '菜单名称',
+    //   dataIndex: 'menu_name',
+    //   hideInSearch: true,
+    // },
     {
       title: '主题描述',
       dataIndex: 'desc',

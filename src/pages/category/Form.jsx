@@ -123,7 +123,7 @@ export default (props) => {
               ]}
             />
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <ProFormDependency name={['ismenu']}>
               {({ ismenu }) => {
                 if (ismenu) {
@@ -139,7 +139,7 @@ export default (props) => {
                 }
               }}
             </ProFormDependency>
-          </Col>
+          </Col> */}
 
           <Col span={24}>
             <ProFormTextArea name="desc" label="描述信息" placeholder="请输入描述信息 " />

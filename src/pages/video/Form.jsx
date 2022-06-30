@@ -1,7 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Button, message, Col, Row, Form } from 'antd'
-import { ModalForm, ProFormText, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form'
+import {
+  ModalForm,
+  ProFormText,
+  ProFormSelect,
+  ProFormTextArea,
+  ProFormUploadButton,
+} from '@ant-design/pro-form'
 import { create, edit } from '@/services/expert'
+import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -93,50 +100,62 @@ export default (props) => {
         <Row className="pl-20">
           <Col span={24}>
             <ProFormText
-              name="name"
-              label="专家名称"
-              placeholder="请输入专家名称"
+              name="title"
+              label="视频标题"
+              placeholder="请输入视频标题"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
 
-          {modalType != 'edit' && (
-            <>
-              <Col span={24}>
-                <ProFormText
-                  name="login_account"
-                  label="登录账号"
-                  placeholder="请输入登录账号"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-              <Col span={24}>
-                <ProFormText
-                  name="pwd"
-                  label="登录密码"
-                  placeholder="请输入登录密码"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-              <Col span={24}>
-                <ProFormText
-                  name="mobile"
-                  label="手机号"
-                  placeholder="请输入手机号"
-                  rules={[{ required: true, message: '不能为空' }]}
-                />
-              </Col>
-            </>
-          )}
+          <Col span={24}>
+            <ProFormSelect
+              name="category"
+              label="视频主题"
+              placeholder="请选择视频标题"
+              request={async () => {
+                const { data } = await getPageList({ page: 1, page_size: 9998 })
+                return data.paging_data.map((item) => ({ label: item.name, value: item.id }))
+              }}
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
 
           <Col span={24}>
+            <ProFormUploadButton
+              name="poster"
+              label="封面图"
+              max={1}
+              fieldProps={{
+                name: 'file',
+                listType: 'picture-card',
+              }}
+              action="/upload.do"
+              extra=""
+            />
+          </Col>
+
+          <Col span={24}>
+            <ProFormUploadButton
+              name="video"
+              label="视频内容"
+              max={1}
+              fieldProps={{
+                name: 'file',
+                listType: 'picture-card',
+              }}
+              action="/upload.do"
+              extra=""
+            />
+          </Col>
+
+          {/* <Col span={24}>
             <ProFormTextArea
               name="remark"
               label="备注信息"
               placeholder="请输入备注信息 "
               rules={[{ required: true, message: '不能为空' }]}
             />
-          </Col>
+          </Col> */}
         </Row>
       </ModalForm>
     </>
