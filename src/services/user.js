@@ -3,6 +3,22 @@
  */
 import { get, post } from './request'
 
+// 登录
+export function login(data) {
+  return post({
+    url: 'api/hn/bpsa/auth/to/login',
+    data,
+  })
+}
+
+// 登出
+export function logout(data) {
+  return post({
+    url: 'api/hn/bpsa/auth/to/login/out',
+    data,
+  })
+}
+
 //  获取表格列表
 export function getPageList(data) {
   return post({
@@ -11,13 +27,6 @@ export function getPageList(data) {
   })
 }
 
-// 登录
-export function login(data) {
-  return post({
-    url: 'api/hnbc/psas/auth/to/login',
-    data,
-  })
-}
 // 新增
 export function create(data) {
   return post({
