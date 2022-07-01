@@ -20,7 +20,6 @@ function TableList() {
     {
       title: '视频标题',
       dataIndex: 'title',
-      width: 120,
     },
     {
       title: '封面图',
