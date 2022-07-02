@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Button, message, Col, Row, Form } from 'antd'
+import { Button, message, Col, Row, Form, Modal, Upload } from 'antd'
 import {
   ModalForm,
   ProFormText,
@@ -60,6 +60,75 @@ export default (props) => {
     }
   }, [visible])
 
+  // const uploadProps = {
+  //   beforeUpload: beforeUploadFile,
+  //   onDownload: onDownload,
+  //   onRemove: onRemove,
+  //   withCredentials: true,
+  //   maxCount: 1,
+  //   // onChange: onChange,
+  //   // showUploadList: {
+  //   //   showDownloadIcon,
+  //   //   showRemoveIcon,
+  //   // },
+  // }
+  const uploadProps = {
+    headers: {
+      // 'rsk-sso-token': getCookie(ssokey),
+      // 'user-work-domain': workDomain,
+    },
+    withCredentials: true,
+    beforeUpload: (file) => {
+      let pattern = /^.*\.(?:xls|xlsx)$/i
+      let fileType = pattern.test(file.name)
+      const isLt100M = file.size / 1024 / 1024 < 100
+      // if (!fileType) {
+      //   message.error(`${file.name} 不是excel文件`)
+      //   return false
+      // }
+      debugger
+      if (!isLt100M) {
+        Modal.error({
+          title: '超过100M限制，不允许上传~',
+        })
+        return false
+      }
+      return isLt100M ? true : Upload.LIST_IGNORE
+    },
+    onChange(info) {
+      if (info.file.status === 'done') {
+        const res = info.file.response
+        // let errorCon = res.body?.resultList?.map((item, i) => {
+        //   if (!item.success) {
+        //     return <p key={i}>{`第${item.rowIndex}行失败,失败原因:${item.msg}`}</p>
+        //   }
+        // })
+        let errorCon = res?.body?.hasError
+      } else if (info.file.status === 'error') {
+        message.error(`文件上传失败`)
+      }
+    },
+    onPreview: async (file) => {
+      let src = file.url
+      if (!src) {
+        src = await new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.readAsDataURL(file.originFileObj)
+          reader.onload = () => resolve(reader.result)
+        })
+      }
+      const image = new Image()
+      image.src = src
+      const imgWindow = window.open(src)
+      imgWindow?.document.write(image.outerHTML)
+    },
+    // showUploadList: false,
+    // multiple: true,
+    // defaultFileList,
+    data: {
+      type: 0, //VIDEO_POSTER
+    },
+  }
   return (
     <>
       <ModalForm
@@ -125,12 +194,14 @@ export default (props) => {
               name="poster"
               label="封面图"
               max={1}
+              rules={[{ required: true, message: '不能为空' }]}
               fieldProps={{
                 name: 'file',
+                action: 'api/hn/bpsa/common/file/upload',
                 listType: 'picture-card',
+                ...uploadProps,
               }}
-              action="/upload.do"
-              extra=""
+              action="api/hn/bpsa/common/file/upload"
             />
           </Col>
 
@@ -139,14 +210,28 @@ export default (props) => {
               name="video"
               label="视频内容"
               max={1}
+              action="api/hn/bpsa/common/file/upload"
+              fieldProps={{
+                name: 'file',
+                listType: 'picture-card',
+                ...uploadProps,
+                data: {
+                  type: 1, //VIDEO_POSTER
+                },
+              }}
+            />
+          </Col>
+
+          {/* <Col span={24}>
+            <ProFormUploadButton
+              name="video"
+              label="视频内容"
               fieldProps={{
                 name: 'file',
                 listType: 'picture-card',
               }}
-              action="/upload.do"
-              extra=""
             />
-          </Col>
+          </Col> */}
 
           {/* <Col span={24}>
             <ProFormTextArea
@@ -161,3 +246,5 @@ export default (props) => {
     </>
   )
 }
+
+// a27575e105b3476a8ae98c1ae1c0d1a4.png
