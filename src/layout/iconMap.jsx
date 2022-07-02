@@ -14,6 +14,7 @@ import {
   AreaChartOutlined,
   VideoCameraOutlined,
   ProjectOutlined,
+  FormOutlined,
 } from '@ant-design/icons'
 
 export default {
@@ -32,4 +33,5 @@ export default {
   edit: <EditOutlined />,
   video: <VideoCameraOutlined />,
   project: <ProjectOutlined />,
+  notice: <FormOutlined />,
 }

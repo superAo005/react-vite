@@ -156,16 +156,16 @@ export default (props) => {
             let params = {
               ...tableRowData,
               ...values,
-              poster:
+              poster_file_name:
                 values?.poster?.[0]?.response?.data?.file_name ||
-                values?.poster ||
-                tableRowData?.poster,
+                values?.poster_file_name ||
+                tableRowData?.poster_file_name,
               // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
               type: 0,
               video_file_name:
                 values?.video_file_name?.[0]?.response?.data?.file_name ||
                 values?.video_file_name ||
-                tableRowData?.poster,
+                tableRowData?.poster_file_name,
             }
             delete params.modalType
             if (modalType == 'edit') {

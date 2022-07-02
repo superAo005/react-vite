@@ -15,6 +15,7 @@ const Role = lazy(() => import('@/pages/role'))
 const Video = lazy(() => import('@/pages/video'))
 const Category = lazy(() => import('@/pages/category'))
 const Statistic = lazy(() => import('@/pages/statistic'))
+const Notice = lazy(() => import('@/pages/notice'))
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children) => {
@@ -33,28 +34,6 @@ const routeList = [
         auth: 'user:view',
         element: lazyLoad(<User />),
       },
-      [
-        'user:view',
-        'user:add',
-        'user:delete',
-        'user:update',
-        'video:add',
-        'video:delete',
-        'video:update',
-        'video:view',
-        'role:add',
-        'role:delete',
-        'role:update',
-        'role:view',
-        'category:add',
-        'category:delete',
-        'category:update',
-        'category:view',
-        'statistic:add',
-        'statistic:delete',
-        'statistic:update',
-        'statistic:view',
-      ],
       {
         path: 'role',
         title: '角色管理',
@@ -77,114 +56,121 @@ const routeList = [
         // auth: 'video:view',
         element: lazyLoad(<Category />),
       },
+      {
+        path: 'notice',
+        title: '法规通知',
+        icon: 'notice',
+        // auth: 'video:view',
+        element: lazyLoad(<Notice />),
+      },
 
-      {
-        path: 'statistic',
-        title: '统计分析',
-        element: lazyLoad(<Statistic />),
-      },
-      {
-        path: 'components',
-        title: '组件',
-        children: [
-          {
-            path: 'table',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table2',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table3',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table4',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table5',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table6',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table7',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table9',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'template',
-            title: 'template',
-            element: lazyLoad(<TemplateList />),
-          },
-        ],
-      },
-      {
-        path: 'components2',
-        title: '组件2',
-        children: [
-          {
-            path: 'table',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table2',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table3',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table4',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table5',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table6',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table7',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'table9',
-            title: '表格',
-            element: lazyLoad(<TableList />),
-          },
-          {
-            path: 'template',
-            title: 'template',
-            element: lazyLoad(<TemplateList />),
-          },
-        ],
-      },
+      // {
+      //   path: 'statistic',
+      //   title: '统计分析',
+      //   element: lazyLoad(<Statistic />),
+      // },
+      // {
+      //   path: 'components',
+      //   title: '组件',
+      //   children: [
+      //     {
+      //       path: 'table',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table2',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table3',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table4',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table5',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table6',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table7',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table9',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'template',
+      //       title: 'template',
+      //       element: lazyLoad(<TemplateList />),
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'components2',
+      //   title: '组件2',
+      //   children: [
+      //     {
+      //       path: 'table',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table2',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table3',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table4',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table5',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table6',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table7',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'table9',
+      //       title: '表格',
+      //       element: lazyLoad(<TableList />),
+      //     },
+      //     {
+      //       path: 'template',
+      //       title: 'template',
+      //       element: lazyLoad(<TemplateList />),
+      //     },
+      //   ],
+      // },
       {
         path: '*',
         name: 'No Match',

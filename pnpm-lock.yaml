@@ -9,6 +9,7 @@ specifiers:
   '@babel/preset-env': ^7.17.10
   '@babel/preset-react': ^7.16.7
   '@babel/preset-typescript': ^7.16.7
+  '@babel/runtime-corejs3': ^7.18.6
   '@reduxjs/toolkit': ^1.8.1
   '@types/babel__core': ^7.1.19
   '@types/lodash-es': ^4.17.6
@@ -20,6 +21,8 @@ specifiers:
   '@typescript-eslint/parser': ^5.21.0
   '@vitejs/plugin-react': ^1.3.1
   '@vitejs/plugin-react-refresh': ^1.3.6
+  '@wangeditor/editor': ^5.1.1
+  '@wangeditor/editor-for-react': ^1.0.3
   ahooks: ^3.5.1
   antd: ^4.20.2
   autoprefixer: ^10.4.6
@@ -56,7 +59,10 @@ dependencies:
   '@ant-design/pro-descriptions': 1.10.69_e02fb82764744a0894e4f82d87654741
   '@ant-design/pro-form': 1.65.0_e02fb82764744a0894e4f82d87654741
   '@ant-design/pro-table': 2.73.0_e02fb82764744a0894e4f82d87654741
+  '@babel/runtime-corejs3': 7.18.6
   '@reduxjs/toolkit': 1.8.1_react-redux@8.0.1+react@18.1.0
+  '@wangeditor/editor': 5.1.1
+  '@wangeditor/editor-for-react': 1.0.3_23456b17e08840dc5e7a471df2514bd3
   ahooks: 3.5.1_react@18.1.0
   antd: 4.20.2_react-dom@18.1.0+react@18.1.0
   axios: 0.27.2
@@ -2543,6 +2549,14 @@ packages:
       - supports-color
     dev: true
 
+  /@babel/runtime-corejs3/7.18.6:
+    resolution: {integrity: sha1-bwLFU2kR9LRFlGoheVVLlciDhjU=, tarball: '@babel/runtime-corejs3/download/@babel/runtime-corejs3-7.18.6.tgz'}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: 3.23.3
+      regenerator-runtime: 0.13.9
+    dev: false
+
   /@babel/runtime/7.17.9:
     resolution: {integrity: sha1-0Z+/gC0BqMts8FOmTkctQsQ0unI=, tarball: '@babel/runtime/download/@babel/runtime-7.17.9.tgz'}
     engines: {node: '>=6.9.0'}
@@ -2733,6 +2747,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@transloadit/prettier-bytes/0.0.7:
+    resolution: {integrity: sha1-zbU5n0Rf3WBu2DOHL6DKvbxRaGs=, tarball: '@transloadit/prettier-bytes/download/@transloadit/prettier-bytes-0.0.7.tgz'}
+    dev: false
+
   /@types/babel__core/7.1.19:
     resolution: {integrity: sha1-e0l0lbfRtIEr250CgE0FdvQ+5GA=, tarball: '@types/babel__core/download/@types/babel__core-7.1.19.tgz'}
     dependencies:
@@ -2765,6 +2783,10 @@ packages:
   /@types/estree/0.0.39:
     resolution: {integrity: sha1-4Xfmme4bjCLSMXTKqnQiZEOJUJ8=, tarball: '@types/estree/download/@types/estree-0.0.39.tgz'}
     dev: true
+
+  /@types/event-emitter/0.3.3:
+    resolution: {integrity: sha1-cnAyqfxnVl+Wu9eLLigJJ1yX1+c=, tarball: '@types/event-emitter/download/@types/event-emitter-0.3.3.tgz'}
+    dev: false
 
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=, tarball: '@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz'}
@@ -2974,6 +2996,47 @@ packages:
       react: 18.1.0
     dev: false
 
+  /@uppy/companion-client/2.2.1:
+    resolution: {integrity: sha1-zvSxUYXdjuYCQ4bIqugJ6OBdzVM=, tarball: '@uppy/companion-client/download/@uppy/companion-client-2.2.1.tgz'}
+    dependencies:
+      '@uppy/utils': 4.1.0
+      namespace-emitter: 2.0.1
+    dev: false
+
+  /@uppy/core/2.3.1:
+    resolution: {integrity: sha1-HXpA8KC5aicJEVv30Ie05qsUA/Q=, tarball: '@uppy/core/download/@uppy/core-2.3.1.tgz'}
+    dependencies:
+      '@transloadit/prettier-bytes': 0.0.7
+      '@uppy/store-default': 2.1.0
+      '@uppy/utils': 4.1.0
+      lodash.throttle: 4.1.1
+      mime-match: 1.0.2
+      namespace-emitter: 2.0.1
+      nanoid: 3.3.3
+      preact: 10.8.2
+    dev: false
+
+  /@uppy/store-default/2.1.0:
+    resolution: {integrity: sha1-P7ysYm3VFWaLiHYtgSAXvU+bddQ=, tarball: '@uppy/store-default/download/@uppy/store-default-2.1.0.tgz'}
+    dev: false
+
+  /@uppy/utils/4.1.0:
+    resolution: {integrity: sha1-GfPwjNIbODzc35WtvsdtnBppS2g=, tarball: '@uppy/utils/download/@uppy/utils-4.1.0.tgz'}
+    dependencies:
+      lodash.throttle: 4.1.1
+    dev: false
+
+  /@uppy/xhr-upload/2.1.2_@uppy+core@2.3.1:
+    resolution: {integrity: sha1-D2ROM3G2EbEM1d29fXmaufiKN4Y=, tarball: '@uppy/xhr-upload/download/@uppy/xhr-upload-2.1.2.tgz'}
+    peerDependencies:
+      '@uppy/core': ^2.3.1
+    dependencies:
+      '@uppy/companion-client': 2.2.1
+      '@uppy/core': 2.3.1
+      '@uppy/utils': 4.1.0
+      nanoid: 3.3.3
+    dev: false
+
   /@vitejs/plugin-react-refresh/1.3.6:
     resolution: {integrity: sha1-GYGDktsB6BdGz+sE4JarMBDnn+M=, tarball: '@vitejs/plugin-react-refresh/download/@vitejs/plugin-react-refresh-1.3.6.tgz'}
     engines: {node: '>=12.0.0'}
@@ -3002,6 +3065,195 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@wangeditor/basic-modules/1.1.1_6b0d3c2fd4787ebad635cab05aeab852:
+    resolution: {integrity: sha1-GuCxEgKyrDGbSIPkb00Gn/zi940=, tarball: '@wangeditor/basic-modules/download/@wangeditor/basic-modules-1.1.1.tgz'}
+    peerDependencies:
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      lodash.throttle: ^4.1.1
+      nanoid: ^3.2.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      is-url: 1.2.4
+      lodash.throttle: 4.1.1
+      nanoid: 3.3.3
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/code-highlight/1.0.2_b82d5e026f3b646156fc70b31511e8f5:
+    resolution: {integrity: sha1-32v3rI0jLGr7DLgYm6qfjVL+7e0=, tarball: '@wangeditor/code-highlight/download/@wangeditor/code-highlight-1.0.2.tgz'}
+    peerDependencies:
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      prismjs: 1.28.0
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/core/1.1.1_9e8b191d81831d856e2ca01d43eabe71:
+    resolution: {integrity: sha1-90mn1lrZXb/8zfTW8RJyvoE064g=, tarball: '@wangeditor/core/download/@wangeditor/core-1.1.1.tgz'}
+    peerDependencies:
+      '@uppy/core': ^2.1.1
+      '@uppy/xhr-upload': ^2.0.3
+      dom7: ^3.0.0
+      is-hotkey: ^0.2.0
+      lodash.camelcase: ^4.3.0
+      lodash.clonedeep: ^4.5.0
+      lodash.debounce: ^4.0.8
+      lodash.foreach: ^4.5.0
+      lodash.isequal: ^4.5.0
+      lodash.throttle: ^4.1.1
+      lodash.toarray: ^4.4.0
+      nanoid: ^3.2.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@types/event-emitter': 0.3.3
+      '@uppy/core': 2.3.1
+      '@uppy/xhr-upload': 2.1.2_@uppy+core@2.3.1
+      dom7: 3.0.0
+      event-emitter: 0.3.5
+      html-void-elements: 2.0.1
+      i18next: 20.6.1
+      is-hotkey: 0.2.0
+      lodash.camelcase: 4.3.0
+      lodash.clonedeep: 4.5.0
+      lodash.debounce: 4.0.8
+      lodash.foreach: 4.5.0
+      lodash.isequal: 4.5.0
+      lodash.throttle: 4.1.1
+      lodash.toarray: 4.4.0
+      nanoid: 3.3.3
+      scroll-into-view-if-needed: 2.2.29
+      slate: 0.72.8
+      slate-history: 0.66.0_slate@0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/editor-for-react/1.0.3_23456b17e08840dc5e7a471df2514bd3:
+    resolution: {integrity: sha1-vmxYk4Lvji8fLjxS1kigrwub+eA=, tarball: '@wangeditor/editor-for-react/download/@wangeditor/editor-for-react-1.0.3.tgz'}
+    peerDependencies:
+      '@wangeditor/core': '>=1.0.0'
+      '@wangeditor/editor': '>=5.0.0'
+      react: '>=17.0.2'
+      react-dom: '>=17.0.2'
+    dependencies:
+      '@wangeditor/editor': 5.1.1
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+    dev: false
+
+  /@wangeditor/editor/5.1.1:
+    resolution: {integrity: sha1-AJsRJ33oakBSCH0EKJNOfS3TAUc=, tarball: '@wangeditor/editor/download/@wangeditor/editor-5.1.1.tgz'}
+    dependencies:
+      '@uppy/core': 2.3.1
+      '@uppy/xhr-upload': 2.1.2_@uppy+core@2.3.1
+      '@wangeditor/basic-modules': 1.1.1_6b0d3c2fd4787ebad635cab05aeab852
+      '@wangeditor/code-highlight': 1.0.2_b82d5e026f3b646156fc70b31511e8f5
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      '@wangeditor/list-module': 1.0.2_b82d5e026f3b646156fc70b31511e8f5
+      '@wangeditor/table-module': 1.1.0_dcedb399b25de67ad2a9d6e0e5004824
+      '@wangeditor/upload-image-module': 1.0.1_4bda7d7508e846fc7255fa4b57099812
+      '@wangeditor/video-module': 1.1.0_a7cb308e70b3e41aa4e4a2a5c1853370
+      dom7: 3.0.0
+      is-hotkey: 0.2.0
+      lodash.camelcase: 4.3.0
+      lodash.clonedeep: 4.5.0
+      lodash.debounce: 4.0.8
+      lodash.foreach: 4.5.0
+      lodash.isequal: 4.5.0
+      lodash.throttle: 4.1.1
+      lodash.toarray: 4.4.0
+      nanoid: 3.3.3
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/list-module/1.0.2_b82d5e026f3b646156fc70b31511e8f5:
+    resolution: {integrity: sha1-yeV8TDS7zDLfOpAw3y/aC7T3ejk=, tarball: '@wangeditor/list-module/download/@wangeditor/list-module-1.0.2.tgz'}
+    peerDependencies:
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/table-module/1.1.0_dcedb399b25de67ad2a9d6e0e5004824:
+    resolution: {integrity: sha1-XNTr3QUAkVxReT79YifEO14YXXc=, tarball: '@wangeditor/table-module/download/@wangeditor/table-module-1.1.0.tgz'}
+    peerDependencies:
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      lodash.isequal: ^4.5.0
+      lodash.throttle: ^4.1.1
+      nanoid: ^3.2.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      lodash.isequal: 4.5.0
+      lodash.throttle: 4.1.1
+      nanoid: 3.3.3
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/upload-image-module/1.0.1_4bda7d7508e846fc7255fa4b57099812:
+    resolution: {integrity: sha1-oHRRjXPOnFz9Po7lbRrfgxmW8UI=, tarball: '@wangeditor/upload-image-module/download/@wangeditor/upload-image-module-1.0.1.tgz'}
+    peerDependencies:
+      '@uppy/core': ^2.0.3
+      '@uppy/xhr-upload': ^2.0.3
+      '@wangeditor/basic-modules': 1.x
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      lodash.foreach: ^4.5.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@uppy/core': 2.3.1
+      '@uppy/xhr-upload': 2.1.2_@uppy+core@2.3.1
+      '@wangeditor/basic-modules': 1.1.1_6b0d3c2fd4787ebad635cab05aeab852
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      lodash.foreach: 4.5.0
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/video-module/1.1.0_a7cb308e70b3e41aa4e4a2a5c1853370:
+    resolution: {integrity: sha1-ZkQFse7vHpqwn4SlAnCkOU+IU1U=, tarball: '@wangeditor/video-module/download/@wangeditor/video-module-1.1.0.tgz'}
+    peerDependencies:
+      '@uppy/core': ^2.1.4
+      '@uppy/xhr-upload': ^2.0.7
+      '@wangeditor/core': 1.x
+      dom7: ^3.0.0
+      nanoid: ^3.2.0
+      slate: ^0.72.0
+      snabbdom: ^3.1.0
+    dependencies:
+      '@uppy/core': 2.3.1
+      '@uppy/xhr-upload': 2.1.2_@uppy+core@2.3.1
+      '@wangeditor/core': 1.1.1_9e8b191d81831d856e2ca01d43eabe71
+      dom7: 3.0.0
+      nanoid: 3.3.3
+      slate: 0.72.8
+      snabbdom: 3.5.1
+    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.7.1:
     resolution: {integrity: sha1-ftW7VZCLOy8bxVxq8WU7rafweTc=, tarball: acorn-jsx/download/acorn-jsx-5.3.2.tgz}
@@ -3547,6 +3799,11 @@ packages:
       semver: 7.0.0
     dev: true
 
+  /core-js-pure/3.23.3:
+    resolution: {integrity: sha1-vNAtPY7Githx71DVzLskjdtU9AE=, tarball: core-js-pure/download/core-js-pure-3.23.3.tgz}
+    requiresBuild: true
+    dev: false
+
   /cosmiconfig/7.0.1:
     resolution: {integrity: sha1-cU11ZSLKzoZ4Z8y0R0xdAbuuXW0=, tarball: cosmiconfig/download/cosmiconfig-7.0.1.tgz}
     engines: {node: '>=10'}
@@ -3583,6 +3840,13 @@ packages:
 
   /csstype/3.0.11:
     resolution: {integrity: sha1-1mcAxerPrBlA3rTj7lZCeS2FzTM=, tarball: csstype/download/csstype-3.0.11.tgz}
+
+  /d/1.0.1:
+    resolution: {integrity: sha1-hpgJU3LVjb7jRv/Qxwk/mfj561o=, tarball: d/download/d-1.0.1.tgz}
+    dependencies:
+      es5-ext: 0.10.61
+      type: 1.2.0
+    dev: false
 
   /date-fns/2.28.0:
     resolution: {integrity: sha1-lXDWVvX8ExQ+UMl1o7a760bNCLI=, tarball: date-fns/download/date-fns-2.28.0.tgz}
@@ -3692,6 +3956,12 @@ packages:
     resolution: {integrity: sha1-o20CUx2uDu+iq7DE22WVJQUm8QM=, tarball: dom-align/download/dom-align-1.12.3.tgz}
     dev: false
 
+  /dom7/3.0.0:
+    resolution: {integrity: sha1-uGHOXWemvs16qjrQKUL/FLEkAzE=, tarball: dom7/download/dom7-3.0.0.tgz}
+    dependencies:
+      ssr-window: 3.0.0
+    dev: false
+
   /dot-case/3.0.4:
     resolution: {integrity: sha1-mytnDQCkMWZ6inW6Kc0bmICc51E=, tarball: dot-case/download/dot-case-3.0.4.tgz}
     dependencies:
@@ -3771,6 +4041,31 @@ packages:
       is-date-object: 1.0.5
       is-symbol: 1.0.4
     dev: true
+
+  /es5-ext/0.10.61:
+    resolution: {integrity: sha1-MR3jeUnvhraw3OqJTR/+25CdMmk=, tarball: es5-ext/download/es5-ext-0.10.61.tgz}
+    engines: {node: '>=0.10'}
+    requiresBuild: true
+    dependencies:
+      es6-iterator: 2.0.3
+      es6-symbol: 3.1.3
+      next-tick: 1.1.0
+    dev: false
+
+  /es6-iterator/2.0.3:
+    resolution: {integrity: sha1-p96IkUGgWpSwhUQDstCg+/qY87c=, tarball: es6-iterator/download/es6-iterator-2.0.3.tgz}
+    dependencies:
+      d: 1.0.1
+      es5-ext: 0.10.61
+      es6-symbol: 3.1.3
+    dev: false
+
+  /es6-symbol/3.1.3:
+    resolution: {integrity: sha1-utXTwbzawoJp9MszHkMceKxwXRg=, tarball: es6-symbol/download/es6-symbol-3.1.3.tgz}
+    dependencies:
+      d: 1.0.1
+      ext: 1.6.0
+    dev: false
 
   /esbuild-android-64/0.14.38:
     resolution: {integrity: sha1-W5ShMG3zHVUFX2SmL/a3Y6R7f2Q=, tarball: esbuild-android-64/download/esbuild-android-64-0.14.38.tgz}
@@ -4154,6 +4449,19 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /event-emitter/0.3.5:
+    resolution: {integrity: sha1-34xp7vFkeSPHFXuc6DhAYQsCzDk=, tarball: event-emitter/download/event-emitter-0.3.5.tgz}
+    dependencies:
+      d: 1.0.1
+      es5-ext: 0.10.61
+    dev: false
+
+  /ext/1.6.0:
+    resolution: {integrity: sha1-OHHVBkHodMwXLitT+RmELRnbTFI=, tarball: ext/download/ext-1.6.0.tgz}
+    dependencies:
+      type: 2.6.0
+    dev: false
+
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha1-On1WtVnWy8PrUSMlJE5hmmXGxSU=, tarball: fast-deep-equal/download/fast-deep-equal-3.1.3.tgz}
     dev: true
@@ -4415,6 +4723,16 @@ packages:
     dependencies:
       react-is: 16.13.1
 
+  /html-void-elements/2.0.1:
+    resolution: {integrity: sha1-KUWbiwXCALbF7ph0PEG5edV3VJ8=, tarball: html-void-elements/download/html-void-elements-2.0.1.tgz}
+    dev: false
+
+  /i18next/20.6.1:
+    resolution: {integrity: sha1-U15fbluutoXH0l33DbY788wKo0U=, tarball: i18next/download/i18next-20.6.1.tgz}
+    dependencies:
+      '@babel/runtime': 7.17.9
+    dev: false
+
   /iconv-lite/0.4.24:
     resolution: {integrity: sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=, tarball: iconv-lite/download/iconv-lite-0.4.24.tgz}
     engines: {node: '>=0.10.0'}
@@ -4545,6 +4863,10 @@ packages:
       is-extglob: 2.1.1
     dev: true
 
+  /is-hotkey/0.2.0:
+    resolution: {integrity: sha1-GDWmgXGpHlyUYIadljNpR8g0DO8=, tarball: is-hotkey/download/is-hotkey-0.2.0.tgz}
+    dev: false
+
   /is-module/1.0.0:
     resolution: {integrity: sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=, tarball: is-module/download/is-module-1.0.0.tgz}
     dev: true
@@ -4565,6 +4887,11 @@ packages:
     resolution: {integrity: sha1-dTU0W4lnNNX4DE0GxQlVUnoU8Ss=, tarball: is-number/download/is-number-7.0.0.tgz}
     engines: {node: '>=0.12.0'}
     dev: true
+
+  /is-plain-object/5.0.0:
+    resolution: {integrity: sha1-RCf1CrNCnpAl6n1S6QQ6nvQVk0Q=, tarball: is-plain-object/download/is-plain-object-5.0.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /is-regex/1.1.4:
     resolution: {integrity: sha1-7vVmPNWfpMCuM5UFMj32hUuxWVg=, tarball: is-regex/download/is-regex-1.1.4.tgz}
@@ -4593,6 +4920,10 @@ packages:
     dependencies:
       has-symbols: 1.0.3
     dev: true
+
+  /is-url/1.2.4:
+    resolution: {integrity: sha1-BKTfRtKMTP89c9Af8Gq+sxihqlI=, tarball: is-url/download/is-url-1.2.4.tgz}
+    dev: false
 
   /is-weakref/1.0.2:
     resolution: {integrity: sha1-lSnzg6kzggXol2XgOS78LxAPBvI=, tarball: is-weakref/download/is-weakref-1.0.2.tgz}
@@ -4712,13 +5043,36 @@ packages:
     resolution: {integrity: sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=, tarball: lodash-es/download/lodash-es-4.17.21.tgz}
     dev: false
 
+  /lodash.camelcase/4.3.0:
+    resolution: {integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=, tarball: lodash.camelcase/download/lodash.camelcase-4.3.0.tgz}
+    dev: false
+
+  /lodash.clonedeep/4.5.0:
+    resolution: {integrity: sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=, tarball: lodash.clonedeep/download/lodash.clonedeep-4.5.0.tgz}
+    dev: false
+
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=, tarball: lodash.debounce/download/lodash.debounce-4.0.8.tgz}
-    dev: true
+
+  /lodash.foreach/4.5.0:
+    resolution: {integrity: sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=, tarball: lodash.foreach/download/lodash.foreach-4.5.0.tgz}
+    dev: false
+
+  /lodash.isequal/4.5.0:
+    resolution: {integrity: sha1-QVxEePK8wwEgwizhDtMib30+GOA=, tarball: lodash.isequal/download/lodash.isequal-4.5.0.tgz}
+    dev: false
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha1-VYqlO0O2YeGSWgr9+japoQhf5Xo=, tarball: lodash.merge/download/lodash.merge-4.6.2.tgz}
     dev: true
+
+  /lodash.throttle/4.1.1:
+    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=, tarball: lodash.throttle/download/lodash.throttle-4.1.1.tgz}
+    dev: false
+
+  /lodash.toarray/4.4.0:
+    resolution: {integrity: sha1-JMS/zWsvuji/0FlNsRedjptlZWE=, tarball: lodash.toarray/download/lodash.toarray-4.4.0.tgz}
+    dev: false
 
   /lodash.tonumber/4.0.3:
     resolution: {integrity: sha1-C5azGzVnJ5Prf1pj7nkfG56QJdk=, tarball: lodash.tonumber/download/lodash.tonumber-4.0.3.tgz}
@@ -4785,6 +5139,12 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /mime-match/1.0.2:
+    resolution: {integrity: sha1-P4fDHprxpf1IX7nbE0Qosju7e6g=, tarball: mime-match/download/mime-match-1.0.2.tgz}
+    dependencies:
+      wildcard: 1.1.2
+    dev: false
+
   /mime-types/2.1.35:
     resolution: {integrity: sha1-OBqHG2KnNEUGYK497uRIE/cNlZo=, tarball: mime-types/download/mime-types-2.1.35.tgz}
     engines: {node: '>= 0.6'}
@@ -4834,11 +5194,14 @@ packages:
     dev: true
     optional: true
 
+  /namespace-emitter/2.0.1:
+    resolution: {integrity: sha1-l41RNhxhMTtOa4z284U9CN+isXw=, tarball: namespace-emitter/download/namespace-emitter-2.0.1.tgz}
+    dev: false
+
   /nanoid/3.3.3:
     resolution: {integrity: sha1-/Y6Leqdh/oB9ui0bmPtyQbtySiU=, tarball: nanoid/download/nanoid-3.3.3.tgz}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=, tarball: natural-compare/download/natural-compare-1.4.0.tgz}
@@ -4855,6 +5218,10 @@ packages:
       sax: 1.2.4
     dev: true
     optional: true
+
+  /next-tick/1.1.0:
+    resolution: {integrity: sha1-GDbuMK1W1n7ygbIr0Zn3CUSbNes=, tarball: next-tick/download/next-tick-1.1.0.tgz}
+    dev: false
 
   /no-case/3.0.4:
     resolution: {integrity: sha1-02H9XJgA9VhVGoNp/A3NRmK2Ek0=, tarball: no-case/download/no-case-3.0.4.tgz}
@@ -5137,10 +5504,19 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /preact/10.8.2:
+    resolution: {integrity: sha1-uKYU9cyKsM2eYzN6PWDcgEEPTtQ=, tarball: preact/download/preact-10.8.2.tgz}
+    dev: false
+
   /prelude-ls/1.2.1:
     resolution: {integrity: sha1-3rxkidem5rDnYRiIzsiAM30xY5Y=, tarball: prelude-ls/download/prelude-ls-1.2.1.tgz}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /prismjs/1.28.0:
+    resolution: {integrity: sha1-DY9WH6D3z268qQF0eCixSRRwRLY=, tarball: prismjs/download/prismjs-1.28.0.tgz}
+    engines: {node: '>=6'}
+    dev: false
 
   /prop-types/15.8.1:
     resolution: {integrity: sha1-Z9h78aaU9IQ1zzMsJK8QIUoxQLU=, tarball: prop-types/download/prop-types-15.8.1.tgz}
@@ -6056,6 +6432,28 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /slate-history/0.66.0_slate@0.72.8:
+    resolution: {integrity: sha1-rGP925AwmM60yURDPj91/mOs+UA=, tarball: slate-history/download/slate-history-0.66.0.tgz}
+    peerDependencies:
+      slate: '>=0.65.3'
+    dependencies:
+      is-plain-object: 5.0.0
+      slate: 0.72.8
+    dev: false
+
+  /slate/0.72.8:
+    resolution: {integrity: sha1-WgGO3yTkVEhlUpOmi/vPVjqluoE=, tarball: slate/download/slate-0.72.8.tgz}
+    dependencies:
+      immer: 9.0.12
+      is-plain-object: 5.0.0
+      tiny-warning: 1.0.3
+    dev: false
+
+  /snabbdom/3.5.1:
+    resolution: {integrity: sha1-JfgO8VsZS66nA9nVRBiS42neGOE=, tarball: snabbdom/download/snabbdom-3.5.1.tgz}
+    engines: {node: '>=8.3.0'}
+    dev: false
+
   /snake-case/3.0.4:
     resolution: {integrity: sha1-Tyu9Vo6ZNavf1ZPzTGkdrbScRSw=, tarball: snake-case/download/snake-case-3.0.4.tgz}
     dependencies:
@@ -6082,6 +6480,10 @@ packages:
   /split-on-first/1.1.0:
     resolution: {integrity: sha1-9hCv7uOxK84dDDBCXnY5i3gkml8=, tarball: split-on-first/download/split-on-first-1.1.0.tgz}
     engines: {node: '>=6'}
+    dev: false
+
+  /ssr-window/3.0.0:
+    resolution: {integrity: sha1-/VuCgBY4lD4MxwTEaRgBQ1r3rDc=, tarball: ssr-window/download/ssr-window-3.0.0.tgz}
     dev: false
 
   /statuses/1.5.0:
@@ -6202,6 +6604,10 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=, tarball: text-table/download/text-table-0.2.0.tgz}
     dev: true
 
+  /tiny-warning/1.0.3:
+    resolution: {integrity: sha1-lKMNtFPfTGQ9D9VmBg1gqHXYR1Q=, tarball: tiny-warning/download/tiny-warning-1.0.3.tgz}
+    dev: false
+
   /tinycolor2/1.4.2:
     resolution: {integrity: sha1-P2pNEHGtB2dtf6Ry4frECnGdiAM=, tarball: tinycolor2/download/tinycolor2-1.4.2.tgz}
     dev: false
@@ -6251,6 +6657,14 @@ packages:
     resolution: {integrity: sha1-G/IH9LKPkVg2ZstfvTJ4hzAc1fQ=, tarball: type-fest/download/type-fest-0.20.2.tgz}
     engines: {node: '>=10'}
     dev: true
+
+  /type/1.2.0:
+    resolution: {integrity: sha1-hI3XaY2vo+VKbEeedZxLw/GIR6A=, tarball: type/download/type-1.2.0.tgz}
+    dev: false
+
+  /type/2.6.0:
+    resolution: {integrity: sha1-PKYJmvWYHTbKhreEQpc2lCeKIZ8=, tarball: type/download/type-2.6.0.tgz}
+    dev: false
 
   /typescript/4.6.4:
     resolution: {integrity: sha1-yqeLvDpZ5qXFENNXA/agmHfORek=, tarball: typescript/download/typescript-4.6.4.tgz}
@@ -6457,6 +6871,10 @@ packages:
     dependencies:
       isexe: 2.0.0
     dev: true
+
+  /wildcard/1.1.2:
+    resolution: {integrity: sha1-pwIEUwhNjNLv5wup02liY94XEKU=, tarball: wildcard/download/wildcard-1.1.2.tgz}
+    dev: false
 
   /word-wrap/1.2.3:
     resolution: {integrity: sha1-YQY29rH3A4kb00dxzLF/uTtHB5w=, tarball: word-wrap/download/word-wrap-1.2.3.tgz}

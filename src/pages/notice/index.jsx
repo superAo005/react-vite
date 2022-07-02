@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button, message, Image } from 'antd'
+import { Button, Image } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/video'
+import { del, getPageList } from '@/services/category'
 import { base_url } from '@/utils'
 
 function TableList() {
@@ -18,38 +18,19 @@ function TableList() {
 
   const initColumns = [
     {
-      title: '视频标题',
-      dataIndex: 'title',
+      title: '通知标题',
+      dataIndex: 'name',
     },
-    {
-      title: '封面图',
-      dataIndex: 'poster_file_url',
-      hideInSearch: true,
-      render: (row) => <Image width={100} height={50} src={base_url + row} />,
-      width: 150,
-    },
-    {
-      title: '视频主题',
-      dataIndex: 'category_name',
-      hideInSearch: true,
-    },
-    {
-      title: '播放次数',
-      dataIndex: 'play_times',
-      hideInSearch: true,
-      // width: 120,
-    },
-    {
-      title: '下载次数',
-      dataIndex: 'download_times',
-      hideInSearch: true,
-      // width: 120,
-    },
+
+    // {
+    //   title: '通知描述',
+    //   dataIndex: 'desc',
+    //   hideInSearch: true,
+    // },
     {
       title: '发布时间',
-      dataIndex: 'publish_time',
+      dataIndex: 'time',
       hideInSearch: true,
-      // width: 100,
     },
 
     {
@@ -67,23 +48,13 @@ function TableList() {
         //   }}>
         //   查看
         // </a>,
-        <div
-          key="edit"
-          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
+        <div key="edit">
           <a
             onClick={() => {
-              const { id, title, type, category_id, year, poster_file_name, video_file_name } =
-                record
-              onEdit({
-                id,
-                title,
-                type,
-                poster_file_name,
-                video_file_name,
-                category: category_id,
-                year,
-                modalType: 'edit',
-              })
+              record.modalType = 'edit'
+
+              record.content = `<p>阿斯顿</p><div data-w-e-type="todo"><input type="checkbox" disabled >请问请问</div><div data-w-e-type="todo"><input type="checkbox" disabled >请问请问</div>`
+              onEdit(record)
             }}>
             编辑
           </a>
