@@ -23,8 +23,8 @@ function TableList() {
     },
 
     {
-      title: '真实姓名',
-      dataIndex: 'real_name',
+      title: '用户名',
+      dataIndex: 'name',
       hideInSearch: true,
     },
     {
@@ -38,16 +38,16 @@ function TableList() {
       dataIndex: 'mobile',
     },
 
-    {
-      title: '创建时间',
-      dataIndex: 'create_time',
-      hideInSearch: true,
-    },
-    {
-      title: '更新时间',
-      dataIndex: 'update_time',
-      hideInSearch: true,
-    },
+    // {
+    //   title: '创建时间',
+    //   dataIndex: 'create_time',
+    //   hideInSearch: true,
+    // },
+    // {
+    //   title: '更新时间',
+    //   dataIndex: 'update_time',
+    //   hideInSearch: true,
+    // },
     {
       title: '操作',
       key: 'option',
@@ -55,13 +55,13 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        <a
-          key="look"
-          onClick={() => {
-            onView(record)
-          }}>
-          查看
-        </a>,
+        // <a
+        //   key="look"
+        //   onClick={() => {
+        //     onView(record)
+        //   }}>
+        //   查看
+        // </a>,
         <a
           key="edit"
           onClick={() => {
@@ -124,9 +124,9 @@ function TableList() {
           const { data } = await getPageList(relParams)
 
           return {
-            data: data?.data || [],
+            data: data?.paging_data || [],
             success: true,
-            total: data?.page_info?.total_data || 0,
+            total: data?.count || 0,
           }
         }}
         search={{

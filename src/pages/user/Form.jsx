@@ -114,9 +114,9 @@ export default (props) => {
 
           <Col span={24}>
             <ProFormText
-              name="real_name"
-              label="真实姓名"
-              placeholder="请输入真实姓名"
+              name="name"
+              label="用户名"
+              placeholder="请输入用户名"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
