@@ -42,6 +42,29 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           find: '~antd',
           replacement: path.resolve(path.resolve(__dirname), 'node_modules/antd'),
         },
+        {
+          find: /^@babel\/runtime-corejs3\/core-js-stable$/,
+          replacement: path.resolve(path.resolve(__dirname), 'node_modules/core-js-pure/es'),
+        },
+        {
+          find: /^@babel\/runtime-corejs3\/core-js-stable\/json\/stringify$/,
+          replacement: path.resolve(
+            path.resolve(__dirname),
+            'node_modules/core-js-pure/es/json/stringify'
+          ),
+        },
+        // {
+        //   find: /^@babel\/runtime-corejs3$/,
+        //   replacement: path.resolve(path.resolve(__dirname), 'node_modules/core-js-pure/es'),
+        // },
+        // {
+        //   find: /^@material-ui\/pickers$/,
+        //   replacement: resolve(__dirname, "./node_modules/@material-ui/pickers/esm"),
+        // }
+        // {
+        //   find: '@babel/runtime-corejs3/core-js-stable/json/stringify',
+        //   replacement: 'SOME_PACKAGE_NAME/dist/xxx.es.js',
+        // },
       ],
     },
 
@@ -124,3 +147,4 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     },
   }
 }
+// @babel/runtime-corejs3/core-js-stable/json/stringify

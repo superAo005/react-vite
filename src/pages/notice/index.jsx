@@ -4,7 +4,7 @@ import { Button, Image } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/category'
+import { del, getPageList } from '@/services/laws'
 import { base_url } from '@/utils'
 
 function TableList() {
@@ -32,7 +32,11 @@ function TableList() {
       dataIndex: 'time',
       hideInSearch: true,
     },
-
+    {
+      title: '更新时间',
+      dataIndex: 'time',
+      hideInSearch: true,
+    },
     {
       title: '操作',
       key: 'option',
@@ -52,8 +56,6 @@ function TableList() {
           <a
             onClick={() => {
               record.modalType = 'edit'
-
-              record.content = `<p>阿斯顿</p><div data-w-e-type="todo"><input type="checkbox" disabled >请问请问</div><div data-w-e-type="todo"><input type="checkbox" disabled >请问请问</div>`
               onEdit(record)
             }}>
             编辑

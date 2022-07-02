@@ -3,7 +3,7 @@ import { Button, message, Col, Row, Form } from 'antd'
 import ProForm, { ModalForm, ProFormText } from '@ant-design/pro-form'
 
 import WangEditor from '@/components/WangEditor'
-import { create, update } from '@/services/category'
+import { create, update } from '@/services/laws'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -82,13 +82,13 @@ export default (props) => {
             }
             console.log({ params })
             delete params.modalType
-            // if (modalType == 'edit') {
-            //   await update(params)
-            // } else {
-            //   await create(params)
-            // }
-            // props.reload()
-            // return true
+            if (modalType == 'edit') {
+              await update(params)
+            } else {
+              await create(params)
+            }
+            props.reload()
+            return true
           } catch (errorInfo) {
             console.log('Failed:', errorInfo)
           }

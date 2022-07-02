@@ -9,7 +9,6 @@ specifiers:
   '@babel/preset-env': ^7.17.10
   '@babel/preset-react': ^7.16.7
   '@babel/preset-typescript': ^7.16.7
-  '@babel/runtime-corejs3': ^7.18.6
   '@reduxjs/toolkit': ^1.8.1
   '@types/babel__core': ^7.1.19
   '@types/lodash-es': ^4.17.6
@@ -28,6 +27,7 @@ specifiers:
   autoprefixer: ^10.4.6
   axios: ^0.27.2
   babel-preset-react-app: ^10.0.1
+  core-js-pure: ^3.23.3
   cross-env: ^7.0.3
   eslint: ^8.14.0
   eslint-plugin-react: ^7.29.4
@@ -59,13 +59,13 @@ dependencies:
   '@ant-design/pro-descriptions': 1.10.69_e02fb82764744a0894e4f82d87654741
   '@ant-design/pro-form': 1.65.0_e02fb82764744a0894e4f82d87654741
   '@ant-design/pro-table': 2.73.0_e02fb82764744a0894e4f82d87654741
-  '@babel/runtime-corejs3': 7.18.6
   '@reduxjs/toolkit': 1.8.1_react-redux@8.0.1+react@18.1.0
   '@wangeditor/editor': 5.1.1
   '@wangeditor/editor-for-react': 1.0.3_23456b17e08840dc5e7a471df2514bd3
   ahooks: 3.5.1_react@18.1.0
   antd: 4.20.2_react-dom@18.1.0+react@18.1.0
   axios: 0.27.2
+  core-js-pure: 3.23.3
   lodash-es: 4.17.21
   nprogress: 0.2.0
   react: 18.1.0
@@ -2548,14 +2548,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@babel/runtime-corejs3/7.18.6:
-    resolution: {integrity: sha1-bwLFU2kR9LRFlGoheVVLlciDhjU=, tarball: '@babel/runtime-corejs3/download/@babel/runtime-corejs3-7.18.6.tgz'}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      core-js-pure: 3.23.3
-      regenerator-runtime: 0.13.9
-    dev: false
 
   /@babel/runtime/7.17.9:
     resolution: {integrity: sha1-0Z+/gC0BqMts8FOmTkctQsQ0unI=, tarball: '@babel/runtime/download/@babel/runtime-7.17.9.tgz'}
