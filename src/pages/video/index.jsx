@@ -30,7 +30,7 @@ function TableList() {
     },
     {
       title: '视频主题',
-      dataIndex: 'category',
+      dataIndex: 'category_name',
       hideInSearch: true,
     },
     {
@@ -72,8 +72,27 @@ function TableList() {
           className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
           <a
             onClick={() => {
-              record.modalType = 'edit'
-              onEdit(record)
+              const {
+                id,
+                title,
+                type,
+                category_id,
+                poster,
+                url,
+                year,
+                poster_file_name,
+                url_file_name,
+              } = record
+              onEdit({
+                id,
+                title,
+                type,
+                poster: poster_file_name,
+                video_file_name: url_file_name,
+                category: category_id,
+                year,
+                modalType: 'edit',
+              })
             }}>
             编辑
           </a>

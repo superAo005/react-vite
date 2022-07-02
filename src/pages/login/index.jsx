@@ -15,15 +15,24 @@ export default () => {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values, loginType)
 
-    const { res, data } = await login({
-      ...values,
-      type: +loginType,
-    })
-    if (res != 1) return
-
+    // const { res, data } = await login({
+    //   ...values,
+    //   type: +loginType,
+    // })
+    // if (res != 1) return
+    const data = {
+      cellphone_number: '18888888888',
+      login_account: 'superadmin',
+      real_name: '管理员',
+      roles: ['user:view', 'role:view'],
+      token:
+        'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJobmJjLmNvbSIsInN1YiI6IjE4ODg4ODg4ODg4IiwiaWF0IjoxNjQ1OTM4ODMxLCJhdWQiOiIxODg4ODg4ODg4OCIsImV4cCI6MTY0NTk1NjgzMSwiWFVJRCI6IjMyNGNjZTA1ZGY2MTQwN2M5MGRmZjEyZmQ1OGEwNTgxIn0.OxVEY8aWM9AbcYq90V6mkMlAoCErZTtdUrcIkRv9ssY',
+      role_id: '0001ec6b8d534e8eb075fb6a0a590001',
+    }
     dispatch(
       setInfo({
         ...data,
+
         roles: ['user:view', 'role:view'],
       })
     )

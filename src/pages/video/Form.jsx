@@ -7,18 +7,26 @@ import {
   ProFormTextArea,
   ProFormUploadButton,
 } from '@ant-design/pro-form'
-import { create, edit } from '@/services/expert'
+import { create, update } from '@/services/video'
 import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
+import { useSetState } from 'ahooks'
+
+import { base_url } from '@/utils'
+
+const formItemLayout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 17 },
+}
 
 export default (props) => {
-  const formItemLayout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 17 },
-  }
-
   let { tableRowData, visible } = props
   let { modalType } = tableRowData
+  const [fileList, setFileList] = useSetState({
+    posterList: [],
+    videoList: [],
+  })
+
   const formRef = useRef()
   const [form] = Form.useForm()
   const [modalForm] = Form.useForm()
@@ -32,6 +40,10 @@ export default (props) => {
   console.log('tableRowData', tableRowData)
   const onCancel = () => {
     formRef.current.resetFields()
+    setFileList({
+      posterList: [],
+      videoList: [],
+    })
   }
 
   // 获取详情
@@ -52,6 +64,12 @@ export default (props) => {
           // let data = body || {}
           // let data = {}
           // setDetail(data)
+          setFileList({
+            posterList: [
+              { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
+            ],
+            videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
+          })
           modalForm.setFieldsValue(tableRowData)
         })()
       } else {
@@ -60,18 +78,6 @@ export default (props) => {
     }
   }, [visible])
 
-  // const uploadProps = {
-  //   beforeUpload: beforeUploadFile,
-  //   onDownload: onDownload,
-  //   onRemove: onRemove,
-  //   withCredentials: true,
-  //   maxCount: 1,
-  //   // onChange: onChange,
-  //   // showUploadList: {
-  //   //   showDownloadIcon,
-  //   //   showRemoveIcon,
-  //   // },
-  // }
   const uploadProps = {
     headers: {
       // 'rsk-sso-token': getCookie(ssokey),
@@ -86,7 +92,6 @@ export default (props) => {
       //   message.error(`${file.name} 不是excel文件`)
       //   return false
       // }
-      debugger
       if (!isLt100M) {
         Modal.error({
           title: '超过100M限制，不允许上传~',
@@ -103,7 +108,6 @@ export default (props) => {
         //     return <p key={i}>{`第${item.rowIndex}行失败,失败原因:${item.msg}`}</p>
         //   }
         // })
-        let errorCon = res?.body?.hasError
       } else if (info.file.status === 'error') {
         message.error(`文件上传失败`)
       }
@@ -149,14 +153,23 @@ export default (props) => {
         onFinish={async (values) => {
           try {
             await form.validateFields()
-
             let params = {
               ...tableRowData,
               ...values,
+              poster:
+                values?.poster?.[0]?.response?.data?.file_name ||
+                values?.poster ||
+                tableRowData?.poster,
+              // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
+              type: 0,
+              video_file_name:
+                values?.video_file_name?.[0]?.response?.data?.file_name ||
+                values?.video_file_name ||
+                tableRowData?.poster,
             }
             delete params.modalType
             if (modalType == 'edit') {
-              await edit(params)
+              await update(params)
             } else {
               await create(params)
             }
@@ -189,58 +202,46 @@ export default (props) => {
             />
           </Col>
 
-          <Col span={24}>
-            <ProFormUploadButton
-              name="poster"
-              label="封面图"
-              max={1}
-              rules={[{ required: true, message: '不能为空' }]}
-              fieldProps={{
-                name: 'file',
-                action: 'api/hn/bpsa/common/file/upload',
-                listType: 'picture-card',
-                ...uploadProps,
-              }}
-              action="api/hn/bpsa/common/file/upload"
-            />
-          </Col>
+          {modalType != 'edit' && (
+            <>
+              <Col span={24}>
+                <ProFormUploadButton
+                  name="poster"
+                  label="封面图"
+                  max={1}
+                  // fileList={fileList.posterList}
+                  rules={[{ required: true, message: '不能为空' }]}
+                  fieldProps={{
+                    name: 'file',
+                    action: 'api/hn/bpsa/common/file/upload',
+                    listType: 'picture-card',
+                    ...uploadProps,
+                  }}
+                  action="api/hn/bpsa/common/file/upload"
+                />
+              </Col>
 
-          <Col span={24}>
-            <ProFormUploadButton
-              name="video"
-              label="视频内容"
-              max={1}
-              action="api/hn/bpsa/common/file/upload"
-              fieldProps={{
-                name: 'file',
-                listType: 'picture-card',
-                ...uploadProps,
-                data: {
-                  type: 1, //VIDEO_POSTER
-                },
-              }}
-            />
-          </Col>
+              <Col span={24}>
+                <ProFormUploadButton
+                  name="video_file_name"
+                  label="视频内容"
+                  max={1}
+                  // fileList={fileList.videoList}
+                  rules={[{ required: true, message: '不能为空' }]}
+                  action="api/hn/bpsa/common/file/upload"
+                  fieldProps={{
+                    name: 'file',
+                    listType: 'picture-card',
+                    ...uploadProps,
 
-          {/* <Col span={24}>
-            <ProFormUploadButton
-              name="video"
-              label="视频内容"
-              fieldProps={{
-                name: 'file',
-                listType: 'picture-card',
-              }}
-            />
-          </Col> */}
-
-          {/* <Col span={24}>
-            <ProFormTextArea
-              name="remark"
-              label="备注信息"
-              placeholder="请输入备注信息 "
-              rules={[{ required: true, message: '不能为空' }]}
-            />
-          </Col> */}
+                    data: {
+                      type: 1, //VIDEO_POSTER
+                    },
+                  }}
+                />
+              </Col>
+            </>
+          )}
         </Row>
       </ModalForm>
     </>
