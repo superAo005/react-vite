@@ -1,13 +1,19 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
+import { Button, Tag } from 'antd'
 
-import { Tag } from 'antd'
-
-import { getPageList } from '@/services/role'
+import EditorForm from './Form'
+import DetailForm from './DetailForm'
+import { del, getPageList } from '@/services/user'
 
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
+
+  const [detailModalVisit, setDetailModalVisit] = useState(false)
+  const [editModalVisit, setEditModalVisit] = useState(false)
+  const [tableRowData, setTableRowData] = useState({})
+  const [editRowData, setEditRowData] = useState({})
 
   const initColumns = [
     {
@@ -34,51 +40,99 @@ function TableList() {
       },
     },
 
-    // {
-    //   title: '备注信息',
-    //   dataIndex: 'remark',
-    //   hideInSearch: true,
-    // },
+    {
+      title: '用户名',
+      dataIndex: 'name',
+      hideInSearch: true,
+    },
+    {
+      title: '所属角色',
+      dataIndex: 'role_name',
+      hideInSearch: true,
+    },
+
+    {
+      title: '手机号',
+      dataIndex: 'mobile',
+    },
 
     // {
-    //   title: '操作',
-    //   key: 'option',
-    //   width: 150,
-    //   valueType: 'option',
-    //   fixed: 'right',
-    //   align: 'center',
-    //   render: (_, record) => [
-    //     <a
-    //       key="del"
-    //       onClick={() => {
-    //         // onDel(record)
-    //         navigate(`/extract`, { state: { record } })
-    //       }}>
-    //       重新抽取
-    //     </a>,
-    //   ],
+    //   title: '创建时间',
+    //   dataIndex: 'create_time',
+    //   hideInSearch: true,
     // },
+    // {
+    //   title: '更新时间',
+    //   dataIndex: 'update_time',
+    //   hideInSearch: true,
+    // },
+    {
+      title: '操作',
+      key: 'option',
+      valueType: 'option',
+      fixed: 'right',
+      align: 'center',
+      render: (_, record) => [
+        // <a
+        //   key="look"
+        //   onClick={() => {
+        //     onView(record)
+        //   }}>
+        //   查看
+        // </a>,
+        <a
+          key="edit"
+          onClick={() => {
+            record.modalType = 'edit'
+            record.auth = ['0-1-1', '0-1-2', '0-2-0']
+            onEdit(record)
+          }}>
+          编辑
+        </a>,
+        <a
+          key="del"
+          onClick={() => {
+            onDel(record)
+          }}>
+          删除
+        </a>,
+      ],
+    },
   ]
+
+  const reload = () => {
+    actionRef.current.reload()
+  }
+
+  /**
+   * 查看数据源
+   */
+  const onView = async (record) => {
+    setDetailModalVisit(true)
+    setTableRowData(record)
+  }
+  /**
+   * 编辑数据源
+   */
+  const onEdit = async (record) => {
+    setEditModalVisit(true)
+
+    setEditRowData(record)
+  }
+
+  const onDel = async (record) => {
+    await del(record.uid)
+    reload()
+  }
 
   return (
     <>
       <ProTable
         headerTitle=""
-        rowKey="role_id"
+        rowKey="uid"
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
-        // rowSelection={{
-        //   // 自定义选择项参考: https://ant.design/components/table-cn/#components-table-demo-row-selection-custom
-        //   // 注释该行则默认不显示下拉选项
-        //   // selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        //   selectedRowKeys,
-        //   // onChange: onSelectChange,
-        //   onChange: (selectedRowKeys) => {
-        //     console.log('selectedRowKeys changed: ', selectedRowKeys)
-        //     setSelectedRowKeys(selectedRowKeys)
-        //   },
-        // }}
         request={async (params) => {
           const relParams = {
             ...params,
@@ -86,24 +140,50 @@ function TableList() {
             page_size: params.pageSize,
           }
 
-          console.log('relParams', relParams)
-
           const { data } = await getPageList(relParams)
-          // const { data } = await getStatsList(relParams)
 
           return {
-            data: data || [],
+            data: data?.paging_data || [],
             success: true,
-            total: data?.length || 0,
+            total: data?.count || 0,
           }
         }}
-        pagination={false}
-        search={false}
+        search={{
+          defaultCollapsed: false,
+          labelWidth: 80,
+          optionRender: (searchConfig, formProps, dom) => [
+            ...dom.reverse(),
+            <Button
+              key="add"
+              type="primary"
+              onClick={() => {
+                onEdit({
+                  modalType: 'add',
+                })
+              }}>
+              新增
+            </Button>,
+          ],
+        }}
         scroll={{ x: 1200 }}
         manualRequest={false}
         toolBarRender={false}
       />
-      ,
+      <DetailForm
+        key="EditorFormDetail"
+        title="查看详情"
+        visible={detailModalVisit}
+        onVisibleChange={setDetailModalVisit}
+        tableRowData={tableRowData}
+        onEdit={onEdit}
+        reload={reload}></DetailForm>
+      <EditorForm
+        key="EditorFormEdit"
+        visible={editModalVisit}
+        onVisibleChange={setEditModalVisit}
+        tableRowData={editRowData}
+        title={editRowData.modalType == 'edit' ? '编辑' : '新增'}
+        reload={reload}></EditorForm>
     </>
   )
 }
