@@ -29,12 +29,12 @@ function TableList() {
     // },
     {
       title: '发布时间',
-      dataIndex: 'time',
+      dataIndex: 'publish_time',
       hideInSearch: true,
     },
     {
       title: '更新时间',
-      dataIndex: 'time',
+      dataIndex: 'update_time',
       hideInSearch: true,
     },
     {

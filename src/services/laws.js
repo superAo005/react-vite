@@ -22,7 +22,7 @@ export function create(data) {
 // 编辑
 export function update(data) {
   return post({
-    url: 'api/hnbc/psas/user/edit',
+    url: 'api/hn/bpsa/notify/laws/regs/info/update',
     data,
     showMsg: 'notification',
   })
