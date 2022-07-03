@@ -6,16 +6,14 @@ import LayoutPage from '@/layout'
 import Loading from '@/components/Loading'
 
 import { filterRoutes } from '@/utils'
-const TableList = lazy(() => import('@/pages/table'))
-const TemplateList = lazy(() => import('@/pages/table'))
 const NoMatch = lazy(() => import('@/pages/noMatch'))
 const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
 const Role = lazy(() => import('@/pages/role'))
 const Video = lazy(() => import('@/pages/video'))
 const Category = lazy(() => import('@/pages/category'))
-const Statistic = lazy(() => import('@/pages/statistic'))
 const Notice = lazy(() => import('@/pages/notice'))
+const Carousel = lazy(() => import('@/pages/carousel'))
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children) => {
@@ -59,9 +57,17 @@ const routeList = [
       {
         path: 'notice',
         title: '法规通知',
-        icon: 'notice',
+        icon: 'video',
         // auth: 'video:view',
         element: lazyLoad(<Notice />),
+      },
+
+      {
+        path: 'carousel',
+        title: '轮播图',
+        icon: 'picture',
+        // auth: 'video:view',
+        element: lazyLoad(<Carousel />),
       },
 
       // {
