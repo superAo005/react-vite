@@ -19,20 +19,21 @@ function TableList() {
   const initColumns = [
     {
       title: '轮播图名称',
-      dataIndex: 'title',
+      dataIndex: 'name',
+      with: 150,
     },
     {
       title: '轮播图',
-      dataIndex: 'poster_file_url',
+      dataIndex: 'slide_show_file_url',
       hideInSearch: true,
       render: (row) => <Image width={100} height={50} src={base_url + row} />,
-      width: 150,
+      // width: 150,
     },
-    {
-      title: '是否启用',
-      dataIndex: 'category_name',
-      hideInSearch: true,
-    },
+    // {
+    //   title: '是否启用',
+    //   dataIndex: 'category_name',
+    //   hideInSearch: true,
+    // },
     {
       title: '排序',
       dataIndex: 'sort',
