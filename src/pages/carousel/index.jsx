@@ -77,13 +77,13 @@ function TableList() {
             编辑
           </a>
         </div>,
-        <a
-          key="del"
-          onClick={() => {
-            onDel(record)
-          }}>
-          删除
-        </a>,
+        // <a
+        //   key="del"
+        //   onClick={() => {
+        //     onDel(record)
+        //   }}>
+        //   删除
+        // </a>,
       ],
     },
   ]
