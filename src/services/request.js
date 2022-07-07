@@ -22,7 +22,7 @@ service.interceptors.request.use(
 // 设置响应拦截器
 service.interceptors.response.use(
   ({ data }) => {
-    console.log(data)
+    // console.log(data)
 
     if (data.res != 1) {
       message.error(data.msg)

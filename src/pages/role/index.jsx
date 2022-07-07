@@ -4,7 +4,7 @@ import { Button, Tag } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/user'
+import { del, getPageList } from '@/services/role'
 
 function TableList() {
   const actionRef = useRef()
@@ -18,12 +18,17 @@ function TableList() {
   const initColumns = [
     {
       title: '角色名称',
-      dataIndex: 'role_name',
+      dataIndex: 'name',
+      width: '200px',
+    },
+    {
+      title: '角色标识',
+      dataIndex: 'identity',
       width: '200px',
     },
     {
       title: '拥有权限',
-      dataIndex: 'perms',
+      dataIndex: 'perm_assign_list',
       hideInSearch: true,
       render: (_) => {
         return (
@@ -38,22 +43,6 @@ function TableList() {
           </>
         )
       },
-    },
-
-    {
-      title: '用户名',
-      dataIndex: 'name',
-      hideInSearch: true,
-    },
-    {
-      title: '所属角色',
-      dataIndex: 'role_name',
-      hideInSearch: true,
-    },
-
-    {
-      title: '手机号',
-      dataIndex: 'mobile',
     },
 
     // {
@@ -84,6 +73,7 @@ function TableList() {
           key="edit"
           onClick={() => {
             record.modalType = 'edit'
+            record.perm_id_list = record.perm_assign_list.map((item) => item.id)
             record.auth = ['0-1-1', '0-1-2', '0-2-0']
             onEdit(record)
           }}>
@@ -121,7 +111,7 @@ function TableList() {
   }
 
   const onDel = async (record) => {
-    await del(record.uid)
+    await del(record.id)
     reload()
   }
 
@@ -143,7 +133,7 @@ function TableList() {
           const { data } = await getPageList(relParams)
 
           return {
-            data: data?.paging_data || [],
+            data: data || [],
             success: true,
             total: data?.count || 0,
           }

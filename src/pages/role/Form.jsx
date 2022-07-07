@@ -3,8 +3,7 @@ import { Button, TreeSelect, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormTreeSelect } from '@ant-design/pro-form'
 
 const { SHOW_PARENT, SHOW_ALL } = TreeSelect
-import { create, edit } from '@/services/user'
-import { getPageList } from '@/services/role'
+import { create, update, getPermList } from '@/services/role'
 // import ProCard from '@ant-design/pro-card'
 
 const treeData = [
@@ -81,6 +80,8 @@ export default (props) => {
   useEffect(() => {
     ;(async () => {
       if (visible) {
+        const permRes = await getPermList()
+        console.log({ permRes })
         // const { data } = await getPageList({})
         // setRoleList(data)
         if (modalType == 'edit') {
@@ -97,6 +98,7 @@ export default (props) => {
               ...tableRowData,
               // role_id: tableRowData.role_id + '',
             })
+            debugger
           })()
         } else {
           // modalForm.setFieldsValue({
@@ -131,9 +133,11 @@ export default (props) => {
             let params = {
               ...tableRowData,
               ...values,
+              sort: 0,
+              // perm_id_list: ['00020002fffe4dbcae12cae76c133285'],
             }
             if (modalType == 'edit') {
-              await edit(params)
+              await update(params)
             } else {
               await create(params)
             }
@@ -154,12 +158,24 @@ export default (props) => {
           </Col>
 
           <Col span={24}>
+            <ProFormText
+              name="identity"
+              label="角色标识"
+              placeholder="请输入角色标识"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
+          </Col>
+
+          <Col span={24}>
             <ProFormTreeSelect
-              name="auth"
+              name="perm_id_list"
               label="角色权限"
               placeholder="请选择角色权限"
               request={async () => {
-                return treeData
+                const permRes = await getPermList()
+
+                console.log('request')
+                return permRes.data
               }}
               fieldProps={{
                 showArrow: false,
@@ -173,9 +189,11 @@ export default (props) => {
                 treeCheckable: true,
                 showCheckedStrategy: SHOW_ALL,
                 // treeNodeFilterProp: 'title',
-                // fieldNames: {
-                //   label: 'title',
-                // },
+                fieldNames: {
+                  label: 'name',
+                  value: 'id',
+                  children: 'sub_perm_list',
+                },
               }}
               rules={[{ required: true, message: '不能为空' }]}
             />
