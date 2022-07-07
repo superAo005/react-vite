@@ -6,6 +6,7 @@ import LayoutPage from '@/layout'
 import Loading from '@/components/Loading'
 
 import { filterRoutes } from '@/utils'
+import { useSelector } from 'react-redux'
 const NoMatch = lazy(() => import('@/pages/noMatch'))
 const Login = lazy(() => import('@/pages/login'))
 const User = lazy(() => import('@/pages/user'))
@@ -29,13 +30,13 @@ const routeList = [
         path: 'user',
         title: '用户管理',
         icon: 'user',
-        auth: 'user:view',
+        auth: 'user:query',
         element: lazyLoad(<User />),
       },
       {
         path: 'role',
         title: '角色管理',
-        auth: 'role:view',
+        auth: 'role:query',
         icon: 'team',
         element: lazyLoad(<Role />),
       },
@@ -44,21 +45,21 @@ const routeList = [
         path: 'video',
         title: '视频管理',
         icon: 'video',
-        // auth: 'video:view',
+        auth: 'video:query',
         element: lazyLoad(<Video />),
       },
       {
         path: 'category',
         title: '主题分类',
         icon: 'project',
-        // auth: 'video:view',
+        auth: 'category:query',
         element: lazyLoad(<Category />),
       },
       {
         path: 'notice',
         title: '法规通知',
         icon: 'video',
-        // auth: 'video:view',
+        auth: 'laws:regulations:query',
         element: lazyLoad(<Notice />),
       },
 
@@ -66,7 +67,7 @@ const routeList = [
         path: 'carousel',
         title: '轮播图',
         icon: 'picture',
-        // auth: 'video:view',
+        auth: 'slide:show:query',
         element: lazyLoad(<Carousel />),
       },
 
@@ -193,8 +194,7 @@ const routeList = [
 
 const RenderRouter = (props) => {
   let { roles = [] } = props
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
-  roles = userInfo?.roles || []
+  roles = useSelector((state) => state?.user?.info?.roles)
   let filetRouteList = filterRoutes(roles, routeList)
   return useRoutes(filetRouteList)
 }

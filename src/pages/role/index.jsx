@@ -35,7 +35,11 @@ function TableList() {
           <>
             {Array.isArray(_)
               ? _.map((item) => (
-                  <Tag color="blue" key={item.name}>
+                  <Tag
+                    color="blue"
+                    key={item.name}
+                    className="mb-2"
+                    style={{ marginBottom: '8px' }}>
                     {item.name}
                   </Tag>
                 ))
