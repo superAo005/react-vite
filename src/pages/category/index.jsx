@@ -23,8 +23,12 @@ function TableList() {
     },
     {
       title: '是否菜单',
-      dataIndex: 'ismenu',
+      dataIndex: 'is_menu',
       hideInSearch: true,
+      valueEnum: {
+        0: '是',
+        1: '否',
+      },
     },
     // {
     //   title: '菜单名称',

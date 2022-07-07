@@ -135,7 +135,8 @@ function TableList() {
             ...params,
             page: params.current,
             page_size: params.pageSize,
-            size: 6,
+            size: 3,
+            status: 0,
           }
 
           const { data } = await getPageList(relParams)

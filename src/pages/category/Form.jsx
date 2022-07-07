@@ -27,9 +27,6 @@ export default (props) => {
   const [detail] = useState({
     ...tableRowData,
   })
-
-  // tableRowData
-  console.log('tableRowData', tableRowData)
   const onCancel = () => {
     formRef.current.resetFields()
   }
@@ -55,7 +52,9 @@ export default (props) => {
           modalForm.setFieldsValue(tableRowData)
         })()
       } else {
-        modalForm.setFieldsValue({})
+        modalForm.setFieldsValue({
+          is_menu: 1,
+        })
       }
     }
   }, [visible])
@@ -109,16 +108,16 @@ export default (props) => {
 
           <Col span={24}>
             <ProFormRadio.Group
-              name="ismenu"
+              name="is_menu"
               label="设为菜单:"
               options={[
                 {
                   label: '是',
-                  value: 1,
+                  value: 0,
                 },
                 {
                   label: '否',
-                  value: 0,
+                  value: 1,
                 },
               ]}
             />
