@@ -29,8 +29,21 @@ function TableList() {
     },
     {
       title: '所属角色',
-      dataIndex: 'role_name',
+      dataIndex: 'role_assign_list',
       hideInSearch: true,
+      render: (_) => {
+        return (
+          <>
+            {Array.isArray(_)
+              ? _.map((item) => (
+                  <div color="blue" key={item.name}>
+                    {item.name}
+                  </div>
+                ))
+              : _}
+          </>
+        )
+      },
     },
 
     {
@@ -66,6 +79,8 @@ function TableList() {
           key="edit"
           onClick={() => {
             record.modalType = 'edit'
+            record.role_id = record.role_assign_list.map((item) => item.id)[0]
+
             onEdit(record)
           }}>
           编辑

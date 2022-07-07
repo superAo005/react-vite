@@ -80,6 +80,7 @@ export default (props) => {
             let params = {
               ...tableRowData,
               ...values,
+              role_id_list: [values.role_id],
             }
             if (modalType == 'edit') {
               await edit(params)
@@ -138,7 +139,7 @@ export default (props) => {
               name="role_id"
               options={roleList}
               fieldProps={{
-                fieldNames: { label: 'role_name', value: 'role_id' },
+                fieldNames: { label: 'name', value: 'id' },
               }}
               label="角色"
               rules={[{ required: true, message: '不能为空' }]}

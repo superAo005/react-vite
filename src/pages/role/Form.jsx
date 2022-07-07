@@ -8,12 +8,24 @@ import { create, update, getPermList } from '@/services/role'
 
 const treeData = [
   {
-    title: 'Node1',
-    value: '0-0',
+    name: '用户管理',
+    identity: 'user',
     children: [
       {
-        title: 'Child Node1',
-        value: '0-0-0',
+        name: '用户查询',
+        identity: 'user:query',
+      },
+      {
+        name: '用户新增',
+        identity: 'user:add',
+      },
+      {
+        name: '用户修改',
+        identity: 'user:update',
+      },
+      {
+        name: '用户删除',
+        identity: 'user:del',
       },
     ],
   },
@@ -98,7 +110,6 @@ export default (props) => {
               ...tableRowData,
               // role_id: tableRowData.role_id + '',
             })
-            debugger
           })()
         } else {
           // modalForm.setFieldsValue({

@@ -74,7 +74,6 @@ function TableList() {
           onClick={() => {
             record.modalType = 'edit'
             record.perm_id_list = record.perm_assign_list.map((item) => item.id)
-            record.auth = ['0-1-1', '0-1-2', '0-2-0']
             onEdit(record)
           }}>
           编辑
