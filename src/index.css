@@ -78,7 +78,7 @@
       @apply text-white;
     }
     .logo {
-      @apply h-8 m-2  text-white text-center leading-8 text-xl;
+      @apply h-8 m-2  text-white text-center leading-8 text-xl ml-7;
     }
     .center {
       @apply flex-1;
