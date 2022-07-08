@@ -96,7 +96,7 @@ export default () => {
         className="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}>
-        <h3 className="title">后台管理系统</h3>
+        <h3 className="title">作品库管理系统</h3>
 
         <Tabs
           className="m-auto"

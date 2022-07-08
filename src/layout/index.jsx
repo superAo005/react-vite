@@ -171,7 +171,7 @@ export default function Index(props) {
     <>
       <Layout className="h-screen layout">
         <Header className="header h-14">
-          <div className="logo">后台管理系统</div>
+          <div className="logo">河南省优秀广播电视公益广告作品库管理平台系统</div>
 
           {/* {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',

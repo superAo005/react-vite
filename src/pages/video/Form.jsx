@@ -165,7 +165,7 @@ export default (props) => {
               video_file_name:
                 values?.video_file_name?.[0]?.response?.data?.file_name ||
                 values?.video_file_name ||
-                tableRowData?.poster_file_name,
+                tableRowData?.video_file_name,
             }
             delete params.modalType
             if (modalType == 'edit') {
@@ -235,7 +235,7 @@ export default (props) => {
                     ...uploadProps,
 
                     data: {
-                      type: 1, //VIDEO_POSTER
+                      type: 1, //VIDEO
                     },
                   }}
                 />
