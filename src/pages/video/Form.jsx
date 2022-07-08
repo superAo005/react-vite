@@ -1,12 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Button, message, Col, Row, Form, Modal, Upload } from 'antd'
-import {
-  ModalForm,
-  ProFormText,
-  ProFormSelect,
-  ProFormTextArea,
-  ProFormUploadButton,
-} from '@ant-design/pro-form'
+import { message, Col, Row, Form, Modal, Upload } from 'antd'
+import { ModalForm, ProFormText, ProFormSelect, ProFormUploadButton } from '@ant-design/pro-form'
 import { create, update } from '@/services/video'
 import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'

@@ -10,19 +10,10 @@ import {
 } from 'react-router-dom'
 import iconMap from './iconMap'
 
-import { Layout, Menu, Dropdown, Modal, Button } from 'antd'
+import { Layout, Menu, Dropdown, Modal } from 'antd'
 
 const { SubMenu } = Menu
-import Icon, {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  UsergroupAddOutlined,
-  DownOutlined,
-  AppstoreOutlined,
-  SearchOutlined,
-  KeyOutlined,
-} from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons'
 
 import { useSelector } from 'react-redux'
 
@@ -31,7 +22,7 @@ import { filterMenuRoutes } from '@/utils'
 
 import { routeList } from '@/routers'
 const { Header, Sider, Content } = Layout
-export default function Index(props) {
+export default function Index() {
   const [collapsed, setCollapsed] = useState(false)
 
   let uselocation = useLocation()
@@ -68,9 +59,9 @@ export default function Index(props) {
   const sideMenuList = filetRouteList[0].children
   // console.log('rolesfiletRouteList', filetRouteList)
   // console.log('sideMenuList', sideMenuList)
-  const toggle = () => {
-    setCollapsed(!collapsed)
-  }
+  // const toggle = () => {
+  //   setCollapsed(!collapsed)
+  // }
 
   // const onItemClick = ({ item, key, keyPath }) => {
   //   console.log('onItemClick', item)

@@ -4,13 +4,9 @@ import ProForm, {
   ModalForm,
   ProFormText,
   ProFormDigit,
-  ProFormRadio,
   ProFormUploadButton,
 } from '@ant-design/pro-form'
 import { create, update } from '@/services/carousel'
-import { getPageList } from '@/services/category'
-// import ProCard from '@ant-design/pro-card'
-import { useSetState } from 'ahooks'
 
 import { base_url } from '@/utils'
 

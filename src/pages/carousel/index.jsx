@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button, message, Image } from 'antd'
+import { Button, Image } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
