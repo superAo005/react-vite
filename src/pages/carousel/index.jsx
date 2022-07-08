@@ -56,23 +56,15 @@ function TableList() {
         //   }}>
         //   查看
         // </a>,
-        <div
-          key="edit"
-          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
+        <div key="edit">
           <a
             onClick={() => {
-              const { id, title, type, category_id, year, poster_file_name, video_file_name } =
-                record
-              onEdit({
-                id,
-                title,
-                type,
-                poster_file_name,
-                video_file_name,
-                category: category_id,
-                year,
-                modalType: 'edit',
-              })
+              // const { id, title, type, category_id, year, poster_file_name, video_file_name } =
+              //   record
+
+              console.log({ record })
+              record.modalType = 'edit'
+              onEdit(record)
             }}>
             编辑
           </a>

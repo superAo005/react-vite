@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Button, message, Col, Row, Form, Modal, Upload } from 'antd'
-import {
+import { Image, message, Col, Row, Form, Modal, Upload } from 'antd'
+import ProForm, {
   ModalForm,
   ProFormText,
   ProFormDigit,
@@ -22,10 +22,10 @@ const formItemLayout = {
 export default (props) => {
   let { tableRowData, visible } = props
   let { modalType } = tableRowData
-  const [fileList, setFileList] = useSetState({
-    posterList: [],
-    videoList: [],
-  })
+  // const [fileList, setFileList] = useSetState({
+  //   posterList: [],
+  //   videoList: [],
+  // })
 
   const formRef = useRef()
   const [form] = Form.useForm()
@@ -40,10 +40,10 @@ export default (props) => {
   console.log('tableRowData', tableRowData)
   const onCancel = () => {
     formRef.current.resetFields()
-    setFileList({
-      posterList: [],
-      videoList: [],
-    })
+    // setFileList({
+    //   posterList: [],
+    //   videoList: [],
+    // })
   }
 
   // 获取详情
@@ -64,12 +64,16 @@ export default (props) => {
           // let data = body || {}
           // let data = {}
           // setDetail(data)
-          setFileList({
-            posterList: [
-              { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
-            ],
-            videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
-          })
+          // setFileList({
+          //   slideList: [
+          //     {
+          //       uid: '',
+          //       name: '',
+          //       status: 'done',
+          //       url: base_url + tableRowData.slide_show_file_url,
+          //     },
+          //   ],
+          // })
           modalForm.setFieldsValue(tableRowData)
         })()
       } else {
@@ -130,7 +134,7 @@ export default (props) => {
     // multiple: true,
     // defaultFileList,
     data: {
-      type: 0, //VIDEO_POSTER
+      type: 2, //VIDEO_POSTER
     },
   }
   return (
@@ -156,18 +160,16 @@ export default (props) => {
             let params = {
               ...tableRowData,
               ...values,
-              poster_file_name:
-                values?.poster?.[0]?.response?.data?.file_name ||
-                values?.poster_file_name ||
-                tableRowData?.poster_file_name,
-              // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
-              type: 0,
-              video_file_name:
-                values?.video_file_name?.[0]?.response?.data?.file_name ||
-                values?.video_file_name ||
-                tableRowData?.poster_file_name,
+
+              // type: 0,
+              slide_show_file_name:
+                values?.slide?.[0]?.response?.data?.file_name ||
+                values?.slide ||
+                tableRowData?.slide_show_file_name,
             }
             delete params.modalType
+            delete params.slide_show_file_url
+            delete params.slide
             if (modalType == 'edit') {
               await update(params)
             } else {
@@ -182,7 +184,7 @@ export default (props) => {
         <Row className="pl-20">
           <Col span={24}>
             <ProFormText
-              name="title"
+              name="name"
               label="轮播图名称"
               placeholder="请输入轮播图名称"
               rules={[{ required: true, message: '不能为空' }]}
@@ -192,14 +194,14 @@ export default (props) => {
           <Col span={24}>
             <ProFormDigit
               label="轮播图顺序"
-              name="input-number"
+              name="sort"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
 
-          <Col span={24}>
+          {/* <Col span={24}>
             <ProFormRadio.Group
-              name="ismenu"
+              name="status"
               label="是否启用:"
               options={[
                 {
@@ -212,13 +214,21 @@ export default (props) => {
                 },
               ]}
             />
-          </Col>
+          </Col> */}
+
+          {modalType == 'edit' && (
+            <Col span={24}>
+              <ProForm.Item label="现有封面">
+                <Image width={200} height={100} src={base_url + tableRowData.slide_show_file_url} />
+              </ProForm.Item>
+            </Col>
+          )}
           <Col span={24}>
             <ProFormUploadButton
-              name="poster"
-              label="封面图"
+              name="slide"
+              label="上传轮播图"
               max={1}
-              // fileList={fileList.posterList}
+              // fileList={fileList.videoList}
               rules={[{ required: true, message: '不能为空' }]}
               fieldProps={{
                 name: 'file',

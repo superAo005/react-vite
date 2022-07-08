@@ -36,7 +36,7 @@ const routeList = [
       {
         path: 'role',
         title: '角色管理',
-        auth: 'role:query',
+        auth: 'perms:role:query',
         icon: 'team',
         element: lazyLoad(<Role />),
       },
