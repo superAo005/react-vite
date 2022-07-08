@@ -10,7 +10,8 @@
     "build2": "vite build",
     "serve": "vite preview",
     "prettier": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pre": "vite preview"
   },
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.0",
