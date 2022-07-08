@@ -229,7 +229,7 @@ export default (props) => {
               label="上传轮播图"
               max={1}
               // fileList={fileList.videoList}
-              rules={[{ required: true, message: '不能为空' }]}
+              rules={modalType == 'edit' ? [] : [{ required: true, message: '不能为空' }]}
               fieldProps={{
                 name: 'file',
                 action: 'api/hn/bpsa/common/file/upload',
