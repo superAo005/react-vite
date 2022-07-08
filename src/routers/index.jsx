@@ -58,7 +58,7 @@ const routeList = [
       {
         path: 'notice',
         title: '法规通知',
-        icon: 'video',
+        icon: 'notice',
         auth: 'laws:regulations:query',
         element: lazyLoad(<Notice />),
       },
