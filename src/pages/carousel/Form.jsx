@@ -4,6 +4,7 @@ import ProForm, {
   ModalForm,
   ProFormText,
   ProFormDigit,
+  ProFormRadio,
   ProFormUploadButton,
 } from '@ant-design/pro-form'
 import { create, update } from '@/services/carousel'
@@ -29,6 +30,7 @@ export default (props) => {
 
   // 详情数据
   const [detail] = useState({
+    status: 1,
     ...tableRowData,
   })
 
@@ -154,6 +156,7 @@ export default (props) => {
           try {
             await form.validateFields()
             let params = {
+              status: 1,
               ...tableRowData,
               ...values,
 
@@ -195,23 +198,25 @@ export default (props) => {
             />
           </Col>
 
-          {/* <Col span={24}>
+          <Col span={24}>
             <ProFormRadio.Group
               name="status"
-              label="是否启用:"
+              label="状态:"
               options={[
                 {
-                  label: '是',
+                  label: '启用',
                   value: 0,
                 },
                 {
-                  label: '否',
+                  label: '禁用',
                   value: 1,
                 },
               ]}
             />
-          </Col> */}
-
+          </Col>
+          <Col span={24}>
+            <ProFormText name="link" label="链接地址" placeholder="请输入链接地址" />
+          </Col>
           {modalType == 'edit' && (
             <Col span={24}>
               <ProForm.Item label="现有封面">

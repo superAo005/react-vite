@@ -29,11 +29,14 @@ function TableList() {
       render: (row) => <Image width={100} height={50} src={base_url + row} />,
       // width: 150,
     },
-    // {
-    //   title: '是否启用',
-    //   dataIndex: 'category_name',
-    //   hideInSearch: true,
-    // },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      valueEnum: {
+        0: '启用',
+        1: '禁用',
+      },
+    },
     {
       title: '排序',
       dataIndex: 'sort',
@@ -69,13 +72,13 @@ function TableList() {
             编辑
           </a>
         </div>,
-        // <a
-        //   key="del"
-        //   onClick={() => {
-        //     onDel(record)
-        //   }}>
-        //   删除
-        // </a>,
+        <a
+          key="del"
+          onClick={() => {
+            onDel(record)
+          }}>
+          删除
+        </a>,
       ],
     },
   ]
@@ -127,8 +130,8 @@ function TableList() {
             ...params,
             page: params.current,
             page_size: params.pageSize,
-            size: 3,
-            status: 0,
+            size: 10,
+            // status: 0,
           }
 
           const { data } = await getPageList(relParams)
@@ -139,6 +142,7 @@ function TableList() {
             total: data?.count || 0,
           }
         }}
+        pagination={false}
         search={{
           defaultCollapsed: false,
           labelWidth: 80,
