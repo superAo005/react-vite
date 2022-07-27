@@ -43,3 +43,10 @@ export function view(id) {
     data: { id },
   })
 }
+// 分片上传
+export function sliceUpload(data) {
+  return post({
+    url: `api/hn/bpsa/common/file/slice/upload`,
+    data,
+  })
+}

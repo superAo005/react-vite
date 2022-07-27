@@ -101,6 +101,7 @@ export function md5File(file, size = 2 * 1024 * 1024) {
     fileList.push({
       key: current,
       file: sliceFile,
+      name: file.name,
     })
     fileReader.readAsArrayBuffer(sliceFile)
   }
@@ -123,10 +124,12 @@ export function md5File(file, size = 2 * 1024 * 1024) {
           // 文件全部读取完, 返回对应信息;
           const res = {
             md5Key: spark.end(), // 文件加密key值
-            fileInfo: {
-              size: file.size, //文件总大小
-              fileList, // 切片文件列表
-            },
+            fileList: fileList, // 文件分片信息
+            size: file.size,
+            // fileInfo: {
+            //   size: file.size, //文件总大小
+            //   fileList, // 切片文件列表
+            // },
           }
           resolve(res)
         }

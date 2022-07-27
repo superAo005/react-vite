@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { message, Col, Row, Form, Modal, Upload } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect, ProFormUploadButton } from '@ant-design/pro-form'
-import { create, update } from '@/services/video'
+import { create, sliceUpload, update } from '@/services/video'
 import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 import { useSetState } from 'ahooks'
@@ -16,6 +16,8 @@ const formItemLayout = {
 export default (props) => {
   let { tableRowData, visible } = props
   let { modalType } = tableRowData
+  const fileInfoRef = useRef(null)
+
   const [fileList, setFileList] = useSetState({
     posterList: [],
     videoList: [],
@@ -77,6 +79,8 @@ export default (props) => {
       // 'rsk-sso-token': getCookie(ssokey),
       // 'user-work-domain': workDomain,
     },
+    // accept: 'video/*',
+    accept: 'video/mp4',
     withCredentials: true,
     beforeUpload: async (file) => {
       let pattern = /^.*\.(?:xls|xlsx)$/i
@@ -86,10 +90,13 @@ export default (props) => {
       //   message.error(`${file.name} 不是excel文件`)
       //   return false
       // }
-      debugger
       let fileInfo = await md5File(file)
       console.log('fileInfo', fileInfo)
-      debugger
+      fileInfoRef.current = {
+        ...fileInfo,
+        name: file.name,
+      }
+
       if (!isLt100M) {
         Modal.error({
           title: '超过100M限制，不允许上传~',
@@ -123,6 +130,38 @@ export default (props) => {
       image.src = src
       const imgWindow = window.open(src)
       imgWindow?.document.write(image.outerHTML)
+    },
+    customRequest: async (option) => {
+      const { file } = option
+      console.log('customRequest', file)
+      try {
+        // 使用第三方服务进行文件上传
+        const { size, md5Key, fileList, responseData } = fileInfoRef.current
+        debugger
+
+        const sliceReq = fileList.map((fileItem, index) => {
+          const formData = new FormData()
+          formData.append('type', 1) // 每次传输文件要带上文件总大小
+          formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
+          formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
+          formData.append('name', fileItem.name) // 每次传输文件要带上文件总大小
+          formData.append('slice_index', fileItem.key)
+          formData.append('slice_total_index', fileList.length)
+          return sliceUpload(formData)
+        })
+
+        // const result = await uploadService.upload(file)
+        Promise.all(sliceReq).then((res) => {
+          console.log('上传成功')
+          fileInfoRef.current = null
+        })
+
+        sliceUpload()
+        // onSuccess的回调参数可以在 UploadFile.response 中获取
+        // option.onSuccess(result.url)
+      } catch (error) {
+        // option.onError(error)
+      }
     },
     // showUploadList: false,
     // multiple: true,
@@ -211,11 +250,11 @@ export default (props) => {
                   rules={[{ required: true, message: '不能为空' }]}
                   fieldProps={{
                     name: 'file',
-                    action: 'api/hn/bpsa/common/file/upload',
+                    // action: 'api/hn/bpsa/common/file/upload',
                     listType: 'picture-card',
                     ...uploadProps,
                   }}
-                  action="api/hn/bpsa/common/file/upload"
+                  // action="api/hn/bpsa/common/file/upload"
                 />
               </Col>
 
