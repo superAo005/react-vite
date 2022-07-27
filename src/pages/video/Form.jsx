@@ -6,7 +6,7 @@ import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 import { useSetState } from 'ahooks'
 
-import { base_url } from '@/utils'
+import { base_url, md5File } from '@/utils'
 
 const formItemLayout = {
   labelCol: { span: 4 },
@@ -78,7 +78,7 @@ export default (props) => {
       // 'user-work-domain': workDomain,
     },
     withCredentials: true,
-    beforeUpload: (file) => {
+    beforeUpload: async (file) => {
       let pattern = /^.*\.(?:xls|xlsx)$/i
       let fileType = pattern.test(file.name)
       const isLt100M = file.size / 1024 / 1024 < 100
@@ -86,6 +86,10 @@ export default (props) => {
       //   message.error(`${file.name} 不是excel文件`)
       //   return false
       // }
+      debugger
+      let fileInfo = await md5File(file)
+      console.log('fileInfo', fileInfo)
+      debugger
       if (!isLt100M) {
         Modal.error({
           title: '超过100M限制，不允许上传~',

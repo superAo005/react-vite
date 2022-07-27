@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash-es'
-
+import SparkMD5 from 'spark-md5'
 const filterBy = (item, roles = []) => {
   if (!item.auth && !item?.children) {
     return true
@@ -72,3 +72,67 @@ export function filterMenuRoutes(roles, data, predicate = filterBy) {
 }
 
 export const base_url = 'http://39.105.10.134:8999/api/hn/bpsa'
+
+// tool
+
+/**
+ *
+ * @param {*} file 文件信息
+ * @param {*} size 文件分片大小
+ * @returns
+ * md5Key 文件加密后key值
+ * fileInfo 分片文件信息
+ */
+export function md5File(file, size = 2 * 1024 * 1024) {
+  let fileList = []
+  // 文件分片长度
+  const len = Math.ceil(file.size / size)
+  const blobSlice = File.prototype.mozSlice || File.prototype.webkitSlice || File.prototype.slice
+  let spark = new SparkMD5.ArrayBuffer()
+  const fileReader = new FileReader()
+  let current = 0
+
+  const loadNext = (size) => {
+    // 切片主要方法
+    let start = current * size
+    let end = start + size >= file.size ? file.size : start + size
+    let sliceFile = blobSlice.call(file, start, end)
+    // 将切片文件保存
+    fileList.push({
+      key: current,
+      file: sliceFile,
+    })
+    fileReader.readAsArrayBuffer(sliceFile)
+  }
+
+  return new Promise((resolve, reject) => {
+    try {
+      loadNext(size)
+    } catch (err) {
+      reject(err)
+    }
+    // 文件读取完毕之后的处理
+    fileReader.onload = (e) => {
+      try {
+        spark.append(e.target.result)
+        current += 1
+        if (current < len) {
+          // 文件递归读取
+          loadNext(size)
+        } else {
+          // 文件全部读取完, 返回对应信息;
+          const res = {
+            md5Key: spark.end(), // 文件加密key值
+            fileInfo: {
+              size: file.size, //文件总大小
+              fileList, // 切片文件列表
+            },
+          }
+          resolve(res)
+        }
+      } catch (err) {
+        reject(err)
+      }
+    }
+  })
+}
