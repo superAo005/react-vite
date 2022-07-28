@@ -153,14 +153,14 @@ export default (props) => {
         // const result = await uploadService.upload(file)
         Promise.all(sliceReq).then((res) => {
           console.log('上传成功')
+          option.onSuccess(res?.url)
           fileInfoRef.current = null
         })
 
-        sliceUpload()
         // onSuccess的回调参数可以在 UploadFile.response 中获取
         // option.onSuccess(result.url)
       } catch (error) {
-        // option.onError(error)
+        option.onError(error)
       }
     },
     // showUploadList: false,
