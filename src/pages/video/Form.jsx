@@ -279,6 +279,14 @@ export default (props) => {
                         Promise.all(sliceReq).then((res) => {
                           console.log('上传成功')
                           option.onSuccess(res?.url)
+                          // onSuccess(
+                          //   {
+                          //     objectID,
+                          //     name,
+                          //     url,
+                          //   },
+                          //   file,
+                          // );
                           fileInfoRef.current = null
                         })
 
