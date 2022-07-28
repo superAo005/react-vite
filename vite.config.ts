@@ -145,6 +145,18 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         },
       },
     },
+    optimizeDeps: {
+      include: [
+        'react-router-dom',
+        'axios',
+        'react-redux',
+        'react',
+        'react-dom',
+        'redux-persist',
+        'lodash-es',
+        'spark-md5',
+      ],
+    },
   }
 }
 // @babel/runtime-corejs3/core-js-stable/json/stringify
