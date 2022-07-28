@@ -80,7 +80,6 @@ export default (props) => {
       // 'user-work-domain': workDomain,
     },
     // accept: 'video/*',
-    accept: 'video/mp4',
     withCredentials: true,
     beforeUpload: async (file) => {
       let pattern = /^.*\.(?:xls|xlsx)$/i
@@ -90,13 +89,6 @@ export default (props) => {
       //   message.error(`${file.name} 不是excel文件`)
       //   return false
       // }
-      let fileInfo = await md5File(file)
-      console.log('fileInfo', fileInfo)
-      fileInfoRef.current = {
-        ...fileInfo,
-        name: file.name,
-      }
-
       if (!isLt100M) {
         Modal.error({
           title: '超过100M限制，不允许上传~',
@@ -131,38 +123,7 @@ export default (props) => {
       const imgWindow = window.open(src)
       imgWindow?.document.write(image.outerHTML)
     },
-    customRequest: async (option) => {
-      const { file } = option
-      console.log('customRequest', file)
-      try {
-        // 使用第三方服务进行文件上传
-        const { size, md5Key, fileList, responseData } = fileInfoRef.current
-        debugger
 
-        const sliceReq = fileList.map((fileItem, index) => {
-          const formData = new FormData()
-          formData.append('type', 1) // 每次传输文件要带上文件总大小
-          formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
-          formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
-          formData.append('file_name', fileItem.name) // 每次传输文件要带上文件总大小
-          formData.append('slice_index', fileItem.key)
-          formData.append('slice_total_index', fileList.length)
-          return sliceUpload(formData)
-        })
-
-        // const result = await uploadService.upload(file)
-        Promise.all(sliceReq).then((res) => {
-          console.log('上传成功')
-          option.onSuccess(res?.url)
-          fileInfoRef.current = null
-        })
-
-        // onSuccess的回调参数可以在 UploadFile.response 中获取
-        // option.onSuccess(result.url)
-      } catch (error) {
-        option.onError(error)
-      }
-    },
     // showUploadList: false,
     // multiple: true,
     // defaultFileList,
@@ -188,6 +149,7 @@ export default (props) => {
           onCancel: onCancel,
         }}
         onFinish={async (values) => {
+          debugger
           try {
             await form.validateFields()
             let params = {
@@ -270,7 +232,62 @@ export default (props) => {
                     name: 'file',
                     listType: 'picture-card',
                     ...uploadProps,
+                    accept: 'video/mp4',
+                    beforeUpload: async (file) => {
+                      let pattern = /^.*\.(?:mp4|mp4)$/i
+                      let isMp4 = pattern.test(file.name)
+                      const isLt100M = file.size / 1024 / 1024 < 100
+                      // if (!fileType) {
+                      //   message.error(`${file.name} 不是excel文件`)
+                      //   return false
+                      // }
 
+                      if (!isMp4) {
+                        Modal.error({
+                          title: '不是mp4文件，不允许上传~',
+                        })
+                        return false
+                      }
+                      let fileInfo = await md5File(file)
+                      console.log('fileInfo', fileInfo)
+                      fileInfoRef.current = {
+                        ...fileInfo,
+                        name: file.name,
+                      }
+                      return isMp4 ? true : Upload.LIST_IGNORE
+                    },
+                    customRequest: async (option) => {
+                      const { file } = option
+                      console.log('customRequest', file)
+                      try {
+                        // 使用第三方服务进行文件上传
+                        const { size, md5Key, fileList, responseData } = fileInfoRef.current
+                        debugger
+
+                        const sliceReq = fileList.map((fileItem, index) => {
+                          const formData = new FormData()
+                          formData.append('type', 1) // 每次传输文件要带上文件总大小
+                          formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
+                          formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
+                          formData.append('file_name', fileItem.name) // 每次传输文件要带上文件总大小
+                          formData.append('slice_index', fileItem.key)
+                          formData.append('slice_total_index', fileList.length)
+                          return sliceUpload(formData)
+                        })
+
+                        // const result = await uploadService.upload(file)
+                        Promise.all(sliceReq).then((res) => {
+                          console.log('上传成功')
+                          option.onSuccess(res?.url)
+                          fileInfoRef.current = null
+                        })
+
+                        // onSuccess的回调参数可以在 UploadFile.response 中获取
+                        // option.onSuccess(result.url)
+                      } catch (error) {
+                        option.onError(error)
+                      }
+                    },
                     data: {
                       type: 1, //VIDEO
                     },

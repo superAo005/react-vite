@@ -83,7 +83,7 @@ export const base_url = 'http://39.105.10.134:8999/api/hn/bpsa'
  * md5Key 文件加密后key值
  * fileInfo 分片文件信息
  */
-export function md5File(file, size = 2 * 1024 * 1024) {
+export function md5File(file, size = 15 * 1024 * 1024) {
   let fileList = []
   // 文件分片长度
   const len = Math.ceil(file.size / size)
