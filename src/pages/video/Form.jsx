@@ -144,7 +144,7 @@ export default (props) => {
           formData.append('type', 1) // 每次传输文件要带上文件总大小
           formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
           formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
-          formData.append('name', fileItem.name) // 每次传输文件要带上文件总大小
+          formData.append('file_name', fileItem.name) // 每次传输文件要带上文件总大小
           formData.append('slice_index', fileItem.key)
           formData.append('slice_total_index', fileList.length)
           return sliceUpload(formData)
