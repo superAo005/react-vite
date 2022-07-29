@@ -6,7 +6,7 @@ import { message } from 'antd'
 // import qs from "qs";
 // 用户请求设置的方法
 const service = axios.create({
-  timeout: 250000,
+  timeout: 1000 * 60 * 60,
 })
 
 // 设置拦截器

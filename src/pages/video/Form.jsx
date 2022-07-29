@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { message, Col, Row, Form, Modal, Upload } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect, ProFormUploadButton } from '@ant-design/pro-form'
-import { create, sliceUpload, update } from '@/services/video'
+import { create, filexist, sliceUpload, update } from '@/services/video'
 import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 import { useSetState } from 'ahooks'
@@ -162,7 +162,7 @@ export default (props) => {
               // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
               type: 0,
               video_file_name:
-                values?.video_file_name?.[0]?.response?.data?.file_name ||
+                values?.video_file_name?.[0]?.response?.url ||
                 values?.video_file_name ||
                 tableRowData?.video_file_name,
             }
@@ -212,11 +212,11 @@ export default (props) => {
                   rules={[{ required: true, message: '不能为空' }]}
                   fieldProps={{
                     name: 'file',
-                    // action: 'api/hn/bpsa/common/file/upload',
+                    action: 'api/hn/bpsa/common/file/upload',
                     listType: 'picture-card',
                     ...uploadProps,
                   }}
-                  // action="api/hn/bpsa/common/file/upload"
+                  action="api/hn/bpsa/common/file/upload"
                 />
               </Col>
 
@@ -252,7 +252,7 @@ export default (props) => {
                       console.log('fileInfo', fileInfo)
                       fileInfoRef.current = {
                         ...fileInfo,
-                        name: file.name,
+                        file_name: file.name,
                       }
                       return isMp4 ? true : Upload.LIST_IGNORE
                     },
@@ -261,34 +261,60 @@ export default (props) => {
                       console.log('customRequest', file)
                       try {
                         // 使用第三方服务进行文件上传
-                        const { size, md5Key, fileList, responseData } = fileInfoRef.current
-                        debugger
-
-                        const sliceReq = fileList.map((fileItem, index) => {
-                          const formData = new FormData()
-                          formData.append('type', 1) // 每次传输文件要带上文件总大小
-                          formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
-                          formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
-                          formData.append('file_name', fileItem.name) // 每次传输文件要带上文件总大小
-                          formData.append('slice_index', fileItem.key)
-                          formData.append('slice_total_index', fileList.length)
-                          return sliceUpload(formData)
+                        const { size, md5Key, fileList, file_name } = fileInfoRef.current
+                        const { data } = await filexist({
+                          type: 1,
+                          md5: md5Key,
+                          file_name,
                         })
-
-                        // const result = await uploadService.upload(file)
-                        Promise.all(sliceReq).then((res) => {
-                          console.log('上传成功')
-                          option.onSuccess(res?.url)
-                          // onSuccess(
+                        const { exist, file_name: res_file_name } = data
+                        console.log('resfilexist', data)
+                        if (exist == 1) {
+                          // 文件已存在
+                          option.onSuccess(
+                            {
+                              name: file_name,
+                              url: res_file_name,
+                            },
+                            file
+                          )
+                          return
+                        } else {
+                          // 文件不存在
+                          // option.onSuccess(
                           //   {
-                          //     objectID,
-                          //     name,
-                          //     url,
+                          //     name: file_name,
+                          //     url: res_file_name,
                           //   },
-                          //   file,
-                          // );
-                          fileInfoRef.current = null
-                        })
+                          //   file
+                          // )
+
+                          const sliceReq = fileList.map((fileItem, index) => {
+                            const formData = new FormData()
+                            formData.append('type', 1) // 每次传输文件要带上文件总大小
+                            formData.append('md5', md5Key) // 每次传输文件要带上文件总大小
+                            formData.append('file', fileItem.file) // 每次传输文件要带上文件总大小
+                            formData.append('file_name', fileItem.name) // 每次传输文件要带上文件总大小
+                            formData.append('slice_index', fileItem.key)
+                            formData.append('slice_total_index', fileList.length)
+                            return sliceUpload(formData)
+                          })
+
+                          // const result = await uploadService.upload(file)
+                          Promise.all(sliceReq).then((res) => {
+                            console.log('上传成功')
+                            // option.onSuccess(res?.url)
+                            option.onSuccess(
+                              {
+                                name: file_name,
+                                url: res_file_name,
+                              },
+                              file
+                            )
+                            fileInfoRef.current = null
+                          })
+                        }
+                        debugger
 
                         // onSuccess的回调参数可以在 UploadFile.response 中获取
                         // option.onSuccess(result.url)

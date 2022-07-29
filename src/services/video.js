@@ -50,3 +50,11 @@ export function sliceUpload(data) {
     data,
   })
 }
+// 查询文件是上传过
+export function filexist(params) {
+  return post({
+    url: `api/hn/bpsa/common/file/slice/upload/filter`,
+    // data,
+    params,
+  })
+}
