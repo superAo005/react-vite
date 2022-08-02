@@ -111,7 +111,8 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       }),
     ],
     build: {
-      target: 'es2018',
+      // target: 'es2018',
+      target: ['es2018', 'chrome86'],
       // do not set it as the context-path (this app uses "static")
       assetsDir: 'assets',
       rollupOptions: {
@@ -132,6 +133,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           javascriptEnabled: true,
         },
       },
+      devSourcemap: true,
     },
     server: {
       port: 3005, // 你需要定义的端口号
