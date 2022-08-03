@@ -6,6 +6,7 @@ import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/laws'
 import { base_url } from '@/utils'
+import AuthWrapper from '@/components/AuthWrapper'
 
 function TableList() {
   const actionRef = useRef()
@@ -52,25 +53,29 @@ function TableList() {
         //   }}>
         //   查看
         // </a>,
-        <div key="edit">
-          <a
-            onClick={() => {
-              record.modalType = 'edit'
-              onEdit(record)
+        <AuthWrapper key="edit" auth="laws:regulations:update">
+          <div key="edit">
+            <a
+              onClick={() => {
+                record.modalType = 'edit'
+                onEdit(record)
+              }}>
+              编辑
+            </a>
+          </div>
+        </AuthWrapper>,
+        <AuthWrapper key="delete" auth="laws:regulations:del">
+          <Popconfirm
+            key="delete"
+            title={`确认删除吗?`}
+            okText="确定"
+            cancelText="取消"
+            onConfirm={() => {
+              onDel(record)
             }}>
-            编辑
-          </a>
-        </div>,
-        <Popconfirm
-          key="delete"
-          title={`确认删除吗?`}
-          okText="确定"
-          cancelText="取消"
-          onConfirm={() => {
-            onDel(record)
-          }}>
-          <a key="del">删除</a>
-        </Popconfirm>,
+            <a key="del">删除</a>
+          </Popconfirm>
+        </AuthWrapper>,
       ],
     },
   ]
@@ -137,16 +142,19 @@ function TableList() {
           labelWidth: 80,
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
-            <Button
-              key="add"
-              type="primary"
-              onClick={() => {
-                onEdit({
-                  modalType: 'add',
-                })
-              }}>
-              新增
-            </Button>,
+
+            <AuthWrapper key="add" auth="laws:regulations:del">
+              <Button
+                key="add"
+                type="primary"
+                onClick={() => {
+                  onEdit({
+                    modalType: 'add',
+                  })
+                }}>
+                新增
+              </Button>
+            </AuthWrapper>,
           ],
         }}
         scroll={{ x: 1200 }}
