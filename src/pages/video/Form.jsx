@@ -247,6 +247,7 @@ export default (props) => {
                             action: 'api/hn/bpsa/common/file/upload',
                             listType: 'picture-card',
                             ...uploadProps,
+                            accept: 'image/*',
                           }}
                           action="api/hn/bpsa/common/file/upload"
                         />
