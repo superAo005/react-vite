@@ -6,6 +6,7 @@ import { del, getPageList } from '@/services/video'
 import { base_url } from '@/utils'
 import DetailForm from './DetailForm'
 import EditorForm from './Form'
+import AuthWrapper from '@/components/AuthWrapper'
 
 function TableList() {
   const actionRef = useRef()
@@ -60,6 +61,29 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
+        <AuthWrapper key="view" auth="video:update">
+          <div
+            key="edit"
+            className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
+            <a
+              onClick={() => {
+                const { id, title, type, category_id, year, poster_file_name, video_file_name } =
+                  record
+                onEdit({
+                  id,
+                  title,
+                  type,
+                  poster_file_name,
+                  video_file_name,
+                  category: category_id,
+                  year,
+                  modalType: 'edit',
+                })
+              }}>
+              编辑
+            </a>
+          </div>
+        </AuthWrapper>,
         // <a
         //   key="look"
         //   onClick={() => {
@@ -67,37 +91,19 @@ function TableList() {
         //   }}>
         //   查看
         // </a>,
-        <div
-          key="edit"
-          className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
-          <a
-            onClick={() => {
-              const { id, title, type, category_id, year, poster_file_name, video_file_name } =
-                record
-              onEdit({
-                id,
-                title,
-                type,
-                poster_file_name,
-                video_file_name,
-                category: category_id,
-                year,
-                modalType: 'edit',
-              })
+        <AuthWrapper key="view" auth="video:del">
+          <Popconfirm
+            key="delete"
+            title={`确认删除吗?`}
+            okText="确定"
+            cancelText="取消"
+            onConfirm={() => {
+              onDel(record)
             }}>
-            编辑
-          </a>
-        </div>,
-        <Popconfirm
-          key="delete"
-          title={`确认删除吗?`}
-          okText="确定"
-          cancelText="取消"
-          onConfirm={() => {
-            onDel(record)
-          }}>
-          <a key="del">删除</a>
-        </Popconfirm>,
+            <a key="del">删除</a>
+          </Popconfirm>
+        </AuthWrapper>,
+
         // <a
         //   key="del"
         //   onClick={() => {
@@ -171,16 +177,19 @@ function TableList() {
           labelWidth: 80,
           optionRender: (searchConfig, formProps, dom) => [
             ...dom.reverse(),
-            <Button
-              key="add"
-              type="primary"
-              onClick={() => {
-                onEdit({
-                  modalType: 'add',
-                })
-              }}>
-              新增
-            </Button>,
+            <AuthWrapper key="view" auth="video:add">
+              <Button
+                key="add"
+                type="primary"
+                onClick={() => {
+                  onEdit({
+                    modalType: 'add',
+                  })
+                }}>
+                新增
+              </Button>
+              ,
+            </AuthWrapper>,
           ],
         }}
         scroll={{ x: 1200 }}
