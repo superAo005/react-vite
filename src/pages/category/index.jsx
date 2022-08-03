@@ -20,11 +20,13 @@ function TableList() {
     {
       title: '主题名称',
       dataIndex: 'name',
+      width: '15%',
     },
     {
       title: '是否菜单',
       dataIndex: 'is_menu',
       hideInSearch: true,
+      width: 100,
       valueEnum: {
         0: '是',
         1: '否',
