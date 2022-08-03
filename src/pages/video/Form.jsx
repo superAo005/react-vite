@@ -26,10 +26,10 @@ export default (props) => {
   const fileInfoRef = useRef(null)
   const [posterList, setPosterList] = useState([])
 
-  // const [fileList, setFileList] = useSetState({
-  //   posterList: [],
-  //   videoList: [],
-  // })
+  const [fileList, setFileList] = useSetState({
+    posterList: [],
+    videoList: [],
+  })
 
   const formRef = useRef()
   const [form] = Form.useForm()
@@ -69,12 +69,12 @@ export default (props) => {
           // let data = body || {}
           // let data = {}
           // setDetail(data)
-          // setFileList({
-          //   posterList: [
-          //     { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
-          //   ],
-          //   videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
-          // })
+          setFileList({
+            posterList: [
+              { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
+            ],
+            videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
+          })
           modalForm.setFieldsValue(tableRowData)
         })()
       } else {
@@ -166,14 +166,16 @@ export default (props) => {
               poster_file_name:
                 values?.poster?.[0]?.response?.data?.file_name ||
                 values?.poster_file_name ||
-                tableRowData?.poster_file_name ||
-                values.poster,
+                tableRowData?.poster_file_name,
               // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
               type: 0,
               video_file_name:
                 values?.video_file_name?.[0]?.response?.url ||
                 values?.video_file_name ||
                 tableRowData?.video_file_name,
+            }
+            if (params.radio == 'auto') {
+              params.poster_file_name = values.posterauto
             }
             delete params.modalType
             delete params.radio
@@ -256,7 +258,7 @@ export default (props) => {
                       // 自动
                       return (
                         <Form.Item
-                          name="poster"
+                          name="posterauto"
                           label="封面图"
                           rules={[
                             {
