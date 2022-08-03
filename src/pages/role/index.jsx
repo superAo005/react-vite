@@ -6,6 +6,13 @@ import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/role'
 
+const builtInRoleId = [
+  '39b8cfb3374746a5bc510d1d53a8d355',
+  '40b8cfb3374746a5bc510d1d53a8d355',
+  '41b8cfb3374746a5bc510d1d53a8d355',
+  '42b8cfb3374746a5bc510d1d53a8d355',
+]
+
 function TableList() {
   const actionRef = useRef()
   const formRef = useRef()
@@ -66,32 +73,29 @@ function TableList() {
       fixed: 'right',
       align: 'center',
       render: (_, record) => [
-        // <a
-        //   key="look"
-        //   onClick={() => {
-        //     onView(record)
-        //   }}>
-        //   查看
-        // </a>,
-        <a
-          key="edit"
-          onClick={() => {
-            record.modalType = 'edit'
-            record.perm_id_list = record.perm_assign_list.map((item) => item.id)
-            onEdit(record)
-          }}>
-          编辑
-        </a>,
-        <Popconfirm
-          key="delete"
-          title={`确认删除吗?`}
-          okText="确定"
-          cancelText="取消"
-          onConfirm={() => {
-            onDel(record)
-          }}>
-          <a key="del">删除</a>,
-        </Popconfirm>,
+        builtInRoleId.includes(record.id)
+          ? undefined
+          : [
+              <a
+                key="edit"
+                onClick={() => {
+                  record.modalType = 'edit'
+                  record.perm_id_list = record.perm_assign_list.map((item) => item.id)
+                  onEdit(record)
+                }}>
+                编辑
+              </a>,
+              <Popconfirm
+                key="delete"
+                title={`确认删除吗?`}
+                okText="确定"
+                cancelText="取消"
+                onConfirm={() => {
+                  onDel(record)
+                }}>
+                <a key="del">删除</a>
+              </Popconfirm>,
+            ],
       ],
     },
   ]

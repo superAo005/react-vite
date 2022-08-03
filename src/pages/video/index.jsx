@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
 import ProTable from '@ant-design/pro-table'
-import { Button, Popconfirm, Image } from 'antd'
+import { Button, Image, Popconfirm } from 'antd'
+import React, { useRef, useState } from 'react'
 
-import EditorForm from './Form'
-import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/video'
 import { base_url } from '@/utils'
+import DetailForm from './DetailForm'
+import EditorForm from './Form'
 
 function TableList() {
   const actionRef = useRef()

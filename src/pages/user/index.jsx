@@ -5,6 +5,7 @@ import { Button, Popconfirm } from 'antd'
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
 import { del, getPageList } from '@/services/user'
+import { getPageList as getRoleList } from '@/services/role'
 
 function TableList() {
   const actionRef = useRef()
@@ -14,7 +15,17 @@ function TableList() {
   const [editModalVisit, setEditModalVisit] = useState(false)
   const [tableRowData, setTableRowData] = useState({})
   const [editRowData, setEditRowData] = useState({})
+  const [roleList, setRoleList] = useState([])
 
+  useEffect(() => {
+    ;(async () => {
+      getPageList
+
+      const { data } = await getRoleList({ page: 1, page_size: 999 })
+      console.log({ data })
+      setRoleList(data || [])
+    })()
+  }, [])
   const initColumns = [
     {
       title: '登录账号',
@@ -27,20 +38,34 @@ function TableList() {
       dataIndex: 'name',
       hideInSearch: true,
     },
+
     {
       title: '所属角色',
       dataIndex: 'role_assign_list',
-      hideInSearch: true,
-      render: (_) => {
+      // hideInSearch: true,
+      valueType: 'select',
+      // hideInTable: true,
+      fieldProps: {
+        allowClear: true,
+        mode: 'multiple',
+        showSearch: true,
+        options: roleList,
+        fieldNames: {
+          label: 'name',
+          value: 'id',
+        },
+      },
+      render: (_, record) => {
+        const it = record.role_assign_list
         return (
           <>
-            {Array.isArray(_)
-              ? _.map((item) => (
+            {Array.isArray(it)
+              ? it.map((item) => (
                   <div color="blue" key={item.name}>
                     {item.name}
                   </div>
                 ))
-              : _}
+              : it}
           </>
         )
       },
