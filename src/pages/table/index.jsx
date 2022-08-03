@@ -148,7 +148,6 @@ function TableList() {
             return n
           }
           // alert(randomString(6));
-          debugger
           setState(params)
           return {
             data: body?.dtoList || [{ remark: randomString(10086) }],

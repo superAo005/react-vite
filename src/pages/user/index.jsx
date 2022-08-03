@@ -170,7 +170,6 @@ function TableList() {
             page: params.current,
             page_size: params.pageSize,
           }
-
           const { data } = await getPageList(relParams)
 
           return {
