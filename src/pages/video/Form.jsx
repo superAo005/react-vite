@@ -158,7 +158,6 @@ export default (props) => {
           onCancel: onCancel,
         }}
         onFinish={async (values) => {
-          debugger
           try {
             await form.validateFields()
             let params = {
@@ -167,7 +166,8 @@ export default (props) => {
               poster_file_name:
                 values?.poster?.[0]?.response?.data?.file_name ||
                 values?.poster_file_name ||
-                tableRowData?.poster_file_name,
+                tableRowData?.poster_file_name ||
+                values.poster,
               // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
               type: 0,
               video_file_name:
@@ -176,6 +176,7 @@ export default (props) => {
                 tableRowData?.video_file_name,
             }
             delete params.modalType
+            delete params.radio
             if (modalType == 'edit') {
               await update(params)
             } else {
@@ -263,7 +264,10 @@ export default (props) => {
                           ]}>
                           <Radio.Group>
                             {posterList?.map((item) => (
-                              <Radio value={item.poster_file_name} key={item.poster_file_name}>
+                              <Radio
+                                value={item.poster_file_name}
+                                key={item.poster_file_name}
+                                style={{ alignItems: 'center' }}>
                                 <Image width={100} src={base_url + item.poster_file_url} />
                               </Radio>
                             ))}
@@ -384,7 +388,6 @@ export default (props) => {
                             fileInfoRef.current = null
                           })
                         }
-                        debugger
 
                         // onSuccess的回调参数可以在 UploadFile.response 中获取
                         // option.onSuccess(result.url)
