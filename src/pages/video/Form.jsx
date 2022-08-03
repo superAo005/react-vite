@@ -1,7 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { message, Col, Row, Form, Modal, Upload } from 'antd'
-import { ModalForm, ProFormText, ProFormSelect, ProFormUploadButton } from '@ant-design/pro-form'
-import { create, filexist, sliceUpload, update } from '@/services/video'
+import { message, Col, Row, Form, Modal, Upload, Radio, Image } from 'antd'
+import {
+  ModalForm,
+  ProFormText,
+  ProFormSelect,
+  ProFormUploadButton,
+  ProFormRadio,
+  ProFormDependency,
+} from '@ant-design/pro-form'
+import { create, filexist, getPosterList, sliceUpload, update } from '@/services/video'
 import { getPageList } from '@/services/category'
 // import ProCard from '@ant-design/pro-card'
 import { useSetState } from 'ahooks'
@@ -17,11 +24,12 @@ export default (props) => {
   let { tableRowData, visible } = props
   let { modalType } = tableRowData
   const fileInfoRef = useRef(null)
+  const [posterList, setPosterList] = useState([])
 
-  const [fileList, setFileList] = useSetState({
-    posterList: [],
-    videoList: [],
-  })
+  // const [fileList, setFileList] = useSetState({
+  //   posterList: [],
+  //   videoList: [],
+  // })
 
   const formRef = useRef()
   const [form] = Form.useForm()
@@ -30,16 +38,17 @@ export default (props) => {
   // 详情数据
   const [detail] = useState({
     ...tableRowData,
+    radio: 'auto',
   })
 
   // tableRowData
   console.log('tableRowData', tableRowData)
   const onCancel = () => {
     formRef.current.resetFields()
-    setFileList({
-      posterList: [],
-      videoList: [],
-    })
+    // setFileList({
+    //   posterList: [],
+    //   videoList: [],
+    // })
   }
 
   // 获取详情
@@ -60,12 +69,12 @@ export default (props) => {
           // let data = body || {}
           // let data = {}
           // setDetail(data)
-          setFileList({
-            posterList: [
-              { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
-            ],
-            videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
-          })
+          // setFileList({
+          //   posterList: [
+          //     { uid: '', name: '', status: 'done', url: base_url + tableRowData.poster },
+          //   ],
+          //   videoList: [{ uid: '', name: '', status: 'done', url: base_url + tableRowData.url }],
+          // })
           modalForm.setFieldsValue(tableRowData)
         })()
       } else {
@@ -204,20 +213,75 @@ export default (props) => {
           {modalType != 'edit' && (
             <>
               <Col span={24}>
-                <ProFormUploadButton
-                  name="poster"
-                  label="封面图"
-                  max={1}
-                  // fileList={fileList.posterList}
-                  rules={[{ required: true, message: '不能为空' }]}
-                  fieldProps={{
-                    name: 'file',
-                    action: 'api/hn/bpsa/common/file/upload',
-                    listType: 'picture-card',
-                    ...uploadProps,
-                  }}
-                  action="api/hn/bpsa/common/file/upload"
+                <ProFormRadio.Group
+                  name="radio"
+                  label="封面方式"
+                  options={[
+                    {
+                      label: '自动截取',
+                      value: 'auto',
+                    },
+                    {
+                      label: '手动上传',
+                      value: 'manual',
+                    },
+                  ]}
                 />
+              </Col>
+
+              <Col span={24}>
+                <ProFormDependency name={['radio']}>
+                  {({ radio }) => {
+                    console.log(radio)
+                    if (radio == 'manual') {
+                      return (
+                        <ProFormUploadButton
+                          name="poster"
+                          label="封面图"
+                          max={1}
+                          // fileList={fileList.posterList}
+                          rules={[{ required: true, message: '不能为空' }]}
+                          fieldProps={{
+                            name: 'file',
+                            action: 'api/hn/bpsa/common/file/upload',
+                            listType: 'picture-card',
+                            ...uploadProps,
+                          }}
+                          action="api/hn/bpsa/common/file/upload"
+                        />
+                      )
+                    } else {
+                      // 自动
+                      return (
+                        <Form.Item
+                          name="poster"
+                          label="封面图"
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}>
+                          <Radio.Group>
+                            {posterList?.map((item) => (
+                              <Radio value={item.poster_file_name} key={item.poster_file_name}>
+                                <Image width={100} src={base_url + item.poster_file_url} />
+                              </Radio>
+                            ))}
+                            {/* <Radio value={1} style={{ alignItems: 'center' }}>
+                              <Image
+                                width={100}
+                                src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                              />
+                            </Radio>
+                            <Radio value={2}>B</Radio>
+                            <Radio value={3}>C</Radio>
+                            <Radio value={4}>D</Radio> */}
+                          </Radio.Group>
+                        </Form.Item>
+                      )
+                    }
+                  }}
+                </ProFormDependency>
               </Col>
 
               <Col span={24}>
@@ -271,6 +335,9 @@ export default (props) => {
                         console.log('resfilexist', data)
                         if (exist == 1) {
                           // 文件已存在
+                          const { data: posterData } = await getPosterList(res_file_name)
+                          const { poster_grab_list } = posterData
+                          setPosterList(poster_grab_list || [])
                           option.onSuccess(
                             {
                               name: file_name,
@@ -301,7 +368,7 @@ export default (props) => {
                           })
 
                           // const result = await uploadService.upload(file)
-                          Promise.all(sliceReq).then((res) => {
+                          Promise.all(sliceReq).then(async (res) => {
                             console.log('上传成功')
                             // option.onSuccess(res?.url)
                             option.onSuccess(
@@ -311,6 +378,9 @@ export default (props) => {
                               },
                               file
                             )
+                            const { data: posterData } = await getPosterList(res_file_name)
+                            const { poster_grab_list } = posterData
+                            setPosterList(poster_grab_list || [])
                             fileInfoRef.current = null
                           })
                         }

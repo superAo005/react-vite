@@ -58,3 +58,13 @@ export function filexist(params) {
     params,
   })
 }
+
+// 查询文件是上传过
+export function getPosterList(file_name) {
+  return post({
+    url: `api/hn/bpsa/video/info/poster/grab`,
+    data: {
+      file_name,
+    },
+  })
+}
