@@ -96,7 +96,7 @@ function TableList() {
           onConfirm={() => {
             onDel(record)
           }}>
-          <a key="del">删除</a>,
+          <a key="del">删除</a>
         </Popconfirm>,
         // <a
         //   key="del"
