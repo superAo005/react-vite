@@ -160,7 +160,7 @@ export default (props) => {
         }}
         onFinish={async (values) => {
           try {
-            await form.validateFields()
+            await modalForm.validateFields()
             let params = {
               ...tableRowData,
               ...values,
@@ -370,9 +370,12 @@ export default (props) => {
                         console.log('resfilexist', data)
                         if (exist == 1) {
                           // 文件已存在
-                          const { data: posterData } = await getPosterList(res_file_name)
-                          const { poster_grab_list } = posterData
-                          setPosterList(poster_grab_list || [])
+                          const type = modalForm.getFieldValue('type')
+                          if (type == 0) {
+                            const { data: posterData } = await getPosterList(res_file_name)
+                            const { poster_grab_list } = posterData
+                            setPosterList(poster_grab_list || [])
+                          }
                           option.onSuccess(
                             {
                               name: file_name,
