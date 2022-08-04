@@ -39,6 +39,7 @@ export default (props) => {
   const [detail] = useState({
     ...tableRowData,
     radio: 'auto',
+    type: '0',
   })
 
   // tableRowData
@@ -168,7 +169,7 @@ export default (props) => {
                 values?.poster_file_name ||
                 tableRowData?.poster_file_name,
               // video_file_name: values?.poster?.[0]?.response?.data?.file_name,
-              type: 0,
+              // type: 0,
               video_file_name:
                 values?.video_file_name?.[0]?.response?.url ||
                 values?.video_file_name ||
@@ -194,8 +195,8 @@ export default (props) => {
           <Col span={24}>
             <ProFormText
               name="title"
-              label="视频标题"
-              placeholder="请输入视频标题"
+              label="资源标题"
+              placeholder="请输入资源标题"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
@@ -203,8 +204,8 @@ export default (props) => {
           <Col span={24}>
             <ProFormSelect
               name="category"
-              label="视频主题"
-              placeholder="请选择视频标题"
+              label="资源主题"
+              placeholder="请选择资源主题"
               request={async () => {
                 const { data } = await getPageList({ page: 1, page_size: 9998 })
                 return data.paging_data.map((item) => ({ label: item.name, value: item.id }))
@@ -217,26 +218,54 @@ export default (props) => {
             <>
               <Col span={24}>
                 <ProFormRadio.Group
-                  name="radio"
-                  label="封面方式"
+                  name="type"
+                  label="资源类型"
                   options={[
                     {
-                      label: '自动截取',
-                      value: 'auto',
+                      label: '电视类',
+                      value: '0',
                     },
                     {
-                      label: '手动上传',
-                      value: 'manual',
+                      label: '广播类',
+                      value: '1',
                     },
                   ]}
                 />
               </Col>
+              <Col span={24}>
+                <ProFormDependency name={['type']}>
+                  {({ type }) => {
+                    console.log(type)
+                    if (type == '0') {
+                      return (
+                        <ProFormRadio.Group
+                          name="radio"
+                          label="封面方式"
+                          options={[
+                            {
+                              label: '自动截取',
+                              value: 'auto',
+                            },
+                            {
+                              label: '手动上传',
+                              value: 'manual',
+                            },
+                          ]}
+                        />
+                      )
+                    } else {
+                      // 自动
+                      return null
+                    }
+                  }}
+                </ProFormDependency>
+              </Col>
 
               <Col span={24}>
-                <ProFormDependency name={['radio']}>
-                  {({ radio }) => {
+                <ProFormDependency name={['radio', 'type']}>
+                  {({ radio, type }) => {
                     console.log(radio)
-                    if (radio == 'manual') {
+                    if (radio == 'manual' || type == '1') {
                       return (
                         <ProFormUploadButton
                           name="poster"
@@ -294,7 +323,7 @@ export default (props) => {
               <Col span={24}>
                 <ProFormUploadButton
                   name="video_file_name"
-                  label="视频内容"
+                  label="资源内容"
                   max={1}
                   // fileList={fileList.videoList}
                   rules={[{ required: true, message: '不能为空' }]}
@@ -303,11 +332,10 @@ export default (props) => {
                     name: 'file',
                     listType: 'picture-card',
                     ...uploadProps,
-                    accept: 'video/mp4',
+                    accept: 'video/mp4,audio/mp3',
                     beforeUpload: async (file) => {
-                      let pattern = /^.*\.(?:mp4|mp4)$/i
+                      let pattern = /^.*\.(?:mp4|mp4|mp3)$/i
                       let isMp4 = pattern.test(file.name)
-                      const isLt100M = file.size / 1024 / 1024 < 100
                       // if (!fileType) {
                       //   message.error(`${file.name} 不是excel文件`)
                       //   return false
@@ -315,7 +343,7 @@ export default (props) => {
 
                       if (!isMp4) {
                         Modal.error({
-                          title: '不是mp4文件，不允许上传~',
+                          title: '文件格式错误，不允许上传~',
                         })
                         return false
                       }

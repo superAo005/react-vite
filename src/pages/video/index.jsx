@@ -19,7 +19,7 @@ function TableList() {
 
   const initColumns = [
     {
-      title: '视频标题',
+      title: '资源标题',
       dataIndex: 'title',
     },
     {
@@ -30,9 +30,18 @@ function TableList() {
       width: 150,
     },
     {
-      title: '视频主题',
+      title: '资源主题',
       dataIndex: 'category_name',
       hideInSearch: true,
+    },
+    {
+      title: '资源类型',
+      dataIndex: 'type',
+      valueType: 'select',
+      valueEnum: {
+        0: '电视类',
+        1: '广播类',
+      },
     },
     {
       title: '播放次数',

@@ -43,7 +43,7 @@ const routeList = [
 
       {
         path: 'video',
-        title: '视频管理',
+        title: '资源库管理',
         icon: 'video',
         auth: 'video:query',
         element: lazyLoad(<Video />),
