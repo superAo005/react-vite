@@ -18,27 +18,12 @@ function TableList() {
 
   const initColumns = [
     {
-      title: '主题名称',
+      title: '单位名称',
       dataIndex: 'name',
       width: '15%',
     },
     {
-      title: '是否菜单',
-      dataIndex: 'is_menu',
-      hideInSearch: true,
-      width: 100,
-      valueEnum: {
-        0: '是',
-        1: '否',
-      },
-    },
-    // {
-    //   title: '菜单名称',
-    //   dataIndex: 'menu_name',
-    //   hideInSearch: true,
-    // },
-    {
-      title: '主题描述',
+      title: '单位描述',
       dataIndex: 'desc',
       hideInSearch: true,
     },

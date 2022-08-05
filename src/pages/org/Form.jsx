@@ -72,9 +72,10 @@ export default (props) => {
         onFinish={async (values) => {
           try {
             await modalForm.validateFields()
-
+            const { id } = tableRowData
             let params = {
-              ...tableRowData,
+              id,
+              // ...tableRowData,
               ...values,
             }
             delete params.modalType

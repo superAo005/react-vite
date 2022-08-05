@@ -22,7 +22,7 @@ export function create(data) {
 // 编辑更新
 export function update(data) {
   return post({
-    url: 'api/hn/bpsa/video/info/update',
+    url: 'api/hn/bpsa/org/info/update',
     data,
     showMsg: 'notification',
   })
