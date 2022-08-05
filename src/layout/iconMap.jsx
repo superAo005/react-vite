@@ -16,6 +16,7 @@ import {
   ProjectOutlined,
   FormOutlined,
   PictureOutlined,
+  ApartmentOutlined,
 } from '@ant-design/icons'
 
 export default {
@@ -36,4 +37,5 @@ export default {
   project: <ProjectOutlined />,
   notice: <FormOutlined />,
   picture: <PictureOutlined />,
+  org: <ApartmentOutlined />,
 }

@@ -99,7 +99,22 @@ export default (props) => {
               name="login_account"
               label="登录账号"
               placeholder="请输入登录账号"
-              rules={[{ required: true, message: '不能为空' }]}
+              rules={[
+                { required: true, message: '不能为空' },
+                {
+                  validator: (_, value) => {
+                    // TODO
+                    let regu = /^[a-z][a-z0-9_]{2,63}$/
+                    if (regu.test(value)) {
+                      return Promise.resolve()
+                    } else {
+                      return Promise.reject(
+                        new Error('请输入小写字母、数字、下划线(以字母开头,最少3位)')
+                      )
+                    }
+                  },
+                },
+              ]}
             />
           </Col>
           {modalType != 'edit' && (
@@ -127,12 +142,7 @@ export default (props) => {
             </Col>
           )}
           <Col span={24}>
-            <ProFormText
-              name="mobile"
-              label="手机号"
-              placeholder="请输入手机号"
-              rules={[{ required: true, message: '不能为空' }]}
-            />
+            <ProFormText name="mobile" label="手机号" placeholder="请输入手机号" />
           </Col>
           <Col span={24}>
             <ProFormSelect

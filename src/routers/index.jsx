@@ -15,6 +15,7 @@ const Video = lazy(() => import('@/pages/video'))
 const Category = lazy(() => import('@/pages/category'))
 const Notice = lazy(() => import('@/pages/notice'))
 const Carousel = lazy(() => import('@/pages/carousel'))
+const Org = lazy(() => import('@/pages/org'))
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children) => {
@@ -26,6 +27,14 @@ const routeList = [
     path: '',
     element: <LayoutPage />,
     children: [
+      {
+        path: 'org',
+        title: '单位管理',
+        auth: 'perms:role:query',
+        icon: 'org',
+        element: lazyLoad(<Org />),
+      },
+
       {
         path: 'user',
         title: '用户管理',
