@@ -4,8 +4,7 @@ import { Button, Popconfirm } from 'antd'
 
 import EditorForm from './Form'
 import DetailForm from './DetailForm'
-import { del, getPageList } from '@/services/category'
-import { base_url } from '@/utils'
+import { del, getPageList } from '@/services/org'
 import AuthWrapper from '@/components/AuthWrapper'
 
 function TableList() {

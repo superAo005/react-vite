@@ -6,7 +6,7 @@ import { get, post } from './request'
 //  获取视频表格列表
 export function getPageList(data) {
   return post({
-    url: 'api/hn/bpsa/orgInfo/info/query/paging',
+    url: 'api/hn/bpsa/org/info/query/paging',
     data,
   })
 }
@@ -14,7 +14,7 @@ export function getPageList(data) {
 // 新增
 export function create(data) {
   return post({
-    url: 'api/hn/bpsa/orgInfo/info/add',
+    url: 'api/hn/bpsa/org/info/add',
     data,
   })
 }
@@ -31,7 +31,7 @@ export function update(data) {
 // 编辑
 export function del(id) {
   return post({
-    url: 'api/hn/bpsa/orgInfo/info/del',
+    url: 'api/hn/bpsa/org/info/del',
     data: { id },
   })
 }
@@ -39,7 +39,7 @@ export function del(id) {
 // 查看
 export function view(id) {
   return post({
-    url: `api/hn/bpsa/orgInfo/info/query`,
+    url: `api/hn/bpsa/org/info/query`,
     data: { id },
   })
 }

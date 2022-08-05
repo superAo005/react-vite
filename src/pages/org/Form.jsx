@@ -1,14 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Button, message, Col, Row, Form } from 'antd'
-import {
-  ModalForm,
-  ProFormText,
-  ProFormSelect,
-  ProFormTextArea,
-  ProFormRadio,
-  ProFormDependency,
-} from '@ant-design/pro-form'
-import { create, update } from '@/services/category'
+import { create, update } from '@/services/org'
+import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form'
+import { Col, Form, Row } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -78,7 +71,7 @@ export default (props) => {
         }}
         onFinish={async (values) => {
           try {
-            await form.validateFields()
+            await modalForm.validateFields()
 
             let params = {
               ...tableRowData,
@@ -100,45 +93,11 @@ export default (props) => {
           <Col span={24}>
             <ProFormText
               name="name"
-              label="主题名称"
-              placeholder="请输入主题名称"
+              label="单位名称"
+              placeholder="请输入名称"
               rules={[{ required: true, message: '不能为空' }]}
             />
           </Col>
-
-          <Col span={24}>
-            <ProFormRadio.Group
-              name="is_menu"
-              label="设为菜单:"
-              options={[
-                {
-                  label: '是',
-                  value: 0,
-                },
-                {
-                  label: '否',
-                  value: 1,
-                },
-              ]}
-            />
-          </Col>
-          {/* <Col span={24}>
-            <ProFormDependency name={['ismenu']}>
-              {({ ismenu }) => {
-                if (ismenu) {
-                  return (
-                    <ProFormText
-                      name="menu_name"
-                      label="菜单名称"
-                      placeholder="请输入菜单名称,不填取主题名称"
-                    />
-                  )
-                } else {
-                  return null
-                }
-              }}
-            </ProFormDependency>
-          </Col> */}
 
           <Col span={24}>
             <ProFormTextArea name="desc" label="描述信息" placeholder="请输入描述信息 " />
