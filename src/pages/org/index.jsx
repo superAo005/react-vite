@@ -101,26 +101,13 @@ function TableList() {
         columns={initColumns}
         actionRef={actionRef}
         formRef={formRef}
-        // rowSelection={{
-        //   // 自定义选择项参考: https://ant.design/components/table-cn/#components-table-demo-row-selection-custom
-        //   // 注释该行则默认不显示下拉选项
-        //   // selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-        //   selectedRowKeys,
-        //   // onChange: onSelectChange,
-        //   onChange: (selectedRowKeys) => {
-        //     console.log('selectedRowKeys changed: ', selectedRowKeys)
-        //     setSelectedRowKeys(selectedRowKeys)
-        //   },
-        // }}
         request={async (params) => {
           const relParams = {
             ...params,
             page: params.current,
             page_size: params.pageSize,
           }
-
           const { data } = await getPageList(relParams)
-
           return {
             data: data?.paging_data || [],
             success: true,

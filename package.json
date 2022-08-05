@@ -6,6 +6,7 @@
     "start": "vite",
     "dev": "vite",
     "start:mock": "cross-env mock=true noproxy=true vite",
+    "preinstall": "npx only-allow pnpm",
     "build": "tsc && vite build",
     "build2": "vite build",
     "serve": "vite preview",
