@@ -51,6 +51,18 @@ function TableList() {
       // width: 100,
     },
     {
+      title: '上传者',
+      dataIndex: 'upload_name',
+      hideInSearch: true,
+      // width: 100,
+    },
+    {
+      title: '最后编辑者',
+      dataIndex: 'oper_name',
+      hideInSearch: true,
+      // width: 100,
+    },
+    {
       title: '播放次数',
       dataIndex: 'play_times',
       hideInSearch: true,
@@ -65,18 +77,6 @@ function TableList() {
     {
       title: '上传时间',
       dataIndex: 'publish_time',
-      hideInSearch: true,
-      // width: 100,
-    },
-    {
-      title: '上传人',
-      dataIndex: 'upload_name',
-      hideInSearch: true,
-      // width: 100,
-    },
-    {
-      title: '更新人',
-      dataIndex: 'oper_name',
       hideInSearch: true,
       // width: 100,
     },
