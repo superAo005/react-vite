@@ -43,6 +43,13 @@ function TableList() {
         1: '广播类',
       },
     },
+
+    {
+      title: '所属单位',
+      dataIndex: 'upload_org_name',
+      hideInSearch: true,
+      // width: 100,
+    },
     {
       title: '播放次数',
       dataIndex: 'play_times',
@@ -64,12 +71,6 @@ function TableList() {
     {
       title: '上传人',
       dataIndex: 'upload_name',
-      hideInSearch: true,
-      // width: 100,
-    },
-    {
-      title: '上传单位',
-      dataIndex: 'upload_org_name',
       hideInSearch: true,
       // width: 100,
     },
