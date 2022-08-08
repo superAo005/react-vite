@@ -33,8 +33,9 @@ service.interceptors.response.use(
   (err) => {
     switch (err.response.status) {
       case 401:
+        message.error('登录超时，请重新登录')
         sessionStorage.clear()
-        // location.hash = '/login'
+        location.href = '/login'
         break
       case 404:
         message.error(err.message)
