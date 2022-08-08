@@ -3,6 +3,7 @@ import { ConfigEnv, UserConfigExport } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import styleImport, { AntdResolve } from 'vite-plugin-style-import'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // import vitePluginImp from 'vite-plugin-imp'
 
@@ -70,6 +71,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
 
     plugins: [
       // reactRefresh(),
+      basicSsl(),
       react(),
       // monacoEditorPlugin(),
       viteMockServe({
@@ -138,7 +140,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     server: {
       port: 3005, // 你需要定义的端口号
       // "preinstall": "npx only-allow pnpm",
-
+      https: true,
       proxy: {
         '/api/': {
           target: 'http://39.105.10.134:8999',
