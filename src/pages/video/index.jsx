@@ -56,8 +56,26 @@ function TableList() {
       // width: 120,
     },
     {
-      title: '发布时间',
+      title: '上传时间',
       dataIndex: 'publish_time',
+      hideInSearch: true,
+      // width: 100,
+    },
+    {
+      title: '上传人',
+      dataIndex: 'upload_name',
+      hideInSearch: true,
+      // width: 100,
+    },
+    {
+      title: '上传单位',
+      dataIndex: 'upload_org_name',
+      hideInSearch: true,
+      // width: 100,
+    },
+    {
+      title: '更新人',
+      dataIndex: 'oper_name',
       hideInSearch: true,
       // width: 100,
     },
