@@ -57,6 +57,7 @@ function TableList() {
           value: 'id',
         },
       },
+
       render: (_, record) => {
         const it = record.role_assign_list
         return (
@@ -72,7 +73,11 @@ function TableList() {
         )
       },
     },
-
+    {
+      title: '所属单位',
+      dataIndex: 'org_name',
+      hideInSearch: true,
+    },
     {
       title: '手机号',
       dataIndex: 'mobile',

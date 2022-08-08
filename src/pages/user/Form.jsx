@@ -3,6 +3,7 @@ import { Button, message, Col, Row, Form } from 'antd'
 import { ModalForm, ProFormText, ProFormSelect } from '@ant-design/pro-form'
 import { create, edit } from '@/services/user'
 import { getPageList } from '@/services/role'
+import { getPageList as getOrgList } from '@/services/org'
 // import ProCard from '@ant-design/pro-card'
 
 export default (props) => {
@@ -22,6 +23,7 @@ export default (props) => {
     role_id: '0',
   })
   const [roleList, setRoleList] = useState([])
+  const [orgList, setOrgList] = useState([])
   const onCancel = () => {
     formRef.current.resetFields()
   }
@@ -32,6 +34,13 @@ export default (props) => {
       if (visible) {
         const { data } = await getPageList({})
         setRoleList(data)
+
+        const { data: orgData } = await getOrgList({
+          page: 1,
+          page_size: 20,
+        })
+        console.log({ orgData })
+        setOrgList(orgData?.paging_data || [])
         if (modalType == 'edit') {
           ;(async () => {
             // const {
@@ -143,6 +152,17 @@ export default (props) => {
           )}
           <Col span={24}>
             <ProFormText name="mobile" label="手机号" placeholder="请输入手机号" />
+          </Col>
+          <Col span={24}>
+            <ProFormSelect
+              name="org_id"
+              options={orgList}
+              fieldProps={{
+                fieldNames: { label: 'name', value: 'id' },
+              }}
+              label="所属单位"
+              rules={[{ required: true, message: '不能为空' }]}
+            />
           </Col>
           <Col span={24}>
             <ProFormSelect
