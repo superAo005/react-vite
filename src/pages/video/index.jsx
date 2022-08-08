@@ -2,7 +2,7 @@ import ProTable from '@ant-design/pro-table'
 import { Button, Image, Popconfirm } from 'antd'
 import React, { useRef, useState } from 'react'
 
-import { del, getPageList } from '@/services/video'
+import { del, getPageList, top } from '@/services/video'
 import { base_url } from '@/utils'
 import DetailForm from './DetailForm'
 import EditorForm from './Form'
@@ -90,27 +90,24 @@ function TableList() {
       align: 'center',
       render: (_, record) => [
         <AuthWrapper key="view" auth="video:update">
-          <div
+          <a
             key="edit"
-            className={record.status == '上线' || record.status == '上线' ? 'disabled' : ''}>
-            <a
-              onClick={() => {
-                const { id, title, type, category_id, year, poster_file_name, video_file_name } =
-                  record
-                onEdit({
-                  id,
-                  title,
-                  type,
-                  poster_file_name,
-                  video_file_name,
-                  category: category_id,
-                  year,
-                  modalType: 'edit',
-                })
-              }}>
-              编辑
-            </a>
-          </div>
+            onClick={() => {
+              const { id, title, type, category_id, year, poster_file_name, video_file_name } =
+                record
+              onEdit({
+                id,
+                title,
+                type,
+                poster_file_name,
+                video_file_name,
+                category: category_id,
+                year,
+                modalType: 'edit',
+              })
+            }}>
+            编辑
+          </a>
         </AuthWrapper>,
         // <a
         //   key="look"
@@ -130,6 +127,17 @@ function TableList() {
             }}>
             <a key="del">删除</a>
           </Popconfirm>
+        </AuthWrapper>,
+        <AuthWrapper key="view" auth="video:update">
+          <a
+            key="edit"
+            onClick={async () => {
+              const { id } = record
+              const res = await top(id)
+              reload()
+            }}>
+            置顶
+          </a>
         </AuthWrapper>,
 
         // <a

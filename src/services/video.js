@@ -43,6 +43,14 @@ export function view(id) {
     data: { id },
   })
 }
+
+// 置顶
+export function top(id) {
+  return post({
+    url: `api/hn/bpsa/video/info/top`,
+    data: { id, is_top: 1 },
+  })
+}
 // 分片上传
 export function sliceUpload(data) {
   return post({
