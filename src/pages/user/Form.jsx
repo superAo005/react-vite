@@ -37,7 +37,7 @@ export default (props) => {
 
         const { data: orgData } = await getOrgList({
           page: 1,
-          page_size: 20,
+          page_size: 99999,
         })
         console.log({ orgData })
         setOrgList(orgData?.paging_data || [])
