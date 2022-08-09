@@ -136,7 +136,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     server: {
       port: 3005, // 你需要定义的端口号
       // "preinstall": "npx only-allow pnpm",
-      https: true,
+      // https: true,
       proxy: {
         '/api/': {
           target: 'http://39.105.10.134:8999',
