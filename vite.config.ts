@@ -1,9 +1,8 @@
 import { ConfigEnv, UserConfigExport } from 'vite'
-// import reactRefresh from '@vitejs/plugin-react-refresh'
 import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import styleImport, { AntdResolve } from 'vite-plugin-style-import'
-import basicSsl from '@vitejs/plugin-basic-ssl'
+// import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // import vitePluginImp from 'vite-plugin-imp'
 
@@ -26,7 +25,6 @@ function renderChunks(deps: Record<string, string>) {
   })
   return chunks
 }
-// const uat = 'http://idata.fat4628.qa.nt.ctripcorp.com'
 
 export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
@@ -70,8 +68,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     },
 
     plugins: [
-      // reactRefresh(),
-      basicSsl(),
+      // basicSsl(),
       react(),
       // monacoEditorPlugin(),
       viteMockServe({
@@ -113,7 +110,6 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       }),
     ],
     build: {
-      // target: 'es2018',
       target: ['es2018', 'chrome86'],
       // do not set it as the context-path (this app uses "static")
       assetsDir: 'assets',
