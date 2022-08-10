@@ -71,7 +71,8 @@ export function filterMenuRoutes(roles, data, predicate = filterBy) {
   return newChildren
 }
 
-export const base_url = 'http://39.105.10.134:8999/api/hn/bpsa'
+export const base_url = ''
+// export const base_url = 'http://39.105.10.134:8999/api/hn/bpsa'
 
 // tool
 
