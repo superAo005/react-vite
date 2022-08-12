@@ -1,9 +1,9 @@
 {
-  "name": "vite-react-tpl",
+  "name": "vite-react",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "start:mock": "cross-env mock=true noproxy=true vite",
     "build": "tsc && vite build",
     "build2": "vite build",

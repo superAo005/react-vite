@@ -153,12 +153,6 @@ export default function Index(props) {
   // };
   const menu = (
     <Menu onClick={onClick}>
-      {/* <Menu.Item key="0">
-        <a href="https://www.antgroup.com">1st menu item</a>
-      </Menu.Item>
-      <Menu.Item key="1">
-        <a href="https://www.aliyun.com">2nd menu item</a>
-      </Menu.Item> */}
       <Menu.Divider />
       <Menu.Item key="logout">退出登录</Menu.Item>
     </Menu>
@@ -167,12 +161,7 @@ export default function Index(props) {
     <>
       <Layout className="h-screen layout">
         <Header className="header h-14">
-          <div className="logo">专家抽取系统</div>
-
-          {/* {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: toggle,
-          })} */}
+          <div className="logo">logo</div>
           <div className="center"></div>
           <div className="right-menu float-right mr-6">
             <Dropdown overlay={menu} trigger={['hover']}>
@@ -192,7 +181,6 @@ export default function Index(props) {
             className="side overflow-auto site-layout-background">
             <ScrollBar
               options={{
-                // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
                 suppressScrollX: true,
               }}>
               <Menu
