@@ -32,30 +32,31 @@ const AxiosProvider = ({ children }: React.PropsWithChildren<unknown>) => {
 }
 
 ReactDOM.render(
-  // <React.StrictMode>
-  <AxiosProvider>
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <ErrorBoundary
-          fallbackRender={({ error, resetErrorBoundary }) => (
-            <div
-              style={{
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'center',
-              }}>
-              <h3>出错了! </h3>
-              <Button onClick={() => resetErrorBoundary()}>再来一次</Button>
-              <pre style={{ whiteSpace: 'normal' }}>{error.message}</pre>
-            </div>
-          )}>
-          <Suspense fallback={<SuspendFallbackLoading />}>
-            <App />
-          </Suspense>
-        </ErrorBoundary>
-      </RecoilRoot>
-    </QueryClientProvider>
-  </AxiosProvider>,
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <AxiosProvider>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <ErrorBoundary
+            fallbackRender={({ error, resetErrorBoundary }) => (
+              <div
+                style={{
+                  width: '100vw',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}>
+                <h3>出错了! </h3>
+                <Button onClick={() => resetErrorBoundary()}>再来一次</Button>
+                <pre style={{ whiteSpace: 'normal' }}>{error.message}</pre>
+              </div>
+            )}>
+            <Suspense fallback={<SuspendFallbackLoading />}>
+              <App />
+            </Suspense>
+          </ErrorBoundary>
+        </RecoilRoot>
+      </QueryClientProvider>
+    </AxiosProvider>
+    ,
+  </React.StrictMode>,
   document.getElementById('root')
 )
