@@ -22,6 +22,7 @@ export default function Index() {
   const handleCancel = () => {
     setIsModalVisible(false)
   }
+  const editorDidMount = (editor) => {}
   return (
     <>
       <div className="m-1">
@@ -29,7 +30,7 @@ export default function Index() {
         <Button type="primary" onClick={showModal}>
           Open Modal
         </Button>
-        {/* <CodeEditor editorDidMount={editorDidMount}></CodeEditor> */}
+        <CodeEditor className="w-96 h-96" editorDidMount={editorDidMount}></CodeEditor>
         {/* <Modal
           width="1200px"
           title="测试脚本"

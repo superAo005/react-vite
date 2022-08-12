@@ -340,3 +340,254 @@ export default function CodeEditor(props) {
     </>
   )
 }
+
+/// Register a new language
+// monaco.languages.register({ id: 'java' });
+
+// Register a tokens provider for the language
+monaco.languages.setMonarchTokensProvider('java', {
+  defaultToken: '',
+  tokenPostfix: '.java',
+  keywords: [
+    'abstract',
+    'continue',
+    'for',
+    'new',
+    'switch',
+    'assert',
+    'default',
+    'goto',
+    'package',
+    'synchronized',
+    'boolean',
+    'do',
+    'if',
+    'private',
+    'this',
+    'break',
+    'double',
+    'implements',
+    'protected',
+    'throw',
+    'byte',
+    'else',
+    'import',
+    'public',
+    'throws',
+    'case',
+    'enum',
+    'instanceof',
+    'return',
+    'transient',
+    'catch',
+    'extends',
+    'int',
+    'short',
+    'try',
+    'char',
+    'final',
+    'interface',
+    'static',
+    'void',
+    'class',
+    'finally',
+    // 'long',
+    'strictfp',
+    'volatile',
+    'const',
+    'float',
+    'native',
+    'super',
+    'while',
+    'true',
+    'false',
+  ],
+  operators: [
+    '=',
+    '>',
+    '<',
+    '!',
+    '~',
+    '?',
+    ':',
+    '==',
+    '<=',
+    '>=',
+    '!=',
+    '&&',
+    '||',
+    '++',
+    '--',
+    '+',
+    '-',
+    '*',
+    '/',
+    '&',
+    '|',
+    '^',
+    '%',
+    '<<',
+    '>>',
+    '>>>',
+    '+=',
+    '-=',
+    '*=',
+    '/=',
+    '&=',
+    '|=',
+    '^=',
+    '%=',
+    '<<=',
+    '>>=',
+    '>>>=',
+  ],
+  // we include these common regular expressions
+  symbols: /[=><!~?:&|+\-*\/\^%]+/,
+  escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
+  digits: /\d+(_+\d+)*/,
+  octaldigits: /[0-7]+(_+[0-7]+)*/,
+  binarydigits: /[0-1]+(_+[0-1]+)*/,
+  hexdigits: /[[0-9a-fA-F]+(_+[0-9a-fA-F]+)*/,
+  tokenizer: {
+    root: [
+      [/\[error.*/, 'custom-error'],
+      [/\[notice.*/, 'custom-notice'],
+      [/\[info.*/, 'custom-info'],
+      [/\@@+[a-z][a-z0-9_]{2,63}/, 'custom-@@'],
+      [/\[[a-zA-Z 0-9:]+\]/, 'custom-date'],
+      // identifiers and keywords
+      [
+        /[a-zA-Z_$][\w$]*/,
+        {
+          cases: {
+            '@keywords': { token: 'keyword.$0' },
+            '@default': 'identifier',
+          },
+        },
+      ],
+      // whitespace
+      { include: '@whitespace' },
+      // delimiters and operators
+      [/[{}()\[\]]/, '@brackets'],
+      [/[<>](?!@symbols)/, '@brackets'],
+      [
+        /@symbols/,
+        {
+          cases: {
+            '@operators': 'delimiter',
+            '@default': '',
+          },
+        },
+      ],
+      // @ annotations.
+      // [/@\s*[a-zA-Z_\$][\w\$]*/, 'annotation'],
+      // numbers
+      [/(@digits)[eE]([\-+]?(@digits))?[fFdD]?/, 'number.float'],
+      [/(@digits)\.(@digits)([eE][\-+]?(@digits))?[fFdD]?/, 'number.float'],
+      [/0[xX](@hexdigits)[Ll]?/, 'number.hex'],
+      [/0(@octaldigits)[Ll]?/, 'number.octal'],
+      [/0[bB](@binarydigits)[Ll]?/, 'number.binary'],
+      [/(@digits)[fFdD]/, 'number.float'],
+      [/(@digits)[lL]?/, 'number'],
+      // delimiter: after number because of .\d floats
+      [/[;,.]/, 'delimiter'],
+      // strings
+      [/"([^"\\]|\\.)*$/, 'string.invalid'],
+      [/"/, 'string', '@string'],
+      // characters
+      [/'[^\\']'/, 'string'],
+      [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
+      [/'/, 'string.invalid'],
+    ],
+    whitespace: [
+      [/[ \t\r\n]+/, ''],
+      [/\/\*\*(?!\/)/, 'comment.doc', '@javadoc'],
+      [/\/\*/, 'comment', '@comment'],
+      [/\/\/.*$/, 'comment'],
+    ],
+    comment: [
+      [/[^\/*]+/, 'comment'],
+      // [/\/\*/, 'comment', '@push' ],    // nested comment not allowed :-(
+      // [/\/\*/,    'comment.invalid' ],    // this breaks block comments in the shape of /* //*/
+      [/\*\//, 'comment', '@pop'],
+      [/[\/*]/, 'comment'],
+    ],
+    //Identical copy of comment above, except for the addition of .doc
+    javadoc: [
+      [/[^\/*]+/, 'comment.doc'],
+      // [/\/\*/, 'comment.doc', '@push' ],    // nested comment not allowed :-(
+      [/\/\*/, 'comment.doc.invalid'],
+      [/\*\//, 'comment.doc', '@pop'],
+      [/[\/*]/, 'comment.doc'],
+    ],
+    string: [
+      [/[^\\"]+/, 'string'],
+      [/@escapes/, 'string.escape'],
+      [/\\./, 'string.escape.invalid'],
+      [/"/, 'string', '@pop'],
+    ],
+  },
+})
+
+// Define a new theme that contains only rules that match this language
+monaco.editor.defineTheme('myCoolTheme', {
+  base: 'vs-dark',
+  inherit: true,
+  rules: [
+    { token: 'custom-info', foreground: '808080' },
+    { token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
+    { token: 'custom-notice', foreground: 'FFA500' },
+    { token: 'custom-@@', foreground: '00ff00' },
+    { token: 'custom-date', foreground: '008800' },
+  ],
+  colors: {
+    // 'editor.foreground': '#000000'
+  },
+})
+
+// Register a completion item provider for the new language
+monaco.languages.registerCompletionItemProvider('java', {
+  provideCompletionItems: (model, position) => {
+    const { lineNumber, column } = position
+    const wordUntilPosition = model.getWordUntilPosition(position)
+
+    const textBeforePointer = model.getValueInRange({
+      startLineNumber: lineNumber,
+      startColumn: 0,
+      endLineNumber: lineNumber,
+      endColumn: column,
+    })
+    console.log({
+      wordUntilPositionWord: wordUntilPosition.word,
+      textBeforePointer,
+    })
+    console.log(1111)
+    var suggestions = [
+      {
+        label: '$$simpleText',
+        kind: monaco.languages.CompletionItemKind.Text,
+        insertText: 'simpleText',
+      },
+      {
+        label: '@@testing',
+        kind: monaco.languages.CompletionItemKind.Keyword,
+        insertText: 'testing(${1:condition})',
+        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+      },
+      {
+        label: '**ifelse',
+        kind: monaco.languages.CompletionItemKind.Snippet,
+        insertText: ['if (${1:condition}) {', '\t$0', '} else {', '\t', '}'].join('\n'),
+        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+        documentation: 'If-Else Statement',
+      },
+    ]
+    return { suggestions: suggestions }
+  },
+})
+
+monaco.editor.create(document.getElementById('container'), {
+  theme: 'myCoolTheme',
+  value: getCode(),
+  language: 'java',
+})

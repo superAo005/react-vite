@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 import {
@@ -23,11 +23,16 @@ function layout(props) {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
+          <Menu.Item key="/" icon={<UserOutlined />}>
+            <Link to={'/'}>
+              <span>首页</span>
+            </Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+          <Menu.Item key="/detail" icon={<VideoCameraOutlined />}>
             nav 2
+            <Link to="/detail">
+              <span>详情</span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<UploadOutlined />}>
             nav 3
