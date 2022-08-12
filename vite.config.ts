@@ -17,7 +17,7 @@ const reduxVendorPackages = ['@reduxjs/toolkit', 'react-redux']
 
 // 分包
 function renderChunks(deps: Record<string, string>) {
-  let chunks = {}
+  const chunks = {}
   Object.keys(deps).forEach((key) => {
     if (reactVendorPackages.includes(key)) return
     if (reduxVendorPackages.includes(key)) return
