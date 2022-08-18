@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe id="test" src="" frameborder="0"></iframe>
+    <script>
+      fetch(
+        'https://downloadfile.fx.cft.tripws.com/files/6/merchantContract/0yu5h1200000016k5D077.pdf',
+        {
+          method: 'get',
+          responseType: 'arraybuffer',
+        }
+      )
+        .then(function (res) {
+          if (res.status !== 200) {
+            return res.json()
+          }
+          return res.arrayBuffer()
+        })
+        .then((blobRes) => {
+          // 生成 Blob 对象，设置 type 等信息
+          const e = new Blob([blobRes], {
+            type: 'application/pdf',
+          })
+          // 将 Blob 对象转为 url
+          const link = window.URL.createObjectURL(e)
+          test.src = link
+          window.URL.revokeObjectURL(link)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    </script>
+  </body>
+</html>
