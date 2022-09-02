@@ -1,10 +1,10 @@
-import type { UserConfigExport, ConfigEnv } from 'vite'
-// import { loadEnv } from 'vite';
+// import type { UserConfigExport, ConfigEnv } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { viteMockServe } from 'vite-plugin-mock'
 import { resolve } from 'path';
 import svgr from 'vite-plugin-svgr'
 import { getAliases } from "vite-aliases";
+// import { loadEnv } from 'vite';
 // import styleImport from 'vite-plugin-style-import';
 
 const aliases = getAliases();
