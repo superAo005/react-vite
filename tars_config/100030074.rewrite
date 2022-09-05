@@ -1,4 +1,0 @@
-location ^~ / {
-  root /opt/nodeapp/dist;
-}
-
