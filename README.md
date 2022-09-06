@@ -25,6 +25,7 @@ npm run dev //启动应用
     ├── assets                          // 公共的文件（如image、css、font等）
     ├── components                      // 项目组件
     ├── constants                       // 常量/接口地址等
+    |── services                        // 接口
     ├── routes                          // 路由
     ├── utils                           // 工具库
     ├── pages                           // 页面模块
