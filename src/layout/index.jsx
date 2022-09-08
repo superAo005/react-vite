@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+import React, { useState } from 'react'
+import { Outlet, Link } from 'react-router-dom'
+
+import { Layout, Menu } from 'antd'
+=======
 import React, { useState, useEffect } from 'react'
+>>>>>>> antd-pro-js
 import {
   Outlet,
   Link,
@@ -31,7 +38,8 @@ import { filterMenuRoutes } from '@/utils'
 
 import { routeList } from '@/routers'
 const { Header, Sider, Content } = Layout
-export default function Index(props) {
+import './index.less'
+function layout(props) {
   const [collapsed, setCollapsed] = useState(false)
 
   let uselocation = useLocation()
@@ -158,6 +166,44 @@ export default function Index(props) {
     </Menu>
   )
   return (
+<<<<<<< HEAD
+    <Layout className="h-screen">
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo" />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu.Item key="/" icon={<UserOutlined />}>
+            <Link to={'/'}>
+              <span>首页</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/detail" icon={<VideoCameraOutlined />}>
+            nav 2
+            <Link to="/detail">
+              <span>详情</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<UploadOutlined />}>
+            nav 3
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }}>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger',
+            onClick: toggle,
+          })}
+        </Header>
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: '24px 16px',
+            minHeight: 280,
+            padding: 24,
+          }}>
+          <Outlet></Outlet>
+        </Content>
+=======
     <>
       <Layout className="h-screen layout">
         <Header className="header h-14">
@@ -201,7 +247,9 @@ export default function Index(props) {
             <Outlet></Outlet>
           </Content>
         </Layout>
+>>>>>>> antd-pro-js
       </Layout>
-    </>
+    </Layout>
   )
 }
+export default layout

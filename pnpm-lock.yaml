@@ -2,6 +2,27 @@ lockfileVersion: 5.3
 
 specifiers:
   '@ant-design/icons': ^4.7.0
+<<<<<<< HEAD
+  '@ant-design/pro-form': 1.49.1
+  '@ant-design/pro-table': 2.57.1
+  '@babel/preset-env': ^7.13.8
+  '@babel/preset-react': ^7.12.13
+  '@babel/preset-typescript': ^7.13.0
+  '@reduxjs/toolkit': ^1.5.0
+  '@types/babel__core': ^7.1.17
+  '@types/node': ^16.11.11
+  '@types/react': ^17.0.2
+  '@types/react-dom': ^17.0.1
+  '@types/react-redux': ^7.1.16
+  '@typescript-eslint/eslint-plugin': ^5.5.0
+  '@typescript-eslint/parser': ^5.5.0
+  '@vitejs/plugin-react': ^1.1.3
+  '@vitejs/plugin-react-refresh': ^1.3.1
+  ahooks: ^3.4.1
+  antd: 4.14.0
+  autoprefixer: ^10.2.5
+  babel-preset-react-app: ^10.0.0
+=======
   '@ant-design/pro-descriptions': ^1.10.69
   '@ant-design/pro-form': ^1.65.0
   '@ant-design/pro-table': ^2.73.0
@@ -23,12 +44,30 @@ specifiers:
   autoprefixer: ^10.4.6
   axios: ^0.27.2
   babel-preset-react-app: ^10.0.1
+>>>>>>> antd-pro-js
   cross-env: ^7.0.3
   eslint: ^8.14.0
   eslint-plugin-react: ^7.29.4
   less: ^4.1.2
   lodash-es: ^4.17.21
   mockjs: ^1.1.0
+<<<<<<< HEAD
+  monaco-editor: '0.33'
+  nprogress: ^0.2.0
+  postcss: ^8.2.7
+  postcss-import: ^14.0.2
+  postcss-nested: ^5.0.5
+  query-string: ^7.1.1
+  react: ^17.0.1
+  react-dom: ^17.0.1
+  react-redux: ^7.2.2
+  react-router: ^6.2.1
+  react-router-dom: ^6.2.1
+  tailwindcss: ^3.0.1
+  typescript: ^4.2.2
+  vite: ^2.0.3
+  vite-plugin-imp: ^2.0.9
+=======
   nprogress: ^0.2.0
   postcss: ^8.4.13
   postcss-import: ^14.1.0
@@ -45,10 +84,28 @@ specifiers:
   typescript: ^4.6.4
   vite: ^2.9.6
   vite-plugin-imp: ^2.1.8
+>>>>>>> antd-pro-js
   vite-plugin-mock: ^2.9.6
   vite-plugin-style-import: ^1.4.1
 
 dependencies:
+<<<<<<< HEAD
+  '@ant-design/icons': 4.7.0_react-dom@17.0.2+react@17.0.2
+  '@ant-design/pro-form': 1.49.1_9f608285978d9ae0555e9350e29f9966
+  '@ant-design/pro-table': 2.57.1_9f608285978d9ae0555e9350e29f9966
+  '@reduxjs/toolkit': 1.7.1_react-redux@7.2.6+react@17.0.2
+  ahooks: 3.4.1_react@17.0.2
+  antd: 4.14.0_react-dom@17.0.2+react@17.0.2
+  lodash-es: 4.17.21
+  monaco-editor: 0.33.0
+  nprogress: 0.2.0
+  query-string: 7.1.1
+  react: 17.0.2
+  react-dom: 17.0.2_react@17.0.2
+  react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
+  react-router: 6.2.1_react@17.0.2
+  react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
+=======
   '@ant-design/icons': 4.7.0_react-dom@18.1.0+react@18.1.0
   '@ant-design/pro-descriptions': 1.10.69_e02fb82764744a0894e4f82d87654741
   '@ant-design/pro-form': 1.65.0_e02fb82764744a0894e4f82d87654741
@@ -65,6 +122,7 @@ dependencies:
   react-router-dom: 6.3.0_react-dom@18.1.0+react@18.1.0
   redux-persist: 6.0.0
   tag-canvas: 0.0.5
+>>>>>>> antd-pro-js
 
 devDependencies:
   '@babel/preset-env': 7.17.10
@@ -2757,6 +2815,14 @@ packages:
       '@types/react': 18.0.8
       hoist-non-react-statics: 3.3.2
 
+<<<<<<< HEAD
+  /@types/js-cookie/2.2.7:
+    resolution: {integrity: sha1-ImqeMWgINaYYjoh/OYjmDATT9qM=, tarball: '@types/js-cookie/download/@types/js-cookie-2.2.7.tgz'}
+    dev: false
+
+  /@types/json-schema/7.0.9:
+    resolution: {integrity: sha1-l+3JA36gw4WFMgsolk3eOznkZg0=, tarball: '@types/json-schema/download/@types/json-schema-7.0.9.tgz'}
+=======
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha1-1CG2xSejA398hEM/0sQingFoY9M=, tarball: '@types/json-schema/download/@types/json-schema-7.0.11.tgz'}
     dev: true
@@ -2765,6 +2831,7 @@ packages:
     resolution: {integrity: sha1-wu1MgyD/pvEbQ+uJ6eruxllmoKA=, tarball: '@types/lodash-es/download/@types/lodash-es-4.17.6.tgz'}
     dependencies:
       '@types/lodash': 4.14.182
+>>>>>>> antd-pro-js
     dev: true
 
   /@types/lodash/4.14.182:
@@ -3011,11 +3078,34 @@ packages:
     hasBin: true
     dev: true
 
+<<<<<<< HEAD
+  /ahooks-v3-count/1.0.0:
+    resolution: {integrity: sha1-3es5LgCa1udIkFs8v2Op/YJiyoA=, tarball: ahooks-v3-count/download/ahooks-v3-count-1.0.0.tgz}
+    dev: false
+
+  /ahooks/3.4.1_react@17.0.2:
+    resolution: {integrity: sha1-bOaFkDnFKTETRNyED+QCFoDekBo=, tarball: ahooks/download/ahooks-3.4.1.tgz}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@types/js-cookie': 2.2.7
+      ahooks-v3-count: 1.0.0
+      dayjs: 1.10.7
+      intersection-observer: 0.12.0
+      js-cookie: 2.2.1
+      lodash: 4.17.21
+      react: 17.0.2
+      resize-observer-polyfill: 1.5.1
+      screenfull: 5.2.0
+    dev: false
+=======
   /acorn/8.7.1:
     resolution: {integrity: sha1-AZcSLIQ9G/bQpegyIKeI8nj2PDA=, tarball: acorn/download/acorn-8.7.1.tgz}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
+>>>>>>> antd-pro-js
 
   /ajv/6.12.6:
     resolution: {integrity: sha1-uvWmLoArB9l3A0WG+MO69a3ybfQ=, tarball: ajv/download/ajv-6.12.6.tgz}
@@ -3549,8 +3639,13 @@ packages:
     engines: {node: '>=0.11'}
     dev: false
 
+<<<<<<< HEAD
+  /dayjs/1.10.7:
+    resolution: {integrity: sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=, tarball: dayjs/download/dayjs-1.10.7.tgz}
+=======
   /dayjs/1.11.1:
     resolution: {integrity: sha1-kLM6Pdo0FyWNSK0ncbQV3vZUXrA=, tarball: dayjs/download/dayjs-1.11.1.tgz}
+>>>>>>> antd-pro-js
     dev: false
 
   /debug/2.6.9:
@@ -3577,6 +3672,11 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
+
+  /decode-uri-component/0.2.0:
+    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=, tarball: decode-uri-component/download/decode-uri-component-0.2.0.tgz}
+    engines: {node: '>=0.10'}
+    dev: false
 
   /deep-is/0.1.4:
     resolution: {integrity: sha1-pvLc5hL63S7x9Rm3NVHxfoUZmDE=, tarball: deep-is/download/deep-is-0.1.4.tgz}
@@ -4152,6 +4252,11 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /filter-obj/1.1.0:
+    resolution: {integrity: sha1-mzERErxsYSehbgFsbF1/GeCAXFs=, tarball: filter-obj/download/filter-obj-1.1.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /finalhandler/1.1.2:
     resolution: {integrity: sha1-t+fQAP/RGTjQ/bBTUG9uur6fWH0=, tarball: finalhandler/download/finalhandler-1.1.2.tgz}
     engines: {node: '>= 0.8'}
@@ -4305,6 +4410,10 @@ packages:
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha1-FH06AG2kyjzhRyjHrvwofDZ9emw=, tarball: graceful-fs/download/graceful-fs-4.2.10.tgz}
+<<<<<<< HEAD
+    requiresBuild: true
+=======
+>>>>>>> antd-pro-js
     dev: true
 
   /has-bigints/1.0.2:
@@ -4421,6 +4530,10 @@ packages:
       has: 1.0.3
       side-channel: 1.0.4
     dev: true
+
+  /intersection-observer/0.12.0:
+    resolution: {integrity: sha1-bIRij2fOhpjl+cz4V9l3GHRYN6o=, tarball: intersection-observer/download/intersection-observer-0.12.0.tgz}
+    dev: false
 
   /invariant/2.2.4:
     resolution: {integrity: sha1-YQ88ksk1nOHbYW5TgAjSP/NRWOY=, tarball: invariant/download/invariant-2.2.4.tgz}
@@ -4552,6 +4665,10 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=, tarball: isexe/download/isexe-2.0.0.tgz}
     dev: true
+
+  /js-cookie/2.2.1:
+    resolution: {integrity: sha1-aeEG3F1YBolFYpAqpbrsN0Tpsrg=, tarball: js-cookie/download/js-cookie-2.2.1.tgz}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha1-GSA/tZmR35jjoocFDUZHzerzJJk=, tarball: js-tokens/download/js-tokens-4.0.0.tgz}
@@ -4758,8 +4875,17 @@ packages:
       commander: 9.2.0
     dev: true
 
+<<<<<<< HEAD
+  /moment/2.29.1:
+    resolution: {integrity: sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=, tarball: moment/download/moment-2.29.1.tgz}
+    dev: false
+
+  /monaco-editor/0.33.0:
+    resolution: {integrity: sha1-hC4kTzdQokgviinGdrVoTnX/NK8=, tarball: monaco-editor/download/monaco-editor-0.33.0.tgz}
+=======
   /moment/2.29.3:
     resolution: {integrity: sha1-7dR0EcMiQTmZ96WUDVJt4YPAMfM=, tarball: moment/download/moment-2.29.3.tgz}
+>>>>>>> antd-pro-js
     dev: false
 
   /ms/2.0.0:
@@ -5099,6 +5225,16 @@ packages:
     resolution: {integrity: sha1-tYsBCsQMIsVldhbI0sLALHv0eew=, tarball: punycode/download/punycode-2.1.1.tgz}
     engines: {node: '>=6'}
     dev: true
+
+  /query-string/7.1.1:
+    resolution: {integrity: sha1-dUYgZp25eGJakPY18SYXwnGgiOE=, tarball: query-string/download/query-string-7.1.1.tgz}
+    engines: {node: '>=6'}
+    dependencies:
+      decode-uri-component: 0.2.0
+      filter-obj: 1.1.0
+      split-on-first: 1.1.0
+      strict-uri-encode: 2.0.0
+    dev: false
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha1-SSkii7xyTfrEPg77BYyve2z7YkM=, tarball: queue-microtask/download/queue-microtask-1.2.3.tgz}
@@ -5915,8 +6051,18 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
+<<<<<<< HEAD
+  /screenfull/5.2.0:
+    resolution: {integrity: sha1-ZTPVJNMGIfwSg7lpIUbz8TqT0bo=, tarball: screenfull/download/screenfull-5.2.0.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
+  /scroll-into-view-if-needed/2.2.28:
+    resolution: {integrity: sha1-WhWy9YpSZCyIyOylhGROAXA9ZFo=, tarball: scroll-into-view-if-needed/download/scroll-into-view-if-needed-2.2.28.tgz}
+=======
   /scroll-into-view-if-needed/2.2.29:
     resolution: {integrity: sha1-VReRqEt+IodwZRH4xoFh5JkKuIU=, tarball: scroll-into-view-if-needed/download/scroll-into-view-if-needed-2.2.29.tgz}
+>>>>>>> antd-pro-js
     dependencies:
       compute-scroll-into-view: 1.0.17
     dev: false
@@ -6005,10 +6151,27 @@ packages:
     resolution: {integrity: sha1-6oBL2UhXQC5pktBaOO8a41qatMQ=, tarball: sourcemap-codec/download/sourcemap-codec-1.4.8.tgz}
     dev: true
 
+<<<<<<< HEAD
+  /split-on-first/1.1.0:
+    resolution: {integrity: sha1-9hCv7uOxK84dDDBCXnY5i3gkml8=, tarball: split-on-first/download/split-on-first-1.1.0.tgz}
+    engines: {node: '>=6'}
+    dev: false
+
+  /sprintf-js/1.0.3:
+    resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=, tarball: sprintf-js/download/sprintf-js-1.0.3.tgz}
+    dev: true
+
+=======
+>>>>>>> antd-pro-js
   /statuses/1.5.0:
     resolution: {integrity: sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=, tarball: statuses/download/statuses-1.5.0.tgz}
     engines: {node: '>= 0.6'}
     dev: true
+
+  /strict-uri-encode/2.0.0:
+    resolution: {integrity: sha1-ucczDHBChi9rFC3CdLvMWGbONUY=, tarball: strict-uri-encode/download/strict-uri-encode-2.0.0.tgz}
+    engines: {node: '>=4'}
+    dev: false
 
   /string-convert/0.2.1:
     resolution: {integrity: sha1-aYLMMEn7tM2F+LJFaLnZvznu/5c=, tarball: string-convert/download/string-convert-0.2.1.tgz}
