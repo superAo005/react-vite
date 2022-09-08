@@ -1,21 +1,15 @@
-import { memo, useEffect } from 'react';
-import { ConfigProvider } from 'antd';
-import { useRecoilValue } from 'recoil';
-import { antdMessageState, i18nLocaleState } from '@/store/i18n';
-import { setHtmlLang } from '@/utils/i18n';
-import Routes from './routes';
+import React from 'react'
+import { HashRouter, BrowserRouter } from 'react-router-dom'
+import RenderRouter from './routers'
+import { useSelector } from 'react-redux'
 
-export default memo(() => {
-  const i18nLocale = useRecoilValue(i18nLocaleState);
-  const antdMessage = useRecoilValue(antdMessageState);
-
-  useEffect(() => {
-    setHtmlLang(i18nLocale);
-  }, []);
-
+const App = () => {
+  const userInfo = useSelector((state) => state.user.info)
   return (
-    <ConfigProvider locale={antdMessage}>
-      <Routes />
-    </ConfigProvider>
-  );
-});
+    <BrowserRouter>
+      <RenderRouter userInfo={userInfo} roles={userInfo?.roles} />
+    </BrowserRouter>
+  )
+}
+
+export default App
