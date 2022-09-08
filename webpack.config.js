@@ -1,5 +1,6 @@
 
 //webpack.config.js
+// 不用拆分config文件来根据环境设置缓存，并且配置已经尽可能简化，拆分反而会增加维护成本
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
