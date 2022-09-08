@@ -11,20 +11,15 @@ import {
 import iconMap from './iconMap'
 
 import { Layout, Menu, Dropdown, Modal } from 'antd'
-
-const { SubMenu } = Menu
 import { DownOutlined } from '@ant-design/icons'
-
 import { useSelector } from 'react-redux'
-
 import ScrollBar from '@/components/ScrollBar'
 import { filterMenuRoutes } from '@/utils'
-
 import { routeList } from '@/routers'
+const { SubMenu } = Menu
 const { Header, Sider, Content } = Layout
-export default function Index() {
+function Index() {
   const [collapsed, setCollapsed] = useState(false)
-
   let uselocation = useLocation()
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
@@ -47,11 +42,7 @@ export default function Index() {
     })
   }
   const [defaultOpenKeys, setDefaultOpenKeys] = useState(pathArr)
-
   const account = localStorage.getItem('account') || '未知用户'
-  // console.log(uselocation)
-  console.log('match', match)
-
   const roles = useSelector((state) => state?.user?.info?.roles)
   const filetRouteList = filterMenuRoutes(roles, routeList)
 
@@ -188,3 +179,4 @@ export default function Index() {
     </>
   )
 }
+export default Index
