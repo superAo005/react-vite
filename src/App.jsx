@@ -1,20 +1,14 @@
-import React, { Suspense } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react'
+import { HashRouter, BrowserRouter } from 'react-router-dom'
 import RenderRouter from './routers'
-import LoadingComponent from '@/components/Loading'
+import { useSelector } from 'react-redux'
 
 const App = () => {
-  const handleChange = (val) => {
-    // console.log(val)
-  }
-  const editorDidMount = (editor, monaco) => {
-    // console.log(editor, monaco)
-  }
+  const userInfo = useSelector((state) => state.user.info)
+
   return (
     <BrowserRouter>
-      <Suspense fallback={<LoadingComponent />}>
-        <RenderRouter />
-      </Suspense>
+      <RenderRouter userInfo={userInfo} roles={userInfo?.roles} />
     </BrowserRouter>
   )
 }

@@ -2,15 +2,163 @@
 @tailwind components;
 @tailwind utilities; /* 252526 */
 
-/* .monaco-editor .suggest-details,
-.monaco-editor .suggest-widget {
-  background-color: #f3f3f3 !important;
-} */
+.ant-btn-primary {
+  background-color: #1890ff;
+}
+.ant-pro-card-body {
+  padding: 24px !important;
+}
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
 
-/* // body {
-//   #monaco_editor {
-//     width: 900px;
-//     height: 900px;
-//   }
-// }
+.trigger:hover {
+  color: #1890ff;
+}
+
+/*
+.logo {
+  @apply h-8 m-4  bg-opacity-30 text-white text-center leading-8 text-xl;
+}
 */
+
+.login-page {
+  background: url('@/assets/bg.jpg') no-repeat no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+}
+
+/* 登录页*/
+.login-form {
+  border-radius: 6px;
+  background: #fff;
+  width: 400px;
+  height: 300px;
+  padding: 25px 25px 5px 25px !important;
+  .title {
+    margin: 0 auto 30px auto;
+    text-align: center;
+    color: #707070;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    font-size: 19px;
+  }
+  .ant-tabs-nav-list {
+    margin: 0 auto;
+    font-size: 16px;
+  }
+}
+
+.extract-form {
+  .ant-space {
+    width: 100%;
+  }
+}
+.canvas {
+  background: url('@/assets/bg.jpg') no-repeat right;
+}
+
+.layout {
+  .header {
+    @apply p-0 h-12  	w-full  leading-[3rem] z-50 flex text-white items-center;
+    .ant-dropdown-link {
+      @apply text-white;
+    }
+    .logo {
+      @apply h-8 m-2  text-white text-center leading-8 text-xl;
+    }
+    .center {
+      @apply flex-1;
+    }
+    .right-menu {
+      @apply flex  float-right;
+    }
+  }
+
+  .side {
+    height: calc(100vh - 48px);
+    @apply bg-white;
+    .ant-layout-sider-trigger {
+      @apply bg-white border-gray-200	 border-t;
+      .anticon {
+        @apply text-black;
+      }
+    }
+  }
+  .ant-layout-content {
+    height: calc(100vh - 48px);
+    @apply overflow-auto;
+  }
+}
+
+.ant-card-body {
+  padding: 24px !important;
+}
+.h-screen .anticon {
+  vertical-align: 0.125em;
+}
+.batch {
+  position: absolute;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  top: 50%;
+  color: #fff;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.player {
+  display: inline-block;
+  text-align: center;
+  font-size: 25px;
+  width: 150px;
+  background: #fff;
+  line-height: 30px;
+  color: #000;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
+}
+
+/* scrollBar 样式*/
+:global {
+  .ps--active-x > .ps__rail-x,
+  .ps--active-y > .ps__rail-y {
+    background-color: transparent;
+  }
+
+  .ps__rail-x:hover > .ps__thumb-x,
+  .ps__rail-x:focus > .ps__thumb-x {
+    height: 8px;
+  }
+
+  .ps__rail-y:hover > .ps__thumb-y,
+  .ps__rail-y:focus > .ps__thumb-y {
+    width: 8px;
+  }
+
+  .ps__rail-y,
+  .ps__rail-x {
+    z-index: 9;
+  }
+
+  .ps__thumb-y {
+    width: 4px;
+    right: 4px;
+  }
+
+  .ps__thumb-x {
+    height: 4px;
+    bottom: 4px;
+  }
+}

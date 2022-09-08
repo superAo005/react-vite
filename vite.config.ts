@@ -1,11 +1,10 @@
 import { ConfigEnv, UserConfigExport } from 'vite'
 // import reactRefresh from '@vitejs/plugin-react-refresh'
 import react from '@vitejs/plugin-react'
-import * as fs from 'fs'
 import * as path from 'path'
-import styleImport from 'vite-plugin-style-import'
+import styleImport, { AntdResolve } from 'vite-plugin-style-import'
 
-import vitePluginImp from 'vite-plugin-imp'
+// import vitePluginImp from 'vite-plugin-imp'
 
 // import usePluginImport from 'vite-plugin-importer'
 
@@ -18,7 +17,7 @@ const reduxVendorPackages = ['@reduxjs/toolkit', 'react-redux']
 
 // 分包
 function renderChunks(deps: Record<string, string>) {
-  let chunks = {}
+  const chunks = {}
   Object.keys(deps).forEach((key) => {
     if (reactVendorPackages.includes(key)) return
     if (reduxVendorPackages.includes(key)) return
@@ -55,11 +54,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         mockPath: 'mock',
         localEnabled: command === 'serve',
       }),
-      // usePluginImport({
-      //   libraryName: 'antd',
-      //   libraryDirectory: 'es',
-      //   style: true,
-      // }),
+
       // vitePluginImp({
       //   libList: [
       //     {
@@ -80,41 +75,17 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       //   ],
       // }),
       styleImport({
-        libs: [
-          {
-            libraryName: 'antd',
-            esModule: true,
-            resolveStyle: (name) => {
-              return `antd/es/${name}/style/index`
-            },
-          },
-        ],
+        resolves: [AntdResolve()],
+        // libs: [
+        //   {
+        //     libraryName: 'antd',
+        //     esModule: true,
+        //     resolveStyle: (name) => {
+        //       return `antd/es/${name}/style/index`
+        //     },
+        //   },
+        // ],
       }),
-      // vitePluginImp({
-      //   libList: [
-      //     {
-      //       libName: 'antd',
-      //       style: (name) => {
-      //         const less = fs.existsSync(
-      //           path.resolve(__dirname, `node_modules/antd/es/${name}/style/index.less`)
-      //         )
-      //         if (less) {
-      //           return `antd/es/${name}/style/index.less`
-      //         } else {
-      //           const css = fs.existsSync(
-      //             path.resolve(__dirname, `node_modules/antd/es/${name}/style/css.js`)
-      //           )
-      //           if (css) {
-      //             return `antd/es/${name}/style/css.js`
-      //           } else {
-      //             return false
-      //           }
-      //         }
-      //       },
-      //       libDirectory: 'es',
-      //     },
-      //   ],
-      // }),
     ],
     build: {
       target: 'es2018',
@@ -143,13 +114,13 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       port: 3005, // 你需要定义的端口号
       // "preinstall": "npx only-allow pnpm",
 
-      // proxy: {
-      //   '/api/': {
-      //     target: uat,
-      //     changeOrigin: true,
-      //     secure: false,
-      //   },
-      // },
+      proxy: {
+        '/api/': {
+          target: 'http://39.105.10.134:8998',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
     },
   }
 }
