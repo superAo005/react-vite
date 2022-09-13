@@ -16,6 +16,7 @@ npm run install //安装依赖
 npm run dev //启动应用
 ```
 #### 目录说明
+```js
 
 ├── dist                                // 默认的 build 输出目录
 ├── .husky                              // pre-commit hook
@@ -43,6 +44,7 @@ npm run dev //启动应用
 ├── package.json                        // package
 ├── README.md                           // README
 ├── tsconfig.json                       // typescript配置文件
+```
 #### 依赖说明
 ```js
 "dependencies": {

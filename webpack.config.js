@@ -16,7 +16,7 @@ process.env.BABEL_ENV = DEV ? 'development' : 'production';
 process.env.NODE_ENV = DEV ? 'development' : 'production';
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/main.jsx',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
