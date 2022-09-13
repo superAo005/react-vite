@@ -1,4 +1,4 @@
-# 全新技术栈管理系统
+# 全新技术栈中后台管理模板
 
 全新技术栈的后台管理系统
 
@@ -14,7 +14,7 @@
 - 获取项目代码
 
 ```
- git clone http://git.dev.sh.ctripcorp.com/risk/vite-react.git
+ git clone https://github.com/superAo005/react-vite
 ```
 
 - 安装依赖
