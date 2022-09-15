@@ -3,11 +3,11 @@
 // 不用拆分config文件来根据环境设置缓存，并且配置已经尽可能简化，拆分反而会增加维护成本
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');// css拆分
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');// css压缩
+const TerserPlugin = require('terser-webpack-plugin');// 使用 terser 压缩 js （terser 是一个管理和压缩 ES6+ 的工具）
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');// 避免webpack中检测ts类型
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');// webpack打包体积可视化分析
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const { DEV, DEBUG } = process.env;

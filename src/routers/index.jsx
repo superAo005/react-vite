@@ -39,20 +39,6 @@ const routeList = [
         element: lazyLoad(<Role />),
       },
       {
-        path: 'expert',
-        title: '专家管理',
-        auth: 'expert:view',
-
-        element: lazyLoad(<Expert />),
-      },
-      {
-        path: 'extract',
-        title: '专家抽取',
-        auth: 'extract:view',
-        element: lazyLoad(<Extract />),
-      },
-
-      {
         path: 'statistic',
         title: '统计分析',
         element: lazyLoad(<Statistic />),
