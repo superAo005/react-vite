@@ -11,7 +11,7 @@ const lazyLoad = children => {
 };
 const routeList = [
 	{
-		path: '/',
+		path: '',
 		element: <LayoutPage />,
 		children: [
 			{
@@ -54,7 +54,7 @@ const RenderRouter = props => {
 	const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 	roles = userInfo?.roles || [];
 	let filetRouteList = filterRoutes(roles, routeList);
-	return useRoutes(filetRouteList);
+	return useRoutes(routeList);
 };
 export { routeList };
 export default RenderRouter;

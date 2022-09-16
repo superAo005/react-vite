@@ -137,8 +137,8 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, './index.html'),
-			filename: 'app.html',
-			inject: 'body',
+			// filename: 'app.html',
+			// inject: 'body',
 		}),
 		DEBUG && new BundleAnalyzerPlugin(),
 		new MiniCssExtractPlugin({

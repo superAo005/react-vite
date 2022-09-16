@@ -23,10 +23,10 @@ function Index() {
   let uselocation = useLocation()
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
-  if (!token) {
-    navigate('/login')
-    return <Navigate to="/login" replace />
-  }
+  // if (!token) {
+  //   navigate('/login')
+  //   return <Navigate to="/login" replace />
+  // }
   const match = useMatch(uselocation.pathname)
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
 

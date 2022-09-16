@@ -20,7 +20,7 @@
             "DOM",
             "DOM.Iterable",
             "ESNext"
-        ], //"lib": ["DOM", "DOM.Iterable", "ESNext"],
+        ],
         "allowJs": true,
         "noUnusedLocals": true,
         "baseUrl": ".",
@@ -35,7 +35,6 @@
         "skipLibCheck": true,
         "esModuleInterop": false,
         "suppressImplicitAnyIndexErrors": true,
-        // "strict": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
