@@ -138,7 +138,7 @@ function Index() {
     <>
       <Layout className="h-screen layout">
         <Header className="header h-14">
-          <div className="logo">作品库管理系统</div>
+          <div className="logo">webpack5</div>
           <div className="center"></div>
           <div className="right-menu float-right mr-6">
             <Dropdown overlay={menu} trigger={['hover']}>
@@ -151,7 +151,6 @@ function Index() {
         </Header>
         <Layout className="site-layout-background">
           <Sider
-            // trigger={null}
             collapsible
             collapsed={collapsed}
             onCollapse={setCollapsed}

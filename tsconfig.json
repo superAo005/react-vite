@@ -1,13 +1,51 @@
-//_tsconfig.json_
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "noImplicitAny": true,
-        "module": "es6",
-        "target": "es5",
-        "jsx": "react",
-        "allowJs": true,
+        "target": "ES2015",
+        "importHelpers": true,
+        "strict": true,
         "allowSyntheticDefaultImports": true,
-        "moduleResolution": "Node"
-    }
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "experimentalDecorators": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "lib": [
+            "es5",
+            "es6",
+            "es7",
+            "dom",
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ], //"lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "allowJs": true,
+        "noUnusedLocals": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "types": [
+            "node"
+        ],
+        "skipLibCheck": true,
+        "esModuleInterop": false,
+        "suppressImplicitAnyIndexErrors": true,
+        // "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true
+    },
+    "exclude": [
+        "node_modules/*",
+        "webpack.config.js"
+    ],
+    "include": [
+        "./src/"
+    ]
 }
