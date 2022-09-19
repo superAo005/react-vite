@@ -8,7 +8,7 @@ import store from './stores';
 import { Provider } from 'react-redux';
 let persistor = persistStore(store);
 const container = document.getElementById('root');
-// const root = createRoot(container);
+const root = createRoot(container);
 
 ReactDOM.render(
 	<Provider store={store}>
