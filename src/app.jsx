@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import RenderRouter from './routers';
 import { useSelector } from 'react-redux';
+import './app.less';
 const App = () => {
 	const userInfo = useSelector(state => state.user.info);
 	return (
