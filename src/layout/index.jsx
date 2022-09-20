@@ -8,8 +8,10 @@ import { useSelector } from 'react-redux';
 import ScrollBar from '@/components/ScrollBar';
 import { filterMenuRoutes } from '@/utils';
 import { routeList } from '@/routers';
+import './index.less';
 const { SubMenu } = Menu;
 const { Header, Sider, Content } = Layout;
+
 function Index() {
 	const [collapsed, setCollapsed] = useState(false);
 	let uselocation = useLocation();
@@ -37,20 +39,8 @@ function Index() {
 	const account = localStorage.getItem('account') || '未知用户';
 	const roles = useSelector(state => state?.user?.info?.roles);
 	const filetRouteList = filterMenuRoutes(roles, routeList);
-
 	// 侧边栏菜单，约定只取数组第一项
 	const sideMenuList = filetRouteList[0].children;
-	// console.log('rolesfiletRouteList', filetRouteList)
-	// console.log('sideMenuList', sideMenuList)
-	// const toggle = () => {
-	//   setCollapsed(!collapsed)
-	// }
-
-	// const onItemClick = ({ item, key, keyPath }) => {
-	//   console.log('onItemClick', item)
-	//   navigate(key)
-	// }
-
 	useEffect(() => {
 		console.log('uselocation.pathname', uselocation.pathname);
 		const routes = matchRoutes(routeList, uselocation.pathname); // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
@@ -127,46 +117,44 @@ function Index() {
 		</Menu>
 	);
 	return (
-		<>
-			<Layout className="h-screen layout">
-				<Header className="header h-14">
-					<div className="logo">webpack5</div>
-					<div className="center"></div>
-					<div className="right-menu float-right mr-6">
-						<Dropdown overlay={menu} trigger={['hover']}>
-							<a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-								{account}
-								<DownOutlined className="ml-1" />
-							</a>
-						</Dropdown>
-					</div>
-				</Header>
-				<Layout className="site-layout-background">
-					<Sider
-						collapsible
-						collapsed={collapsed}
-						onCollapse={setCollapsed}
-						className="side overflow-auto site-layout-background">
-						<ScrollBar
-							options={{
-								suppressScrollX: true,
-							}}>
-							<Menu
-								mode="inline"
-								defaultSelectedKeys={defaultSelectedKeys}
-								selectedKeys={defaultSelectedKeys}
-								defaultOpenKeys={defaultOpenKeys}>
-								{getMenuNodes(sideMenuList)}
-							</Menu>
-						</ScrollBar>
-					</Sider>
+		<Layout className="h-screen layout">
+			<Header className="header">
+				<div className="logo">webpack5</div>
+				<div className="center"></div>
+				<div className="right-menu">
+					<Dropdown overlay={menu} trigger={['hover']}>
+						<a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+							{account}
+							<DownOutlined className="ml-1" />
+						</a>
+					</Dropdown>
+				</div>
+			</Header>
+			<Layout className="site-layout-background">
+				<Sider
+					collapsible
+					collapsed={collapsed}
+					onCollapse={setCollapsed}
+					className="side overflow-auto site-layout-background">
+					<ScrollBar
+						options={{
+							suppressScrollX: true,
+						}}>
+						<Menu
+							mode="inline"
+							defaultSelectedKeys={defaultSelectedKeys}
+							selectedKeys={defaultSelectedKeys}
+							defaultOpenKeys={defaultOpenKeys}>
+							{getMenuNodes(sideMenuList)}
+						</Menu>
+					</ScrollBar>
+				</Sider>
 
-					<Content id="content" className="p-6 relative">
-						<Outlet></Outlet>
-					</Content>
-				</Layout>
+				<Content id="content" className="p-6 relative">
+					<Outlet></Outlet>
+				</Content>
 			</Layout>
-		</>
+		</Layout>
 	);
 }
 export default Index;

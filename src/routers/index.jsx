@@ -5,6 +5,7 @@ import Loading from '@/components/Loading';
 
 import { filterRoutes } from '@/utils';
 const TableList = lazy(() => import('@/pages/table'));
+const NoMatch = lazy(() => import('@/pages/noMatch'));
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = children => {
 	return <Suspense fallback={Loading}>{children}</Suspense>;
@@ -27,6 +28,7 @@ const routeList = [
 						path: 'table2',
 						title: '表格',
 						element: lazyLoad(<TableList />),
+						auth: '',
 					},
 					{
 						path: 'table3',
@@ -35,12 +37,12 @@ const routeList = [
 					},
 				],
 			},
-			// {
-			//   path: '*',
-			//   name: 'No Match',
-			//   key: '*',
-			//   element: lazyLoad(<NoMatch />),
-			// },
+			{
+				path: '*',
+				name: 'No Match',
+				key: '*',
+				element: lazyLoad(<NoMatch />),
+			},
 		],
 	},
 	// {
