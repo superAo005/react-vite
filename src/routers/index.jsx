@@ -1,15 +1,15 @@
-import React, { lazy, Suspense } from 'react';
-import { useRoutes } from 'react-router-dom';
-import LayoutPage from '@/layout';
-import Loading from '@/components/Loading';
+import React, { lazy, Suspense } from 'react'
+import { useRoutes } from 'react-router-dom'
+import LayoutPage from '@/layout'
+import Loading from '@/components/Loading'
 
-import { filterRoutes } from '@/utils';
-const TableList = lazy(() => import('@/pages/table'));
-const NoMatch = lazy(() => import('@/pages/noMatch'));
+import { filterRoutes } from '@/utils'
+const TableList = lazy(() => import('@/pages/table'))
+const NoMatch = lazy(() => import('@/pages/noMatch'))
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = children => {
-	return <Suspense fallback={Loading}>{children}</Suspense>;
-};
+	return <Suspense fallback={Loading}>{children}</Suspense>
+}
 const routeList = [
 	{
 		path: '',
@@ -49,14 +49,14 @@ const routeList = [
 	//   path: 'login',
 	//   element: lazyLoad(<Login />),
 	// },
-];
+]
 
 const RenderRouter = props => {
-	let { roles = [] } = props;
-	const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-	roles = userInfo?.roles || [];
-	let filetRouteList = filterRoutes(roles, routeList);
-	return useRoutes(routeList);
-};
-export { routeList };
-export default RenderRouter;
+	let { roles = [] } = props
+	const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+	roles = userInfo?.roles || []
+	let filetRouteList = filterRoutes(roles, routeList)
+	return useRoutes(routeList)
+}
+export { routeList }
+export default RenderRouter

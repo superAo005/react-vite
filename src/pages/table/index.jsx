@@ -20,7 +20,7 @@ function TableList() {
   const formRef = useRef()
   const initColumns = [
     {
-      title: '专家姓名',
+      title: '用户',
       dataIndex: 'name',
       width: 120,
     },
