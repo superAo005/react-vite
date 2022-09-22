@@ -3997,10 +3997,10 @@
   "resolved" "https://registry.nlark.com/clean-stack/download/clean-stack-2.2.0.tgz"
   "version" "2.2.0"
 
-"clean-webpack-plugin@^4.0.0-alpha.0":
-  "integrity" "sha1-Ku9I3+dWU2DRKPXKoJBAl9lp0FM="
-  "resolved" "https://registry.nlark.com/clean-webpack-plugin/download/clean-webpack-plugin-4.0.0-alpha.0.tgz"
-  "version" "4.0.0-alpha.0"
+"clean-webpack-plugin@^4.0.0":
+  "integrity" "sha1-cpR9RAPUUvOO1hqf8K2oEiqs1yk="
+  "resolved" "http://registry.npm.release.ctripcorp.com/clean-webpack-plugin/download/clean-webpack-plugin-4.0.0.tgz"
+  "version" "4.0.0"
   dependencies:
     "del" "^4.1.1"
 
@@ -4417,6 +4417,13 @@
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
 
+"cross-env@^7.0.3":
+  "integrity" "sha1-hlJkspZ33AFbqEGJGJZd0jL8VM8="
+  "resolved" "http://registry.npm.release.ctripcorp.com/cross-env/download/cross-env-7.0.3.tgz"
+  "version" "7.0.3"
+  dependencies:
+    "cross-spawn" "^7.0.1"
+
 "cross-spawn@^5.0.1":
   "integrity" "sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk="
   "resolved" "https://registry.nlark.com/cross-spawn/download/cross-spawn-5.1.0.tgz?cache=0&sync_timestamp=1618847024338&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcross-spawn%2Fdownload%2Fcross-spawn-5.1.0.tgz"
@@ -4437,7 +4444,7 @@
     "shebang-command" "^1.2.0"
     "which" "^1.2.9"
 
-"cross-spawn@^7.0.0", "cross-spawn@^7.0.2", "cross-spawn@^7.0.3", "cross-spawn@7.0.3":
+"cross-spawn@^7.0.0", "cross-spawn@^7.0.1", "cross-spawn@^7.0.2", "cross-spawn@^7.0.3", "cross-spawn@7.0.3":
   "integrity" "sha1-9zqFudXUHQRVUcF34ogtSshXKKY="
   "resolved" "https://registry.nlark.com/cross-spawn/download/cross-spawn-7.0.3.tgz?cache=0&sync_timestamp=1618847024338&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcross-spawn%2Fdownload%2Fcross-spawn-7.0.3.tgz"
   "version" "7.0.3"

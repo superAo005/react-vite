@@ -3,8 +3,8 @@ const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-module.exports = {
+onsole.log('process.env.NODE_ENV=', process.env.NODE_ENV) // 打印环境变量
+const config = {
   performance: {
     hints: false,
   },
@@ -110,7 +110,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     // contentBase
-    // static: path.join(__dirname, 'public/'),
     static: {
       directory: path.join(__dirname, 'public/'),
     },
@@ -123,6 +122,7 @@ module.exports = {
     // hotOnly
     hot: 'only',
     open: true,
+    client: { progress: true },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -137,4 +137,9 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
+}
+module.exports = (env, argv) => {
+  console.log('argv.mode=', argv.mode) // 打印 mode(模式) 值
+  // 这里可以通过不同的模式修改 config 配置
+  return config
 }
