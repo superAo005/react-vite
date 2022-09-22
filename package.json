@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --mode development --open --hot --history-api-fallback",
+    "dev": "webpack serve --mode development   --history-api-fallback --open --hot",
     "build": "webpack --mode production",
     "pretty": "./node_modules/.bin/pretty-quick --staged"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:fillter/react-vite.git"
+    "url": "https://github.com/superAo005/react-vite"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -43,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "babel-loader": "^8.2.5",
+    "babel-plugin-import": "^1.13.5",
     "css-loader": "^6.7.1",
     "csv-loader": "^3.0.5",
     "eslint": "^8.21.0",
