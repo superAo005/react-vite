@@ -1,73 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, Link, useMatch, useLocation, useNavigate, matchRoutes } from 'react-router-dom';
-import iconMap from './iconMap';
+import React, { useState, useEffect } from 'react'
+import { Outlet, Link, useMatch, useLocation, useNavigate, matchRoutes } from 'react-router-dom'
+import iconMap from './iconMap'
 
-import { Layout, Menu, Dropdown, Modal } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import ScrollBar from '@/components/ScrollBar';
-import { filterMenuRoutes } from '@/utils';
-import { routeList } from '@/routers';
-import './index.less';
-const { SubMenu } = Menu;
-const { Header, Sider, Content } = Layout;
+import { Layout, Menu, Dropdown, Modal } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
+import { useSelector } from 'react-redux'
+import ScrollBar from '@/components/ScrollBar'
+import { filterMenuRoutes } from '@/utils'
+import { routeList } from '@/routers'
+import './index.less'
+const { SubMenu } = Menu
+const { Header, Sider, Content } = Layout
 
 function Index() {
-	const [collapsed, setCollapsed] = useState(false);
-	let uselocation = useLocation();
-	const navigate = useNavigate();
-	const token = localStorage.getItem('token');
+	const [collapsed, setCollapsed] = useState(false)
+	let uselocation = useLocation()
+	const navigate = useNavigate()
+	const token = localStorage.getItem('token')
 	// if (!token) {
 	//   navigate('/login')
 	//   return <Navigate to="/login" replace />
 	// }
-	const match = useMatch(uselocation.pathname);
-	const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname);
+	const match = useMatch(uselocation.pathname)
+	const [defaultSelectedKeys, setDefaultSelectedKeys] = useState(uselocation.pathname)
 
-	const routes = matchRoutes(routeList, uselocation.pathname); // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
+	const routes = matchRoutes(routeList, uselocation.pathname) // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
 	// console.log('matchRoutes', routes)
-	const pathArr = [];
+	const pathArr = []
 	if (routes !== null) {
 		routes.forEach(item => {
-			const path = item.pathname;
+			const path = item.pathname
 			if (path) {
-				pathArr.push(path);
+				pathArr.push(path)
 			}
-		});
+		})
 	}
-	const [defaultOpenKeys, setDefaultOpenKeys] = useState(pathArr);
-	const account = localStorage.getItem('account') || '未知用户';
-	const roles = useSelector(state => state?.user?.info?.roles);
-	const filetRouteList = filterMenuRoutes(roles, routeList);
+	const [defaultOpenKeys, setDefaultOpenKeys] = useState(pathArr)
+	const account = localStorage.getItem('account') || '未知用户'
+	const roles = useSelector(state => state?.user?.info?.roles)
+	const filetRouteList = filterMenuRoutes(roles, routeList)
 	// 侧边栏菜单，约定只取数组第一项
-	const sideMenuList = filetRouteList[0].children;
+	const sideMenuList = filetRouteList[0].children
 	useEffect(() => {
-		console.log('uselocation.pathname', uselocation.pathname);
-		const routes = matchRoutes(routeList, uselocation.pathname); // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
+		console.log('uselocation.pathname', uselocation.pathname)
+		const routes = matchRoutes(routeList, uselocation.pathname) // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
 		// console.log('matchRoutes', routes)
-		const pathArr = [];
+		const pathArr = []
 		if (routes !== null) {
 			routes.forEach(item => {
-				const path = item.pathname;
+				const path = item.pathname
 				if (path) {
-					pathArr.push(path);
+					pathArr.push(path)
 				}
-			});
+			})
 		}
-		console.log('pathArr', pathArr);
-		setDefaultOpenKeys(pathArr);
-		setDefaultSelectedKeys(uselocation.pathname);
-	}, [location.href]);
+		console.log('pathArr', pathArr)
+		setDefaultOpenKeys(pathArr)
+		setDefaultSelectedKeys(uselocation.pathname)
+	}, [location.href])
 	const onClick = ({ key }) => {
 		switch (key) {
 			case 'logout':
 				// TODO: 退出登录
-				handleLogout();
-				break;
+				handleLogout()
+				break
 			default:
-				break;
+				break
 		}
-	};
+	}
 	const handleLogout = token => {
 		Modal.confirm({
 			title: '注销',
@@ -76,10 +76,10 @@ function Index() {
 			cancelText: '取消',
 			onOk: () => {
 				// logout(token);
-				navigate('login');
+				navigate('login')
 			},
-		});
-	};
+		})
+	}
 
 	// 菜单渲染
 	const getMenuNodes = menuList => {
@@ -93,7 +93,7 @@ function Index() {
 								<span>{item.title}</span>
 							</Link>
 						</Menu.Item>
-					);
+					)
 				} else {
 					// 向pre添加<SubMenu>
 					pre.push(
@@ -103,19 +103,19 @@ function Index() {
 							title={<span>{item.title}</span>}>
 							{getMenuNodes(item.children)}
 						</SubMenu>
-					);
+					)
 				}
 			}
 
-			return pre;
-		}, []);
-	};
+			return pre
+		}, [])
+	}
 	const menu = (
 		<Menu onClick={onClick}>
 			<Menu.Divider />
 			<Menu.Item key="logout">退出登录</Menu.Item>
 		</Menu>
-	);
+	)
 	return (
 		<Layout className="h-screen layout">
 			<Header className="header">
@@ -132,6 +132,7 @@ function Index() {
 			</Header>
 			<Layout className="site-layout-background">
 				<Sider
+					theme="light"
 					collapsible
 					collapsed={collapsed}
 					onCollapse={setCollapsed}
@@ -155,6 +156,6 @@ function Index() {
 				</Content>
 			</Layout>
 		</Layout>
-	);
+	)
 }
-export default Index;
+export default Index
