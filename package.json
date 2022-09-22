@@ -4,19 +4,13 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@ant-design/pro-table": "^3.0.7",
     "@babel/polyfill": "^7.12.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "antd": "^4.16.11",
-    "axios": "^0.21.1",
+    "antd": "^4.22.4",
+    "axios": "^0.27.2",
     "babel-plugin-import": "^1.13.3",
-    "clean-webpack-plugin": "^4.0.0-alpha.0",
-    "css-loader": "^6.2.0",
-    "customize-cra": "^1.0.0",
-    "less": "2.7.3",
+    "clean-webpack-plugin": "^4.0.0",
     "react": "^17.0.2",
-    "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
@@ -27,16 +21,13 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --config=webpack.config.js",
+    "dev": "webpack-dev-server --config=webpack.config.js",
     "watch": "webpack --watch",
-    "build": "webpack --mode development",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "webpack --mode production"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -60,12 +51,15 @@
     "babel-loader": "^8.2.2",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
-    "less-loader": "5.0.0",
+    "less-loader": "^11.0.0",
     "mini-css-extract-plugin": "^2.1.0",
+    "css-loader": "^6.2.0",
+    "less": "^4.1.3",
+    "prettier": "^2.7.1",
     "postcss": "^8.3.6",
     "postcss-loader": "^6.1.1",
-    "webpack": "^5.45.1",
-    "webpack-cli": "3.3.12",
-    "webpack-dev-server": "^3.11.2"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.0"
   }
 }

@@ -1,0 +1,8 @@
+.prettierignore
+**/*.svg
+package.json
+/dist
+.editorconfig
+/public
+# production
+/build
