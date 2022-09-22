@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-onsole.log('process.env.NODE_ENV=', process.env.NODE_ENV) // 打印环境变量
+console.log('process.env.NODE_ENV=', process.env.NODE_ENV) // 打印环境变量
 const config = {
   performance: {
     hints: false,
@@ -118,7 +118,6 @@ const config = {
     },
     static: './public',
     port: 8088, // 端口号
-    inline: true,
     // hotOnly
     hot: 'only',
     open: true,
