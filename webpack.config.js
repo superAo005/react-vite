@@ -23,7 +23,7 @@ const config = {
     index: path.join(__dirname, 'src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, '/dist'),
     filename: 'js/[name].[hash:7].js',
     assetModuleFilename: 'images/[name].[hash][ext][query]',
     publicPath: '/', //这个是为了解决二级菜单刷新报错的问题，假如不加刷新后会去寻找当前路径的下打包后的css或者js，导致报错，所以要改设置为根路径
@@ -120,7 +120,7 @@ const config = {
       publicPath: '/dist/',
     },
     static: './public',
-    port: 8088, // 端口号
+    port: 8080, // 端口号
     // hotOnly
     hot: 'only',
     open: true,
