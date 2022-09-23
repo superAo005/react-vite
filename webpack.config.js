@@ -3,7 +3,8 @@ const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-console.log('process.env.NODE_ENV=', process.env.NODE_ENV) // 打印环境变量
+const isDev = process.env.NODE_ENV
+console.log('process.env.NODE_ENV=', isDev) // 打印环境变量
 const config = {
   performance: {
     hints: false,
@@ -59,7 +60,7 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|svg|jpg|gif)$/, // webpack5 已经弃用url-loader，file-loader
+        test: /\.(png|svg|jpg|gif)$/, // webpack5 已经弃用url-loader，file-loader 新增资源模块(asset module)，允许使用资源文件（字体，图标等）而无需配置额外的 loader
         type: 'asset/resource',
       },
       {
