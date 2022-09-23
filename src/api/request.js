@@ -38,7 +38,7 @@ axios.interceptors.response.use(function (response) {
     window.location.href = '/login';
   } return Promise.reject(error);
 });
-export default function ajax(url, params={}, type='GET') {
+export default function request(url, params={}, type='GET') {
   return new Promise(resolve => {
     let promise;
     if (type === 'GET') {
