@@ -98,10 +98,12 @@ const config = {
           {
             loader: 'less-loader',
             options: {
-              modifyVars: {
-                'primary-color': '#1DA57A',
+              lessOptions: {
+                modifyVars: {
+                  'primary-color': '#1DA57A',
+                },
+                javascriptEnabled: true, // 此项不能忘
               },
-              javascriptEnabled: true, // 此项不能忘
             },
           },
         ],
