@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
-export default () => {
-  return (
-    <div>
-      product
-    </div>
-  )
+const Index = () => {
+  return <div>product</div>
 }
+export default Index
