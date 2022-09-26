@@ -9,6 +9,9 @@ const TerserPlugin = require('terser-webpack-plugin') //webpack5 内置了terser
 
 const smp = new SpeedMeasurePlugin()
 const isDev = process.env.NODE_ENV
+const { DEV, DEBUG } = process.env
+process.env.BABEL_ENV = DEV ? 'development' : 'production'
+process.env.NODE_ENV = DEV ? 'development' : 'production'
 console.log('process.env.NODE_ENV=', isDev) // 打印环境变量
 // 路径处理方法
 function resolve(dir) {
@@ -133,9 +136,9 @@ const config = {
     static: {
       directory: path.join(__dirname, 'public/'),
     },
-    devMiddleware: {
-      publicPath: '/dist/',
-    },
+    // devMiddleware: {
+    //   publicPath: '/dist/',
+    // },
     port: 8080, // 端口号
     // hotOnly
     hot: 'only',
@@ -146,11 +149,13 @@ const config = {
     new CleanWebpackPlugin(),
     new HtmlPlugin({
       title: 'react-admin',
-      template: path.resolve(__dirname, './public/index.html'),
+      // template: path.resolve(__dirname, './public/index.html'),
+      template: path.join(__dirname, '/public/index.html'),
       filename: 'index.html',
+      inject: 'body',
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
+      analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
       generateStatsFile: true, // 是否生成stats.json文件
     }),
     new MiniCssExtractPlugin({

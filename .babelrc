@@ -1,6 +1,19 @@
 {
     "presets": [
-        "@babel/preset-env",
+        [
+            "@babel/preset-env",
+            {
+                "targets": { //哪个浏览器版本无法识别es新语法就设置哪个版本
+                    "edge": "17",
+                    "firefox": "60",
+                    "chrome": "67",
+                    "safari": "11.1",
+                    "node": "14"
+                },
+                "useBuiltIns": "entry",
+                "corejs": 3 //看你的corejs是什么版本的
+            }
+        ],
         "@babel/preset-react"
     ],
     "plugins": [
