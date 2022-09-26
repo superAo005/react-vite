@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { reqGetMenu } from '../../api';
-import {Table, Pagination } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { reqGetMenu } from '../../api'
+import { Table, Pagination, message } from 'antd'
 
-export default () => {
-  const [tableData, setTableData] = useState([]);
+const Index = () => {
+  const [tableData, setTableData] = useState([])
   // 表格列配置
   const columns = [
     {
@@ -21,31 +21,30 @@ export default () => {
       dataIndex: 'icon',
       key: 'icon',
     },
-  ];
+  ]
 
   // 分页配置
   const paginationObj = {
     showSizeChanger: true,
-    showTotal: (total) =>  `总共有 ${total} 条数据`,
+    showTotal: (total) => `总共有 ${total} 条数据`,
   }
   const getMenuList = async () => {
-    const result = await reqGetMenu();
+    const result = await reqGetMenu()
     if (result.code === 0) {
-      console.log('tableData', result.data);
-      setTableData(result.data);
+      console.log('tableData', result.data)
+      setTableData(result.data)
     } else {
-      message.error(result.error);
+      message.error(result.error)
     }
   }
   useEffect(() => {
-    getMenuList();
-  }, []);
+    getMenuList()
+  }, [])
   return (
     <>
-      <Table columns = {columns} 
-             dataSource = {tableData}
-             pagination = {paginationObj}/>
-             {/* <Pagination defaultCurrent={1} total={50} /> */}
+      <Table columns={columns} dataSource={tableData} pagination={paginationObj} />
+      {/* <Pagination defaultCurrent={1} total={50} /> */}
     </>
   )
 }
+export default Index
