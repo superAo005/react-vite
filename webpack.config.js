@@ -136,7 +136,6 @@ const config = {
     devMiddleware: {
       publicPath: '/dist/',
     },
-    static: './public',
     port: 8080, // 端口号
     // hotOnly
     hot: 'only',
@@ -151,8 +150,8 @@ const config = {
       filename: 'index.html',
     }),
     new BundleAnalyzerPlugin({
-      // analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
-      // generateStatsFile: true, // 是否生成stats.json文件
+      analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
+      generateStatsFile: true, // 是否生成stats.json文件
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
@@ -164,6 +163,6 @@ const config = {
 module.exports = (env, argv) => {
   console.log('argv.mode=', argv.mode) // 打印 mode(模式) 值
   // 这里可以通过不同的模式修改 config 配置
-  // return config
-  return smp.wrap(config)
+  return config
+  // return smp.wrap(config)
 }
