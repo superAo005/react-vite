@@ -29,16 +29,16 @@ const Index = () => {
             <Routes>
               {/* <Redirect exact from="/" to="/home" /> */}
               <Route path='/' element={<Home />} />
-              <Route path="/home" component={Home} />
-              <Route path="/goods/category" component={Category} />
-              <Route path="/goods/product" component={Product} />
-              <Route path="/role" component={Role} />
-              <Route path="/user" component={User} />
-              <Route path="/charts/bar" component={Bar} />
-              <Route path="/charts/line" component={Line} />
-              <Route path="/charts/pie" component={Pie} />
-              <Route path="/order" component={Order} />
-              {/* <Route component={NotFound}/>上面没有一个匹配, 直接显示*/}
+              <Route path="/home" element={Home} />
+              <Route path="/goods/category" element={Category} />
+              <Route path="/goods/product" element={Product} />
+              <Route path="/role" element={Role} />
+              <Route path="/user" element={User} />
+              <Route path="/charts/bar" element={Bar} />
+              <Route path="/charts/line" element={Line} />
+              <Route path="/charts/pie" element={Pie} />
+              <Route path="/order" element={Order} />
+              {/* <Route element={NotFound}/>上面没有一个匹配, 直接显示*/}
               <Route path="*" element={NotFound}></Route>
             </Routes>
           </Suspense>
