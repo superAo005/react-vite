@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Layout } from 'antd'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import {  Route, Routes } from 'react-router-dom'
 import LeftNav from '@components/left-nav/left-nav'
 
 import Header from '@components/header/header'
@@ -26,8 +26,9 @@ const Index = () => {
         <Header className="layout-header" />
         <Content style={{ margin: 20, backgroundColor: '#fff' }}>
           <Suspense fallback={<div>Loading</div>}>
-            <Switch>
-              <Redirect exact from="/" to="/home" />
+            <Routes>
+              {/* <Redirect exact from="/" to="/home" /> */}
+              <Route path='/' element={<Home />} />
               <Route path="/home" component={Home} />
               <Route path="/goods/category" component={Category} />
               <Route path="/goods/product" component={Product} />
@@ -38,7 +39,8 @@ const Index = () => {
               <Route path="/charts/pie" component={Pie} />
               <Route path="/order" component={Order} />
               {/* <Route component={NotFound}/>上面没有一个匹配, 直接显示*/}
-            </Switch>
+              <Route path="*" element={NotFound}></Route>
+            </Routes>
           </Suspense>
         </Content>
       </Layout>
