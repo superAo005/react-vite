@@ -21,7 +21,8 @@
     "dev": "cross-env NODE_ENV=dev webpack serve --mode development",
     "watch": "webpack --watch",
     "build": "cross-env NODE_ENV=prod webpack --mode production",
-    "analyzer": "cross-env NODE_ENV=prod webpack --progress --mode production"
+    "analyzer": "cross-env NODE_ENV=prod webpack --progress --mode production",
+    "upload": "node build/upload.js"
   },
   "eslintConfig": {
     "extends": [
