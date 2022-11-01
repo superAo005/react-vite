@@ -22,7 +22,7 @@
     "watch": "webpack --watch",
     "build": "cross-env NODE_ENV=prod webpack --mode production",
     "analyzer": "cross-env NODE_ENV=prod webpack --progress --mode production",
-    "upload": "node ftp/index.js"
+    "upload": "node ./deploy/index.js"
   },
   "eslintConfig": {
     "extends": [
